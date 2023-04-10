@@ -8,8 +8,8 @@ export class VideoEntity extends Base {
   @Column({ default: '' })
   name: string;
 
-  @Column({ default: false, name: 'is_public' })
-  isPublic: boolean;
+  @Column({ type: 'text', array: true, default: () => "ARRAY['isPublic']" })
+  flags: string[];
 
   @Column({ default: 0 })
   views?: number;

@@ -1,0 +1,13 @@
+@use '@styles/variables.scss' as v;
+
+.not-found-screen {
+  background-color: #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: v.$page-height;
+  
+  .graphic {
+    max-width: 400px;
+  }
+}

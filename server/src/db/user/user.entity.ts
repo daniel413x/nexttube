@@ -2,6 +2,8 @@ import { Base } from 'src/utils/base.util';
 import { VideoEntity } from '@db/video/video.entity';
 import { Entity, Column, OneToMany } from 'typeorm';
 import { SubscriptionEntity } from './subscription.entity';
+import { REGISTERED } from 'src/consts';
+import { LikeEntity } from './like.entity';
 
 @Entity('User')
 export class UserEntity extends Base {
@@ -14,8 +16,8 @@ export class UserEntity extends Base {
   @Column({ default: '' })
   name: string;
 
-  @Column({ default: false, name: 'is_verified' })
-  isVerified: boolean;
+  @Column({ type: 'text', array: true, default: () => "ARRAY['registered']" })
+  flags: string[];
 
   @Column({ default: 0, name: 'subscribers_count' })
   subscribersCount?: number;
@@ -34,4 +36,7 @@ export class UserEntity extends Base {
 
   @OneToMany(() => SubscriptionEntity, (subscription) => subscription.toChannel)
   subscribers: SubscriptionEntity[];
+
+  @OneToMany(() => LikeEntity, (like) => like.userId)
+  likes: LikeEntity[];
 }

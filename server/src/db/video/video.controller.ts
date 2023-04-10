@@ -66,7 +66,11 @@ export class VideoController {
 
   @HttpCode(200)
   @Put('update-reaction/:videoId')
-  async updateReaction(@Param('videoId') videoId: string) {
-    return this.videoService.updateReaction(videoId);
+  @Auth()
+  async updateReaction(
+    @Param('videoId') videoId: string,
+    @CurrentUser('id') userId: string,
+  ) {
+    return this.videoService.updateReaction(videoId, userId);
   }
 }

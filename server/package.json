@@ -24,7 +24,8 @@
     "migration:run": "npm run typeorm:build -- migration:run",
     "migration:revert": "npm run typeorm:build -- migration:revert",
     "seed:run": "typeorm-seeding seed -d dist/config/datasource.config.js dist/db/seeders/root.seed.js",
-    "migration:generate:run:seed": "rimraf ./src/db/migrations && npm run migration:generate && npm run typeorm -- migration:run && npm run seed:run"
+    "migration:generate:run:seed": "npm run migration:generate && npm run typeorm -- migration:run && npm run seed:run",
+    "migration:delete:generate:run:seed": "rimraf ./src/db/migrations && npm run migration:generate && npm run typeorm -- migration:run && npm run seed:run"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",

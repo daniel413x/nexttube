@@ -1,6 +1,7 @@
 import { Seeder } from '@jorgebodega/typeorm-seeding';
 import { DataSource } from 'typeorm';
 import CommentSeeder from '../comment/comment.seed';
+import LikeSeeder from '../user/like.seed';
 import UserSeeder from '../user/user.seed';
 import VideoSeeder from '../video/video.seed';
 
@@ -14,5 +15,6 @@ export default class RootSeeder extends Seeder {
     await runSeeder(dataSource, UserSeeder);
     await runSeeder(dataSource, VideoSeeder);
     await runSeeder(dataSource, CommentSeeder);
+    await runSeeder(dataSource, LikeSeeder);
   }
 }

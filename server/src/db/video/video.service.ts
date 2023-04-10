@@ -1,6 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptionsWhereProperty, ILike, MoreThan, Repository } from 'typeorm';
+import {
+  ArrayContains,
+  FindOptionsWhereProperty,
+  ILike,
+  MoreThan,
+  Repository,
+} from 'typeorm';
+import { LikeEntity } from '../user/like.entity';
 import { VideoDto } from './video.dto';
 import { VideoEntity } from './video.entity';
 
@@ -9,13 +16,15 @@ export class VideoService {
   constructor(
     @InjectRepository(VideoEntity)
     private readonly videoRepository: Repository<VideoEntity>,
+    @InjectRepository(LikeEntity)
+    private readonly likeRepository: Repository<LikeEntity>,
   ) {}
 
   async byId(id: string, isPublic = true) {
     const video = await this.videoRepository.findOne({
       where: {
         id,
-        isPublic,
+        flags: isPublic ? ArrayContains(['isPublic']) : null,
       },
       relations: {
         user: true,
@@ -28,7 +37,7 @@ export class VideoService {
           id: true,
           name: true,
           avatarPath: true,
-          isVerified: true,
+          flags: true,
           subscribersCount: true,
           subscriptions: true,
         },
@@ -39,7 +48,7 @@ export class VideoService {
             id: true,
             name: true,
             avatarPath: true,
-            isVerified: true,
+            flags: true,
             subscribersCount: true,
           },
         },
@@ -67,7 +76,7 @@ export class VideoService {
     return this.videoRepository.find({
       where: {
         ...options,
-        isPublic: true,
+        flags: ArrayContains(['isPublic']),
       },
       order: {
         createdAt: 'DESC',
@@ -80,7 +89,7 @@ export class VideoService {
           id: true,
           name: true,
           avatarPath: true,
-          isVerified: true,
+          flags: true,
         },
       },
     });
@@ -99,7 +108,7 @@ export class VideoService {
           id: true,
           name: true,
           avatarPath: true,
-          isVerified: true,
+          flags: true,
         },
       },
       order: {
@@ -131,9 +140,25 @@ export class VideoService {
     return this.videoRepository.save(video);
   }
 
-  async updateReaction(id: string) {
-    const video = await this.byId(id);
-    video.likes += 1;
+  async updateReaction(videoId: string, userId: string) {
+    const video = await this.byId(videoId);
+    const like = await this.likeRepository.findOne({
+      where: {
+        userId,
+        videoId,
+      },
+    });
+    if (like) {
+      video.likes = video.likes - 1;
+      await this.likeRepository.delete({ id: like.id });
+    } else {
+      video.likes = video.likes + 1;
+      const like = this.likeRepository.create({
+        userId,
+        videoId,
+      });
+      await this.likeRepository.save(like);
+    }
     return this.videoRepository.save(video);
   }
 }

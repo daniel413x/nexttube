@@ -20,7 +20,7 @@ export default class VideoSeeder extends Seeder {
       const video = new VideoEntity();
       video.likes = 0;
       video.duration = 0;
-      video.isPublic = true;
+      video.flags = ['isPublic'];
       video.videoPath = `/uploads/default/seeder-programming-${i + 1}`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-programming-${i + 1}`;
       video.id = uuid;
@@ -33,7 +33,7 @@ export default class VideoSeeder extends Seeder {
       const video = new VideoEntity();
       video.likes = 0;
       video.duration = 0;
-      video.isPublic = true;
+      video.flags = ['isPublic'];
       video.videoPath = `/uploads/default/seeder-cat-${i + 1}`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-cat-${i + 1}`;
       video.id = uuid;
@@ -46,7 +46,7 @@ export default class VideoSeeder extends Seeder {
       const video = new VideoEntity();
       video.likes = 0;
       video.duration = 0;
-      video.isPublic = true;
+      video.flags = [];
       video.videoPath = `/uploads/default/seeder-smartphone-${i + 1}`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-smartphone-${i + 1}`;
       video.id = uuid;

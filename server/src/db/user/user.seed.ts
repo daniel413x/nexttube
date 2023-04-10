@@ -9,18 +9,17 @@ import { UserEntity } from './user.entity';
 
 export default class UserSeeder extends Seeder {
   async run(dataSource: DataSource) {
-    const name = `${faker.name.firstName()} ${faker.name.lastName()}`;
     const users = [...regularUserSeederIds, ...uploaderUserSeederIds].map(
       (uuid) => {
+        const name = `${faker.name.firstName()} ${faker.name.lastName()}`;
         const user = new UserEntity();
         user.id = uuid;
         user.name = name;
         user.password = 'password';
         user.email = `${name}@${faker.internet.domainName()}`
-          .split('')
-          .join('')
+          .split(' ')
+          .join(' ')
           .toLowerCase();
-        user.isVerified = false;
         user.description = '';
         return user;
       },

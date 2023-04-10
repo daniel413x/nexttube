@@ -1,0 +1,8 @@
+:root {
+  $navbar-height: 18px;
+}
+
+.main-content {
+  padding-top: $navbar-height;
+  min-height: calc(100vh - $navbar-height);
+}

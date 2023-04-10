@@ -1,0 +1,14 @@
+@use '@styles/variables.scss' as v;
+
+.generic-layout {
+  @apply flex flex-wrap;
+  min-height: v.$page-height;
+
+  .wrapper {
+    width: 82%;
+
+    .content {
+      @apply pl-6 pr-8;
+    }
+  }
+}
