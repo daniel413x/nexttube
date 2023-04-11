@@ -1,0 +1,14 @@
+.sidebar {
+  @apply py-5 px-7;
+  width: 100%;
+  max-width: max-content;
+
+  .logo {
+    @apply text-2xl font-semibold;
+    color: #fefefe;
+  }
+
+  .copy {
+    @apply text-gray-600 text-opacity-60 text-xs;
+  }
+}

@@ -1,9 +1,7 @@
 const path = require('path');
 /** @type {import('next').NextConfig} */
 
-const withOptimizedImages = require('next-optimized-images');
-
-const nextConfig = withOptimizedImages({
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   poweredByHeader: true,
@@ -11,7 +9,6 @@ const nextConfig = withOptimizedImages({
     APP_URL: process.env.NEXT_PUBLIC_API_URL
   },
   webpack(config) {
-    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     config.resolve.alias['@public'] = path.resolve(__dirname, 'public');
     config.resolve.alias['@components'] = path.resolve(__dirname, 'src/components');
     config.resolve.alias['@data'] = path.resolve(__dirname, 'src/data');
@@ -53,6 +50,6 @@ const nextConfig = withOptimizedImages({
       },
     ]
   }
-});
+};
 
 module.exports = nextConfig;

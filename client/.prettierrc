@@ -6,7 +6,6 @@
   "useTabs": false,
   "semi": true,
   "bracketSpacing": true,
-  "jsxBracketSameLine": false,
   "arrowParens": "avoid",
   "quoteProps": "as-needed",
   "importOrder": [
@@ -19,7 +18,6 @@
     "^@utils",
     "^@public/(.*)$",
     "^@http/(.*)$",
-    "^@public/(.*)$",
     "^../(.*)",
     "^./(.*)",
     "(.scss)$"

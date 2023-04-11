@@ -1,52 +1,30 @@
-import React, { forwardRef, RefObject } from 'react';
+import cn from 'classnames';
+import React, { ButtonHTMLAttributes, forwardRef } from 'react';
 import { Children } from '@types';
+import styles from './Button.module.scss';
 
-type ButtonStyles = 'primary' | 'secondary' | 'warn';
-
-interface ButtonProps {
-  type?: 'button' | 'submit';
-  className?: string;
-  onClick?: (...args: any[]) => void;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: Children;
-  buttonStyle?: ButtonStyles;
-  title?: string;
-  id?: string;
-  tabIndex?: number;
+  type?: 'button' | 'submit';
 }
 
-const Button = forwardRef(({
-  type,
-  className,
-  onClick,
-  children,
-  buttonStyle,
-  title,
-  id,
-  tabIndex,
-}: ButtonProps, passedInRef: any) => (
-  <button
-    ref={passedInRef}
-    title={title}
-    className={`button ${buttonStyle} ${className}`}
-    // eslint-disable-next-line react/button-has-type
-    type={type}
-    onClick={onClick}
-    id={id}
-    tabIndex={tabIndex}
-  >
-    {children}
-  </button>
-));
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, className, type = 'button', ...rest }, passedInRef) => (
+    <button
+      className={cn(styles.button, className)}
+      // eslint-disable-next-line react/button-has-type
+      type={type || 'button'}
+      ref={passedInRef}
+      {...rest}
+    >
+      {children}
+    </button>
+  )
+);
 
 Button.defaultProps = {
+  children: undefined,
   type: 'button',
-  title: '',
-  className: '',
-  id: undefined,
-  children: false,
-  onClick: () => null,
-  buttonStyle: 'primary',
-  tabIndex: 0,
 };
 
-export default Button as (props: ButtonProps & { ref?: RefObject<any> }) => JSX.Element;
+export default Button;

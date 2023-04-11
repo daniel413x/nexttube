@@ -8,6 +8,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        'brand': '#202024',
+        // 'brand': '#202030',
+        // 'brand': '#141031',
+      },
       colors: {
         primary: '#FF7652',
         purple: '#6C5ECF',
@@ -18,7 +23,8 @@ module.exports = {
           600: '#5B5B6B',
           800: '#353340',
           900: '#272532',
-        }
+        },
+        placeholder: '#5c5a69',
       },
       boxShadow: {
         DEFAULT: '0 3px 12px rgba(0, 0, 0, 0,03)',

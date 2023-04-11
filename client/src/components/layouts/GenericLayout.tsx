@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Meta, { MetaProps } from '@components/seo/Meta';
 import Footer from '@components/ui/footer/Footer';
-import Navbar from '@components/ui/navbar/Navbar';
+import Header from '@components/ui/header/Header';
 import Sidebar from '@components/ui/sidebar/Sidebar';
 import { Children } from '@types';
 import styles from './GenericLayout.module.scss';
@@ -20,11 +20,11 @@ const Layout: FC<LayoutProps> = ({
   <Meta title={title} description={description}>
     <div className={`${styles['generic-layout']} ${className}`}>
       <Sidebar />
-      <section className={styles.wrapper}>
-        <Navbar />
+      <section className={styles.content}>
+        <Header />
         {children}
+        <Footer />
       </section>
-      <Footer />
     </div>
   </Meta>
 );

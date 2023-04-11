@@ -1,0 +1,19 @@
+.menu {
+  @apply my-8;
+
+  h3 {
+    @apply text-gray-600 mb-7;
+  }
+
+  .items-ul {
+    @apply list-none;
+
+    li {
+      @apply block mb-10;
+
+      &:last-child {
+        @apply mb-8;
+      }
+    }
+  }
+}

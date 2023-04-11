@@ -4,11 +4,8 @@
   @apply flex flex-wrap;
   min-height: v.$page-height;
 
-  .wrapper {
-    width: 82%;
-
-    .content {
-      @apply pl-6 pr-8;
-    }
+  .content {
+    @apply pl-6 pr-8;
+    width: 100%;
   }
 }

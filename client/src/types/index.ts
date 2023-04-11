@@ -61,6 +61,11 @@ export interface IAuthData {
   accessToken: string;
 }
 
+export interface IAuthFields {
+  email: string;
+  password: string;
+}
+
 export type UserAuth = Pick<IUser, 'flags'>;
 
 export interface QueryResGetMultiple<T> {

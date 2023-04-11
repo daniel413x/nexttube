@@ -1,5 +1,4 @@
 import { HiChartBar, HiCollection, HiHome, HiStar } from 'react-icons/hi';
-
 import { IMenuItem } from '@types';
 
 // eslint-disable-next-line import/prefer-default-export

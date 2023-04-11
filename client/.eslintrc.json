@@ -12,7 +12,6 @@
     "import/resolver": {
       "alias": {
         "map": [
-          ["@", "./src"],
           ["@public", "./public"],
           ["@components", "./src/components"],
           ["@data", "./src/data"],
@@ -68,17 +67,6 @@
         }
       }
     ],
-  "import/order": [
-    "error",
-    {
-      "pathGroups": [
-        {
-          "pattern": "./*.scss",
-          "position": "after"
-        }
-      ],
-    }
-  ],
     "quotes": [2, "single"],
     "react/function-component-definition": [
       "warn",

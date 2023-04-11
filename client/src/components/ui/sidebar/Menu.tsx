@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { IMenuItem } from '@types';
+import Line from '../common/Line';
 import styles from './Menu.module.scss';
 import MenuItem from './MenuItem';
-import Line from './Line';
 
 interface MenuProps {
   items: IMenuItem[];
@@ -10,7 +10,7 @@ interface MenuProps {
 }
 
 const Menu: FC<MenuProps> = ({ items, title }: MenuProps) => (
-  <div className={styles.menu}>
+  <nav className={styles.menu}>
     <h3>{title}</h3>
     <ul className={styles['items-ul']}>
       {items.map(({ href, title: itemTitle, Icon, image }) => (
@@ -20,7 +20,7 @@ const Menu: FC<MenuProps> = ({ items, title }: MenuProps) => (
       ))}
     </ul>
     <Line />
-  </div>
+  </nav>
 );
 
 export default Menu;
