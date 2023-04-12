@@ -1,39 +1,45 @@
-/* eslint-disable */
-
-import useOutside from '@hooks/useOutside';
-import { FC, useState } from 'react';
-import styles from './AuthForm.module.scss'
-import iconsStyles from './IconsRight.module.scss'
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { IAuthFields } from '@types';
-import IconSpan from '../common/IconSpan';
-import Button from '../common/Button';
-import { FaUserCircle } from 'react-icons/fa';
-import Input from '../common/Input';
 import { VALID_EMAIL, VALID_PASSWORD } from '@data/consts';
+import { FC, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { FaUserCircle } from 'react-icons/fa';
+import { IAuthFields } from '@types';
+import useActions from '@hooks/useActions';
+import useAuth from '@hooks/useAuth';
+import useOutside from '@hooks/useOutside';
+import Button from '../common/Button';
+import IconSpan from '../common/IconSpan';
+import Input from '../common/Input';
+import styles from './AuthForm.module.scss';
+import iconsStyles from './IconsRight.module.scss';
 
 const AuthForm: FC = () => {
+  const [forLogin, setForLogin] = useState<boolean>(true);
+  const { ref, setShow, show } = useOutside(false);
+  const { loading } = useAuth();
+  const { register: dispatchRegister, login: dispatchLogin } = useActions();
   const {
-    ref,
-    setShow,
-    show,
-  } = useOutside(false);
-  const [type, setType] = useState<'login' | 'register'>('login');
-  const {register, formState: {errors}, handleSubmit} = useForm<IAuthFields>({
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<IAuthFields>({
     mode: 'onChange',
   });
   const onSubmit: SubmitHandler<IAuthFields> = (data) => {
-    if (type === 'login') {
-
-    } else if (type === 'register') {
-
+    if (forLogin) {
+      dispatchLogin(data);
+    } else {
+      dispatchRegister(data);
     }
-  }
+  };
   return (
     <div className={styles['auth-form']} ref={ref}>
-      <Button className={iconsStyles.button} onClick={() => setShow(!show)}>
+      <button
+        className={iconsStyles.button}
+        onClick={() => setShow(!show)}
+        type="button"
+      >
         <IconSpan Icon={FaUserCircle} />
-      </Button>
+      </button>
       {show && (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <Input
@@ -42,7 +48,7 @@ const AuthForm: FC = () => {
               pattern: {
                 value: VALID_EMAIL,
                 message: 'Invalid email format',
-              }
+              },
             })}
             placeholder="E-mail"
             error={errors.email}
@@ -53,24 +59,31 @@ const AuthForm: FC = () => {
               pattern: {
                 value: VALID_PASSWORD,
                 message: 'Invalid password (6-35 characters)',
-              }
+              },
             })}
             placeholder="Password"
             error={errors.password}
             type="password"
           />
-          <div className={styles['login-button']}>
-            <Button onClick={() => setType('login')}>
-              Login
-            </Button>
-          </div>
-          <Button className={styles['register-button']} onClick={() => setType('register')}>
-            Register
+          <Button
+            className={styles['login-button']}
+            type="submit"
+            disabled={loading}
+          >
+            {forLogin ? 'Login' : 'Register'}
           </Button>
+          <button
+            className={styles['register-button']}
+            onClick={() => setForLogin(!forLogin)}
+            disabled={loading}
+            type="button"
+          >
+            {forLogin ? 'Register' : 'Login'}
+          </button>
         </form>
       )}
     </div>
   );
-}
+};
 
 export default AuthForm;

@@ -16,7 +16,7 @@ export const sidebarMenuItems: IMenuItem[] = [
   {
     title: 'My channel',
     Icon: HiStar,
-    href: '/my-channel',
+    href: '/c',
   },
   {
     title: 'My subscriptions',

@@ -1,6 +1,9 @@
-import { NextPage } from 'next';
+import { AppProps } from 'next/app';
+import { NextPage } from 'next/types';
 import { ReactNode } from 'react';
 import { IconType } from 'react-icons';
+
+type AuthStrings = 'guest' | 'registered' | 'admin';
 
 interface IBaseProps {
   id: string;
@@ -33,7 +36,7 @@ export interface IUser extends IBaseProps {
   avatarPath: string;
   videos: IVideo[];
   name: string;
-  flags: string[];
+  flags: AuthStrings[];
   subscriptions: IUser[];
   subscribersCount: number;
   subscribers: ISubscription[];
@@ -61,12 +64,18 @@ export interface IAuthData {
   accessToken: string;
 }
 
+export interface IInitialAuth extends IAuthData {
+  loading: boolean;
+}
+
 export interface IAuthFields {
   email: string;
   password: string;
 }
 
-export type UserAuth = Pick<IUser, 'flags'>;
+export type ComponentAuthed = {
+  auth: AuthStrings[];
+};
 
 export interface QueryResGetMultiple<T> {
   rows: T[];
@@ -75,6 +84,6 @@ export interface QueryResGetMultiple<T> {
 
 export type Children = ReactNode | undefined;
 
-export type NextPageAuth<P = {}> = NextPage<P> & UserAuth;
+export type NextPageAuthed<P = {}> = NextPage<P> & ComponentAuthed;
 
-export type ComponentWithAuth = { Component: UserAuth };
+export type AppAuthed = AppProps & { Component: ComponentAuthed };

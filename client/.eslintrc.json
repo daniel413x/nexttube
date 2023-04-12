@@ -17,7 +17,7 @@
           ["@data", "./src/data"],
           ["@utils", "./src/utils"],
           ["@hooks", "./src/hooks"],
-          ["@http", "./src/http"],
+          ["@services", "./src/services"],
           ["@types", "./src/types"],
           ["@styles", "./src/styles"],
           ["@store", "./src/store"],

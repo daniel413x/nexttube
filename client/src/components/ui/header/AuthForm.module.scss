@@ -2,16 +2,16 @@
   @apply relative inline-flex;
 
   .form {
-    @apply shadow-block animate-scaleIn p-4 absolute right-2 w-60 z-20 rounded-lg;
+    @apply flex flex-col shadow-block animate-scaleIn p-4 pt-6 absolute right-2 w-60 z-20 rounded-lg;
     top: calc(100% + 1.4rem);
     background-color: #272532;
 
-    .register-button {
-      @apply text-gray-400 opacity-40 block text-center w-full;
+    .login-button {
+      @apply m-auto;
     }
 
-    .login-button {
-      @apply mt-5 mb-1 text-center;
+    .register-button {
+      @apply text-gray-400 opacity-40 py-2 pb-0;
     }
   }
 }

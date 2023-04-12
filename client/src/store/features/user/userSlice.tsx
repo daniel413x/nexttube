@@ -1,8 +1,8 @@
-import { GUEST_USER } from '@data/state';
+import { initialUser } from '@data/state';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { IUser } from '@types';
 
-const initialState: IUser = GUEST_USER;
+const initialState: IUser = initialUser;
 
 export const userSlice = createSlice({
   name: 'user',

@@ -1,10 +1,6 @@
-import AboutUs from '@components/screens/about-us';
 import { NextPage } from 'next';
+import AboutUs from '@components/screens/about-us';
 
-const AboutUsPage: NextPage = () => (
-  <AboutUs />
-);
+const AboutUsPage: NextPage = () => <AboutUs />;
 
-export default () => (
-  <AboutUsPage />
-);
+export default () => <AboutUsPage />;

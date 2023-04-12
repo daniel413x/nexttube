@@ -22,7 +22,7 @@
       "@utils": ["./src/utils"],
       "@hooks/*": ["./src/hooks/*"],
       "@store/*": ["./src/store/*"],
-      "@http/*": ["./src/http/*"],
+      "@services/*": ["src/services/*"],
       "@types": ["./src/types"],
       "@styles": ["./src/styles/*"],
       "@features/*": ["./src/store/features/*"]

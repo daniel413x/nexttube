@@ -1,8 +1,3 @@
-import { IAuthData } from '@types';
+import { useAppSelector } from './useAppDispatch';
 
-const useAuth = (): IAuthData => ({
-  user: null,
-  accessToken: '',
-});
-
-export default useAuth;
+export default () => useAppSelector((state) => state.auth);

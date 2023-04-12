@@ -6,7 +6,7 @@
   "useTabs": false,
   "semi": true,
   "bracketSpacing": true,
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "quoteProps": "as-needed",
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
