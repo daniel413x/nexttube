@@ -2,6 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 import { PersistConfig, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import api from './api';
 import auth from './features/auth/authSlice';
 import user from './features/user/userSlice';
 
@@ -12,6 +13,7 @@ const persistConfig: PersistConfig<any> = {
 };
 
 const rootReducer = combineReducers({
+  api: api.reducer,
   auth,
   user,
   toastr: toastrReducer,

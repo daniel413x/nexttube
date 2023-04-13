@@ -1,4 +1,4 @@
-import { AUTH, REGISTER } from '@data/consts';
+import { AUTH, LOGIN, REGISTER } from '@data/consts';
 import { IAuthData } from '@types';
 import { $host } from './index';
 
@@ -7,7 +7,7 @@ class AuthService {
     email: string,
     password: string
   ): Promise<IAuthData> {
-    const { data } = await $host.post<IAuthData>(`${AUTH}/${REGISTER}`, {
+    const { data } = await $host.post<IAuthData>(`/${AUTH}/${REGISTER}`, {
       email,
       password,
     });
@@ -15,7 +15,7 @@ class AuthService {
   }
 
   static async login(email: string, password: string): Promise<IAuthData> {
-    const { data } = await $host.post<IAuthData>('auth/login', {
+    const { data } = await $host.post<IAuthData>(`/${AUTH}/${LOGIN}`, {
       email,
       password,
     });

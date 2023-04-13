@@ -20,6 +20,7 @@
     "^@http/(.*)$",
     "^../(.*)",
     "^./(.*)",
+    "^.$",
     "(.scss)$"
   ],
   "importOrderSeperation": true,

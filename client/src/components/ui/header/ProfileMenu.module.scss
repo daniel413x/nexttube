@@ -1,0 +1,31 @@
+.wrapper {
+  button {
+    @apply flex items-center;
+
+    img {
+      @apply rounded-full;
+    }
+
+    .name {
+      @apply mx-3 text-white text-opacity-80;
+    }
+
+    svg {
+      color: #4e4e5d;
+    }
+  }
+
+  .profile-menu {
+    @apply bg-gray-900 shadow-block animate-scaleIn p-4 absolute right-2 w-60 z-20 rounded-lg pb-6;
+    top: calc(100% + 1.4rem);
+
+    ul {
+      li {
+        a,
+        button {
+          @apply py-2.5 block text-white transition-colors relative
+        }
+      }
+    }
+  }
+}

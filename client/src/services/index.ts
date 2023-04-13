@@ -1,11 +1,13 @@
 import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
 
+const baseURL = `${process.env.NEXT_PUBLIC_API_URL}/api`;
+
 const $host = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_URL}api/`,
+  baseURL,
 });
 
 const $authHost = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_URL}api/`,
+  baseURL,
 });
 
 const authInterceptor = (reqConfig: AxiosRequestConfig) => {
@@ -19,4 +21,4 @@ const authInterceptor = (reqConfig: AxiosRequestConfig) => {
 
 $authHost.interceptors.request.use(authInterceptor);
 
-export { $host, $authHost };
+export { baseURL, $host, $authHost };

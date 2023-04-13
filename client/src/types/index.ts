@@ -48,6 +48,11 @@ export interface IComment extends IBaseProps {
   video: IVideo;
 }
 
+export interface ICommentDto {
+  message: Pick<IComment, 'message'>;
+  videoId: string;
+}
+
 export interface ISubscription extends IBaseProps {
   toChannel: IUser;
 }

@@ -8,6 +8,8 @@ import {
   REHYDRATE,
   persistStore,
 } from 'redux-persist';
+import api from './api';
+import rtkQueryErrorLogger from './middleware/rtkQueryErrorLogger';
 import rootReducer from './rootReducer';
 
 export const store = configureStore({
@@ -17,7 +19,9 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    })
+      .concat(rtkQueryErrorLogger)
+      .concat(api.middleware),
 });
 
 export const persistor = persistStore(store);
