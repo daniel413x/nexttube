@@ -2,7 +2,6 @@ import { Base } from 'src/utils/base.util';
 import { VideoEntity } from '@db/video/video.entity';
 import { Entity, Column, OneToMany } from 'typeorm';
 import { SubscriptionEntity } from './subscription.entity';
-import { REGISTERED } from 'src/consts';
 import { LikeEntity } from './like.entity';
 
 @Entity('User')

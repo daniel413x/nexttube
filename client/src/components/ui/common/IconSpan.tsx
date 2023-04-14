@@ -2,13 +2,13 @@ import { FC } from 'react';
 import { IconType } from 'react-icons';
 import styles from './IconSpan.module.scss';
 
-interface IconProps {
+interface IconSpanProps {
   className?: string;
   Icon: IconType;
 }
 
-const IconSpan: FC<IconProps> = ({ className, Icon }) => (
-  <span className={`${styles['icon-span']} ${className}`}>
+const IconSpan: FC<IconSpanProps> = ({ className, Icon }) => (
+  <span className={`${styles['icon-span']} ${className || ''}`}>
     <Icon />
   </span>
 );

@@ -67,10 +67,11 @@ export class VideoService {
   }
 
   async getAll(searchTerm?: string) {
+    console.log(searchTerm);
     let options: FindOptionsWhereProperty<VideoEntity> = {};
     if (searchTerm) {
       options = {
-        name: ILike(`${searchTerm}`),
+        name: ILike(`%${searchTerm}%`),
       };
     }
     return this.videoRepository.find({

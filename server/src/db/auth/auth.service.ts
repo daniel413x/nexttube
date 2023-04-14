@@ -53,7 +53,7 @@ export class AuthService {
       where: {
         email,
       },
-      select: ['id', 'email', 'password'],
+      select: ['id', 'email', 'password', 'flags'],
     });
     if (!user) throw new NotFoundException('User not found');
     const isValidPassword = await compare(dto.password, user.password);
@@ -72,10 +72,11 @@ export class AuthService {
   }
 
   returnUserFields(user: UserEntity) {
-    const { id, email } = user;
+    const { id, email, flags } = user;
     return {
       id,
       email,
+      flags,
     };
   }
 }

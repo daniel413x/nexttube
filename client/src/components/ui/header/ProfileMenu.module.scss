@@ -1,13 +1,13 @@
-.wrapper {
+.profile-menu {
   button {
-    @apply flex items-center;
+    @apply flex items-center; // delete?
 
     img {
       @apply rounded-full;
     }
 
     .name {
-      @apply mx-3 text-white text-opacity-80;
+      @apply mx-3 text-white text-opacity-80 text-sm;
     }
 
     svg {
@@ -15,16 +15,22 @@
     }
   }
 
-  .profile-menu {
-    @apply bg-gray-900 shadow-block animate-scaleIn p-4 absolute right-2 w-60 z-20 rounded-lg pb-6;
+  .items-ul {
+    @apply shadow-block animate-scaleIn p-4 absolute right-2 w-60 z-20 rounded-lg pb-6;
     top: calc(100% + 1.4rem);
+    background-color: #272532;
 
-    ul {
-      li {
-        a,
-        button {
-          @apply py-2.5 block text-white transition-colors relative
-        }
+    a,
+    button {
+      @apply py-2.5 block text-white transition-colors relative w-full px-0 flex text-sm;
+
+      &::after {
+        @apply absolute w-0 left-0 -bottom-0.5 h-0.5 bg-primary bg-opacity-70 transition-all duration-200 rounded-lg;
+        content: ''; 
+      }
+
+      &:hover::after {
+        @apply w-full;
       }
     }
   }

@@ -1,8 +1,8 @@
-import { IUser } from '@types';
 import { USER } from '@data/consts';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { baseURL as baseUrl } from '@services/index';
+import { IUser } from '@types';
 import { RootStateType } from '@store/rootReducer';
+import { baseURL as baseUrl } from '@services/index';
 
 const api = createApi({
   reducerPath: 'api',

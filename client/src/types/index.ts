@@ -1,3 +1,11 @@
+import { BaseQueryFn } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
+import { QueryDefinition } from '@reduxjs/toolkit/dist/query/endpointDefinitions';
+import {
+  FetchArgs,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+} from '@reduxjs/toolkit/dist/query/fetchBaseQuery';
+import { UseQuery } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import { AppProps } from 'next/app';
 import { NextPage } from 'next/types';
 import { ReactNode } from 'react';
@@ -65,7 +73,7 @@ export interface IMenuItem {
 }
 
 export interface IAuthData {
-  user: Pick<IUser, 'id' | 'email'> | null;
+  user: Pick<IUser, 'id' | 'email' | 'flags'> | null;
   accessToken: string;
 }
 
@@ -92,3 +100,19 @@ export type Children = ReactNode | undefined;
 export type NextPageAuthed<P = {}> = NextPage<P> & ComponentAuthed;
 
 export type AppAuthed = AppProps & { Component: ComponentAuthed };
+
+export type ReduxQuery = UseQuery<
+  QueryDefinition<
+    any,
+    BaseQueryFn<
+      any | FetchArgs,
+      any,
+      FetchBaseQueryError,
+      {},
+      FetchBaseQueryMeta
+    >,
+    any,
+    any[],
+    'api'
+  >
+>;

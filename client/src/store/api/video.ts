@@ -6,7 +6,8 @@ const videoApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getVideosBySearchTerm: builder.query<IVideo[], string>({
       query: (searchTerm) => ({
-        url: `${VIDEO}`, params: { searchTerm }
+        url: `${VIDEO}`,
+        params: { searchTerm },
       }),
     }),
     getVideosById: builder.query<IVideo, string>({
@@ -22,6 +23,7 @@ const videoApi = api.injectEndpoints({
         method: 'POST',
         url: `/${VIDEO}`,
       }),
+      invalidatesTags: () => [{ type: 'Profile' }],
     }),
     updateVideo: builder.mutation<IVideo, IVideoDto>({
       query: ({ id, ...body }) => ({
@@ -29,24 +31,27 @@ const videoApi = api.injectEndpoints({
         url: `/${VIDEO}/${id}`,
         body,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Video', id }, { type: 'Profile' }],
+      invalidatesTags: (result, error, { id }) => [
+        { type: 'Video', id },
+        { type: 'Profile' },
+      ],
     }),
     updateViews: builder.mutation<IVideo, string>({
-      query: ( id ) => ({
+      query: (id) => ({
         method: 'PUT',
         url: `/${VIDEO}/update-views/${id}`,
       }),
-      invalidatesTags: (result, error, id ) => [{ type: 'Video', id }],
+      invalidatesTags: (result, error, id) => [{ type: 'Video', id }],
     }),
     updateLikes: builder.mutation<IVideo, string>({
-      query: ( id ) => ({
+      query: (id) => ({
         method: 'PUT',
         url: `/${VIDEO}/update-likes/${id}`,
       }),
-      invalidatesTags: (result, error, id ) => [{ type: 'Video', id }],
+      invalidatesTags: (result, error, id) => [{ type: 'Video', id }],
     }),
     deleteVideo: builder.mutation<void, string>({
-      query: ( id ) => ({
+      query: (id) => ({
         method: 'DELETE',
         url: `/${VIDEO}/${id}`,
       }),
