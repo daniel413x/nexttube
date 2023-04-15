@@ -13,7 +13,6 @@ export const errorCatch = (error: any): string => {
 export const toastError = (error: any, title = 'Error request') => {
   const message = errorCatch(error);
   toastr.error(title, message);
-  throw new Error(message);
 };
 
 export const formatNumber = (number: number): string | number => {

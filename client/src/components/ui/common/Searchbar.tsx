@@ -4,6 +4,7 @@ import useSearch from '@hooks/useSearch';
 import videoApi from '@store/api/video';
 import IconSpan from './IconSpan';
 import styles from './Searchbar.module.scss';
+import VideoItem from './video-items/VideoItem';
 
 const Searchbar: FC = () => {
   const { handleSearch, data, isSuccess, searchTerm } = useSearch({
@@ -25,8 +26,7 @@ const Searchbar: FC = () => {
         <div className={styles.result}>
           {data?.length ? (
             data.map((video) => (
-              <div>{video.name}</div>
-              // <VideoItem isSmall item={video} key={video.id} />
+              <VideoItem isSmall video={video} key={video.id} />
             ))
           ) : (
             <div className="text-white">Videos not found</div>

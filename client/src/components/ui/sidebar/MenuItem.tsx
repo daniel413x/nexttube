@@ -3,15 +3,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { IMenuItem } from '@types';
-import useAuth from '@hooks/useAuth';
+import useUser from '@hooks/useUser';
 import IconSpan from '../common/IconSpan';
 import styles from './MenuItem.module.scss';
 
 const MenuItem: FC<IMenuItem> = ({ href, title, Icon, image }) => {
-  const { user } = useAuth();
+  const user = useUser();
   const { asPath } = useRouter();
   const myChannel = href === '/c';
-  const dontRender = myChannel && !user;
+  const dontRender = myChannel && !user.id;
   if (dontRender) {
     return null;
   }

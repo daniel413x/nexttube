@@ -20,6 +20,7 @@ export class UserService {
   ) {}
 
   async byId(id: string) {
+    // /user/profile
     const user = await this.userRepository.findOne({
       where: {
         id,

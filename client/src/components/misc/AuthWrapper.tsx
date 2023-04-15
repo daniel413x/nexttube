@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 import { Children, ComponentAuthed } from '@types';
-import useAuth from '@hooks/useAuth';
+import useUser from '@hooks/useUser';
 
 interface AuthWrapperProps extends ComponentAuthed {
   children: Children;
@@ -13,7 +13,7 @@ const AuthWrapper: FC<AuthWrapperProps> = ({
 }: AuthWrapperProps) => {
   const [authed, setAuthed] = useState<boolean>(false);
   const router = useRouter();
-  const { user } = useAuth();
+  const user = useUser();
   useEffect(() => {
     for (let i = 0; i < auth.length; i += 1) {
       if (!user || user.flags.indexOf(auth[i]) === -1) {

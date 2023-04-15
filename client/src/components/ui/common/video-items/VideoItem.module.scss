@@ -1,0 +1,23 @@
+.video-small {
+  @apply relative rounded-2xl overflow-hidden;
+  background-color: #252836;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+
+  &.small {
+    .information {
+      .name {
+        @apply mt-3;
+
+        font-size: 1.1rem;
+        -webkit-line-clamp: 1;
+      }
+    }
+  }
+}
+
+.thumbnail {
+  @apply relative;
+
+  time {
+  }
+}

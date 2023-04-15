@@ -3,6 +3,7 @@ import NextProgressBar from 'nextjs-progressbar';
 import { Provider } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
 import { PersistGate } from 'redux-persist/integration/react';
+import AuthProvider from '@components/providers/AuthProvider';
 import { AppAuthed } from '@types';
 import { persistor, store } from '@store/configureStore';
 import '@styles/globals.scss';
@@ -21,13 +22,15 @@ const App = ({ Component, pageProps }: AppAuthed) => (
     />
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        {Component.auth ? (
-          <AuthWrapper auth={Component.auth}>
+        <AuthProvider>
+          {Component.auth ? (
+            <AuthWrapper auth={Component.auth}>
+              <Component {...pageProps} />
+            </AuthWrapper>
+          ) : (
             <Component {...pageProps} />
-          </AuthWrapper>
-        ) : (
-          <Component {...pageProps} />
-        )}
+          )}
+        </AuthProvider>
         <ReduxToastr
           newestOnTop={false}
           preventDuplicates

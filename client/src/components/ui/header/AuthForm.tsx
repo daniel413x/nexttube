@@ -16,7 +16,11 @@ const AuthForm: FC = () => {
   const [forLogin, setForLogin] = useState<boolean>(true);
   const { ref, setShow, show } = useOutside(false);
   const { loading } = useAuth();
-  const { register: dispatchRegister, login: dispatchLogin } = useActions();
+  const {
+    register: dispatchRegister,
+    login: dispatchLogin,
+    logout,
+  } = useActions();
   const {
     register,
     formState: { errors },
@@ -79,6 +83,13 @@ const AuthForm: FC = () => {
             type="button"
           >
             {forLogin ? 'Register' : 'Login'}
+          </button>
+          <button
+            className={styles['register-button']}
+            onClick={logout}
+            type="button"
+          >
+            asdf
           </button>
         </form>
       )}

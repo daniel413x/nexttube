@@ -73,13 +73,14 @@ export interface IMenuItem {
 }
 
 export interface IAuthData {
-  user: Pick<IUser, 'id' | 'email' | 'flags'> | null;
   accessToken: string;
 }
 
-export interface IInitialAuth extends IAuthData {
+export interface AuthSlice extends IAuthData {
   loading: boolean;
 }
+
+export type UserSlice = IUser;
 
 export interface IAuthFields {
   email: string;

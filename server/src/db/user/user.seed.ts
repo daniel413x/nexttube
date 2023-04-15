@@ -18,6 +18,7 @@ export default class UserSeeder extends Seeder {
         user.password = 'password';
         user.email = `${name}@${faker.internet.domainName()}`
           .split(' ')
+          .filter(Boolean)
           .join(' ')
           .toLowerCase();
         user.description = '';

@@ -1,4 +1,4 @@
-import { IInitialAuth, IUser } from '@types';
+import { AuthSlice, IUser } from '@types';
 import { GUEST } from './consts';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -15,8 +15,7 @@ export const initialUser: IUser = {
   subscribersCount: 0,
 };
 
-export const initialAuth: IInitialAuth = {
+export const initialAuth: AuthSlice = {
   loading: false,
-  user: null,
   accessToken: '',
 };

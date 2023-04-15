@@ -1,17 +1,17 @@
 import { initialUser } from '@data/state';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IUser } from '@types';
+import { createSlice } from '@reduxjs/toolkit';
+import { UserSlice } from '@types';
+import { setUser } from '@store/actions/userActions';
 
-const initialState: IUser = initialUser;
+const initialState: UserSlice = initialUser;
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    setUser: (state, { payload }: PayloadAction<IUser>) => payload,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(setUser, (state, action) => action.payload);
   },
 });
-
-export const { setUser } = userSlice.actions;
 
 export default userSlice.reducer;

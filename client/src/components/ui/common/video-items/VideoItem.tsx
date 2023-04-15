@@ -6,6 +6,7 @@ import { FC } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { IVideo } from '@types';
 import IconSpan from '../IconSpan';
+import UserAvatar from '../UserAvatar';
 import VideoDuration from './VideoDuration';
 import styles from './VideoItem.module.scss';
 
@@ -24,6 +25,7 @@ const VideoItem: FC<VideoItemProps> = ({
 }) => {
   const { push } = useRouter();
   const { id, thumbnailPath, name, duration } = video;
+  console.log(video);
   return (
     <div
       className={cn(styles['video-small'], {

@@ -19,7 +19,6 @@ class AuthService {
       email,
       password,
     });
-    console.log(data);
     return data;
   }
 }

@@ -19,10 +19,12 @@ export default class VideoSeeder extends Seeder {
     const programmingVideos = seederIds.programmingVideoIds.map((uuid, i) => {
       const video = new VideoEntity();
       video.likes = 0;
-      video.duration = 0;
+      video.duration = 5;
       video.flags = ['isPublic'];
-      video.videoPath = `/uploads/default/seeder-programming-${i + 1}`;
-      video.thumbnailPath = `/uploads/thumbnails/seeder-programming-${i + 1}`;
+      video.videoPath = `/uploads/default/seeder-programming-${i + 1}.jpg`;
+      video.thumbnailPath = `/uploads/thumbnails/seeder-programming-${
+        i + 1
+      }.jpg`;
       video.id = uuid;
       video.name = `Programming Video ${i + 1}`;
       video.description = `${faker.lorem.paragraph()}`;
@@ -32,10 +34,10 @@ export default class VideoSeeder extends Seeder {
     const catVideos = seederIds.catVideoIds.map((uuid, i) => {
       const video = new VideoEntity();
       video.likes = 0;
-      video.duration = 0;
+      video.duration = 5;
       video.flags = ['isPublic'];
-      video.videoPath = `/uploads/default/seeder-cat-${i + 1}`;
-      video.thumbnailPath = `/uploads/thumbnails/seeder-cat-${i + 1}`;
+      video.videoPath = `/uploads/default/seeder-cat-${i + 1}.jpg`;
+      video.thumbnailPath = `/uploads/thumbnails/seeder-cat-${i + 1}.jpg`;
       video.id = uuid;
       video.name = `Cat Video ${i + 1}`;
       video.description = `${faker.lorem.paragraph()}`;
@@ -45,10 +47,12 @@ export default class VideoSeeder extends Seeder {
     const smartphoneVideos = seederIds.smartphoneVideoIds.map((uuid, i) => {
       const video = new VideoEntity();
       video.likes = 0;
-      video.duration = 0;
+      video.duration = 10;
       video.flags = [];
-      video.videoPath = `/uploads/default/seeder-smartphone-${i + 1}`;
-      video.thumbnailPath = `/uploads/thumbnails/seeder-smartphone-${i + 1}`;
+      video.videoPath = `/uploads/default/seeder-smartphone-${i + 1}.jpg`;
+      video.thumbnailPath = `/uploads/thumbnails/seeder-smartphone-${
+        i + 1
+      }.jpg`;
       video.id = uuid;
       video.name = `Smartphone Video ${i + 1}`;
       video.description = `${faker.lorem.paragraph()}`;

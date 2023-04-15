@@ -1,9 +1,9 @@
 import { initialAuth } from '@data/state';
 import { createSlice } from '@reduxjs/toolkit';
-import { IInitialAuth } from '@types';
-import { login, logout, register } from './authActions';
+import { AuthSlice } from '@types';
+import { login, logout, register } from '../../actions/authActions';
 
-const initialState: IInitialAuth = initialAuth;
+const initialState: AuthSlice = initialAuth;
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -16,12 +16,10 @@ export const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.user = payload.user;
         state.accessToken = payload.accessToken;
       })
       .addCase(register.rejected, (state) => {
         state.loading = false;
-        state.user = null;
         state.accessToken = '';
       })
       .addCase(login.pending, (state) => {
@@ -29,17 +27,14 @@ export const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.user = payload.user;
         state.accessToken = payload.accessToken;
       })
       .addCase(login.rejected, (state) => {
         state.loading = false;
-        state.user = null;
         state.accessToken = '';
       })
       .addCase(logout.fulfilled, (state) => {
         state.loading = false;
-        state.user = null;
         state.accessToken = '';
       });
   },

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { IUser } from '@types';
+import defaultAvatar from '@public/images/default-avatar.png';
 import IconSpan from './IconSpan';
 import styles from './UserAvatar.module.scss';
 
@@ -21,7 +22,12 @@ const UserAvatar: FC<UserAvatarProps> = ({ user, isWhite }) => {
           [styles.white]: isWhite,
         })}
       >
-        <Image width={45} height={45} alt={name} src={avatarPath || ''} />
+        <Image
+          width={45}
+          height={45}
+          alt={name}
+          src={avatarPath || defaultAvatar}
+        />
         <IconSpan Icon={FaCheckCircle} className={styles['verified-icon']} />
       </div>
     </Link>
