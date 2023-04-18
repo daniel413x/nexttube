@@ -76,16 +76,22 @@ export interface IAuthData {
   accessToken: string;
 }
 
+export interface IAuthFields {
+  email: string;
+  password: string;
+}
+
+export interface IHomeProps {
+  newVideos: IVideo[];
+  mostViewedVideo: IVideo;
+  randomVideo: IVideo;
+}
+
 export interface AuthSlice extends IAuthData {
   loading: boolean;
 }
 
 export type UserSlice = IUser;
-
-export interface IAuthFields {
-  email: string;
-  password: string;
-}
 
 export type ComponentAuthed = {
   auth: AuthStrings[];

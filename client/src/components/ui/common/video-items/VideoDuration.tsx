@@ -1,5 +1,6 @@
+import cn from 'classnames';
 import { FC } from 'react';
-import styles from './VideoItem.module.scss';
+import styles from './VideoDuration.module.scss';
 
 interface VideoDurationProps {
   duration: number;
@@ -7,9 +8,12 @@ interface VideoDurationProps {
 }
 
 const VideoDuration: FC<VideoDurationProps> = ({ duration, isBottom }) => (
-  <span className={`${styles['icon-span']} ${isBottom ? styles.bottom : ''}`}>
-    {duration}
-    min.
+  <span
+    className={cn(styles.videoDuration, {
+      [styles.bottom]: isBottom,
+    })}
+  >
+    {duration} min.
   </span>
 );
 

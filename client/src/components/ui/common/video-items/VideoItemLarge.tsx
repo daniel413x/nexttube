@@ -15,21 +15,23 @@ interface VideoItemLargeProps {
 const VideoItemLarge: FC<VideoItemLargeProps> = ({ video }) => {
   const { name, thumbnailPath, duration, id, views, createdAt } = video;
   return (
-    <div className={cn(styles['video-lg'])}>
+    <div className={cn(styles.videoItem, styles.large)}>
       <div className={styles.thumbnail}>
         {thumbnailPath && (
           <Image
             src={thumbnailPath}
             alt={name}
             layout="fill"
-            className={styles['bg-image']}
+            className={styles.bgImage}
             priority
           />
         )}
         <VideoDuration isBottom duration={duration} />
         <div className={styles.information}>
-          <Link href={`/v/${id}`}>{name}</Link>
-          {video.user?.avatarPath && <UserAvatar user={video.user} isWhite />}
+          <Link href={`/v/${id}`} className={styles.name}>
+            {name}
+          </Link>
+          {video.user && <UserAvatar user={video.user} isWhite />}
           <div className={styles.author}>
             {video.user?.name}
             <VideoStatistics views={views} createdAt={createdAt} />

@@ -1,14 +1,14 @@
-.menu-item {
+.menuItem {
   @apply flex items-center text-gray-500 font-medium relative;
 
   &.active {
     @apply text-white;
-    .icon-span {
+    .iconSpan {
       @apply bg-primary;
     }
   }
 
-  .icon-span {
+  .iconSpan {
     background-color: #363440;
   }
 

@@ -1,4 +1,4 @@
-.profile-menu {
+.profileMenu {
   button {
     @apply flex items-center; // delete?
 
@@ -9,13 +9,9 @@
     .name {
       @apply mx-3 text-white text-opacity-80 text-sm;
     }
-
-    svg {
-      color: #4e4e5d;
-    }
   }
 
-  .items-ul {
+  .itemsUl {
     @apply shadow-block animate-scaleIn p-4 absolute right-2 w-60 z-20 rounded-lg pb-6;
     top: calc(100% + 1.4rem);
     background-color: #272532;

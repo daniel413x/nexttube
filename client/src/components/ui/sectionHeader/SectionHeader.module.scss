@@ -1,0 +1,11 @@
+.sectionHeader {
+  @apply flex items-center text-white;
+
+  h2 {
+    @apply text-lg mr-4;
+  }
+
+  .showMore {
+    @apply text-gray-500 cursor-pointer;
+  }
+}

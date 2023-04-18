@@ -1,14 +1,16 @@
 import { EDIT, VIDEO } from '@data/consts';
 import cn from 'classnames';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
-import { FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import { IVideo } from '@types';
 import IconSpan from '../IconSpan';
 import UserAvatar from '../UserAvatar';
 import VideoDuration from './VideoDuration';
 import styles from './VideoItem.module.scss';
+import VideoStatistics from './VideoStatistics';
 
 interface VideoItemProps {
   video: IVideo;
@@ -24,30 +26,30 @@ const VideoItem: FC<VideoItemProps> = ({
   video,
 }) => {
   const { push } = useRouter();
-  const { id, thumbnailPath, name, duration } = video;
-  console.log(video);
+  const { id, thumbnailPath, name, duration, views, createdAt } = video;
   return (
     <div
-      className={cn(styles['video-small'], {
+      className={cn(styles.videoItem, {
         [styles.small]: isSmall,
       })}
+      title={name}
     >
       {!!removeHandler && (
         <button
-          className={styles['remove-button']} // absolute bottom-3 right-3 z-10
+          className={styles.removeButton}
           onClick={() => removeHandler(id)}
           type="button"
         >
-          <IconSpan Icon={FaTrash} /> {/* text-lg text-red-700 */}
+          <IconSpan className={styles.trashIcon} Icon={FaTrash} />
         </button>
       )}
       {isUpdateLink && (
         <button
-          className={styles['update-button']} // absolute bottom-3 right-11 z-10
+          className={styles.updateButton}
           onClick={() => push(`/${VIDEO}/${EDIT}/${id}`)}
           type="button"
         >
-          <IconSpan Icon={FaTrash} /> {/* text-lg text-blue-600 */}
+          <IconSpan className={styles.editIcon} Icon={FaEdit} />
         </button>
       )}
       <div className={styles.thumbnail}>
@@ -58,16 +60,23 @@ const VideoItem: FC<VideoItemProps> = ({
             width={185}
             height={103}
             layout="responsive"
+            priority
           />
         )}
         <VideoDuration duration={duration} />
-        {video?.user?.avatarPath && (
-          <div className={styles['user-avatar']}>
-            {' '}
-            {/* absolute right-3 -bottom-7 */}
-            <UserAvatar user={video?.user} />
-          </div>
+        {video?.user && (
+          <UserAvatar className={styles.userAvatar} user={video?.user} />
         )}
+        <div className={styles.information}>
+          {!isSmall && <div className={styles.author}>{video.user?.name}</div>}
+          <Link className={styles.name} href={`/v/${id}`}>
+            {name}
+          </Link>
+          <VideoStatistics
+            views={views}
+            createdAt={!isSmall ? createdAt : undefined}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,12 +1,11 @@
 @use '@styles/variables.scss' as v;
 
-.generic-layout {
-  @apply flex flex-wrap;
+.genericLayout {
+  @apply flex;
   min-height: v.$page-height;
 
   .content {
     @apply pl-6 pr-8;
     width: 100%;
-    max-width: 1000px;
   }
 }

@@ -17,12 +17,10 @@ const MenuItem: FC<IMenuItem> = ({ href, title, Icon, image }) => {
   }
   return (
     <Link
-      className={`${styles['menu-item']} ${
-        asPath === href ? styles.active : ''
-      }`}
+      className={`${styles.menuItem} ${asPath === href ? styles.active : ''}`}
       href={myChannel ? `${href}/${user!.id}` : href}
     >
-      {Icon && <IconSpan Icon={Icon} className={styles['icon-span']} />}
+      {Icon && <IconSpan Icon={Icon} className={styles.iconSpan} />}
       {image && (
         <span className={styles.image}>
           {image && <Image src={image} width={40} height={40} alt={title} />}

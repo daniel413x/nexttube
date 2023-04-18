@@ -1,0 +1,28 @@
+@use '@styles/variables.scss' as v;
+
+.userAvatar {
+  @apply rounded-full flex items-center justify-center relative;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  width: 57px;
+  height: 57px;
+
+  .avatar {
+    @apply rounded-full;
+  }
+
+  &.white {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+
+    .verifiedIcon {
+      @apply text-white absolute;
+    }
+  }
+
+  span {
+    @apply relative rounded-full;
+  }
+
+  .verifiedIcon {
+    @apply text-blue-500 text-xs absolute bottom-0 right-0;
+  }
+}

@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
+import useOnOutsideClick from './useOnOutsideClick';
 
 interface UseOutsideReturn {
   ref: any;
@@ -14,12 +15,7 @@ const useOutside = (initial: boolean): UseOutsideReturn => {
       setShow(false);
     }
   };
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside, true);
-    return () => {
-      document.removeEventListener('click', handleClickOutside, true);
-    };
-  });
+  useOnOutsideClick(ref, handleClickOutside);
   return {
     ref,
     show,

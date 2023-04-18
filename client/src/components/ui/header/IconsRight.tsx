@@ -8,7 +8,7 @@ import UploadVideo from './UploadVideo';
 const IconsRight: FC = () => {
   const user = useUser();
   return (
-    <div className={styles['icons-right']}>
+    <div className={styles.iconsRight}>
       {user.id ? (
         <>
           <ProfileMenu />

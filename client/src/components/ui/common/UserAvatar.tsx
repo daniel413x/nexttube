@@ -11,24 +11,26 @@ import styles from './UserAvatar.module.scss';
 interface UserAvatarProps {
   user: IUser;
   isWhite?: boolean;
+  className?: string;
 }
 
-const UserAvatar: FC<UserAvatarProps> = ({ user, isWhite }) => {
+const UserAvatar: FC<UserAvatarProps> = ({ user, className, isWhite }) => {
   const { id, name, avatarPath } = user;
   return (
-    <Link href={`/c/${id}`}>
+    <Link href={`/c/${id}`} title={name}>
       <div
-        className={cn(styles.avatar, {
+        className={cn(styles.userAvatar, className, {
           [styles.white]: isWhite,
         })}
       >
         <Image
+          className={styles.avatar}
           width={45}
           height={45}
           alt={name}
           src={avatarPath || defaultAvatar}
         />
-        <IconSpan Icon={FaCheckCircle} className={styles['verified-icon']} />
+        <IconSpan Icon={FaCheckCircle} className={styles.verifiedIcon} />
       </div>
     </Link>
   );
@@ -36,6 +38,7 @@ const UserAvatar: FC<UserAvatarProps> = ({ user, isWhite }) => {
 
 UserAvatar.defaultProps = {
   isWhite: false,
+  className: '',
 };
 
 export default UserAvatar;

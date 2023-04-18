@@ -1,12 +1,16 @@
 import { IVideo } from '@types';
-import { $authHost, $host } from './index';
+import { $host } from './index';
 
-export const getAll = async (): Promise<IVideo[]> => {
-  const { data } = await $authHost.post<IVideo[]>('video');
-  return data;
-};
+class VideoService {
+  static async getAll(): Promise<IVideo[]> {
+    const { data } = await $host.get<IVideo[]>('video');
+    return data;
+  }
 
-export const getMostViewed = async (): Promise<IVideo[]> => {
-  const { data } = await $host.post<IVideo[]>('video/most-viewed');
-  return data;
-};
+  static async getMostViewed(): Promise<IVideo[]> {
+    const { data } = await $host.get<IVideo[]>('video/most-viewed');
+    return data;
+  }
+}
+
+export default VideoService;

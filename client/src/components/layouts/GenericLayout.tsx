@@ -18,7 +18,7 @@ const Layout: FC<LayoutProps> = ({
   className,
 }: LayoutProps) => (
   <Meta title={title} description={description}>
-    <div className={`${styles['generic-layout']} ${className}`}>
+    <div className={`${styles.genericLayout} ${className}`}>
       <Sidebar />
       <section className={styles.content}>
         <Header />

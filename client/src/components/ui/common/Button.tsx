@@ -6,12 +6,15 @@ import styles from './Button.module.scss';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: Children;
   type?: 'button' | 'submit';
+  overlay?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, className, type = 'button', ...rest }, passedInRef) => (
+  ({ children, className, type = 'button', overlay, ...rest }, passedInRef) => (
     <button
-      className={cn(styles.button, className)}
+      className={cn(styles.button, className, {
+        [styles.overlay]: overlay,
+      })}
       // eslint-disable-next-line react/button-has-type
       type={type || 'button'}
       ref={passedInRef}
@@ -25,6 +28,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 Button.defaultProps = {
   children: undefined,
   type: 'button',
+  overlay: false,
 };
 
 export default Button;

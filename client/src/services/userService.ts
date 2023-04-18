@@ -1,8 +1,8 @@
 import { IAuthData, IUser } from '@types';
-import { $authHost, $host } from './index';
+import { $host } from './index';
 
 export const getAll = async (): Promise<IUser[]> => {
-  const { data } = await $authHost.post<IUser[]>('user');
+  const { data } = await $host.post<IUser[]>('user');
   return data;
 };
 

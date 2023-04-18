@@ -12,7 +12,7 @@ interface MenuProps {
 const Menu: FC<MenuProps> = ({ items, title }: MenuProps) => (
   <nav className={styles.menu}>
     <h3>{title}</h3>
-    <ul className={styles['items-ul']}>
+    <ul className={styles.itemsUl}>
       {items.map(({ href, title: itemTitle, Icon, image }) => (
         <li key={href}>
           <MenuItem href={href} title={itemTitle} Icon={Icon} image={image} />

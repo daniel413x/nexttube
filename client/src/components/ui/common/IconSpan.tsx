@@ -8,7 +8,7 @@ interface IconSpanProps {
 }
 
 const IconSpan: FC<IconSpanProps> = ({ className, Icon }) => (
-  <span className={`${styles['icon-span']} ${className || ''}`}>
+  <span className={`${styles.iconSpan} ${className || ''}`}>
     <Icon />
   </span>
 );

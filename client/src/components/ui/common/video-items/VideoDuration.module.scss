@@ -1,0 +1,9 @@
+ .videoDuration {
+   @apply py-1 px-1.5 absolute top-2 right-2 bg-black-25 text-xs;
+   border-radius: 6px;
+
+   &.bottom {
+     @apply bottom-2;
+     top: initial;
+   }
+ }

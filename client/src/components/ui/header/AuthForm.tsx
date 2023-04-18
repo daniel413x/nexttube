@@ -5,7 +5,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import { IAuthFields } from '@types';
 import useActions from '@hooks/useActions';
 import useAuth from '@hooks/useAuth';
-import useOutside from '@hooks/useOutside';
+import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
 import Button from '../common/Button';
 import IconSpan from '../common/IconSpan';
 import Input from '../common/Input';
@@ -14,13 +14,9 @@ import iconsStyles from './IconsRight.module.scss';
 
 const AuthForm: FC = () => {
   const [forLogin, setForLogin] = useState<boolean>(true);
-  const { ref, setShow, show } = useOutside(false);
+  const { ref, setShow, show } = useHideOnOutsideClick(false);
   const { loading } = useAuth();
-  const {
-    register: dispatchRegister,
-    login: dispatchLogin,
-    logout,
-  } = useActions();
+  const { register: dispatchRegister, login: dispatchLogin } = useActions();
   const {
     register,
     formState: { errors },
@@ -36,7 +32,7 @@ const AuthForm: FC = () => {
     }
   };
   return (
-    <div className={styles['auth-form']} ref={ref}>
+    <div className={styles.authForm} ref={ref}>
       <button
         className={iconsStyles.button}
         onClick={() => setShow(!show)}
@@ -70,26 +66,19 @@ const AuthForm: FC = () => {
             type="password"
           />
           <Button
-            className={styles['login-button']}
+            className={styles.loginButton}
             type="submit"
             disabled={loading}
           >
             {forLogin ? 'Login' : 'Register'}
           </Button>
           <button
-            className={styles['register-button']}
+            className={styles.registerButton}
             onClick={() => setForLogin(!forLogin)}
             disabled={loading}
             type="button"
           >
             {forLogin ? 'Register' : 'Login'}
-          </button>
-          <button
-            className={styles['register-button']}
-            onClick={logout}
-            type="button"
-          >
-            asdf
           </button>
         </form>
       )}

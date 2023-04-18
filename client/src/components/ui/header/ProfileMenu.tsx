@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
 import useActions from '@hooks/useActions';
-import useOutside from '@hooks/useOutside';
+import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
 import useUser from '@hooks/useUser';
 import defaultAvatar from '@public/images/default-avatar.png';
 import IconSpan from '../common/IconSpan';
@@ -12,9 +12,9 @@ import styles from './ProfileMenu.module.scss';
 const ProfileMenu: FC = () => {
   const user = useUser();
   const { logout } = useActions();
-  const { show, setShow, ref } = useOutside(false);
+  const { show, setShow, ref } = useHideOnOutsideClick(false);
   return (
-    <div className={styles['profile-menu']} ref={ref}>
+    <div className={styles.profileMenu} ref={ref}>
       <button onClick={() => setShow(!show)} type="button">
         <Image
           src={user?.avatarPath || defaultAvatar}
@@ -27,7 +27,7 @@ const ProfileMenu: FC = () => {
         <IconSpan Icon={show ? HiChevronUp : HiChevronDown} />
       </button>
       {show && (
-        <ul className={styles['items-ul']}>
+        <ul className={styles.itemsUl}>
           <li>
             <Link href={`/c/${user?.id}`}>My channel</Link>
           </li>

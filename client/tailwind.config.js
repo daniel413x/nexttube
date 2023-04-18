@@ -10,8 +10,7 @@ module.exports = {
     extend: {
       backgroundColor: {
         'brand': '#202024',
-        // 'brand': '#202030',
-        // 'brand': '#141031',
+        'black-25': 'rgba(0, 0, 0, 0.25)',
       },
       colors: {
         primary: '#FF7652',
@@ -25,6 +24,18 @@ module.exports = {
           900: '#272532',
         },
         placeholder: '#5c5a69',
+      },
+      gridTemplateColumns: {
+        '25': 'repeat(auto-fill, 25%)',
+        '33': 'repeat(auto-fill, 33.33%)',
+        '50': 'repeat(auto-fill, 50%)',
+        '100': 'repeat(auto-fill, 100%)',
+      },
+      flex: {
+        '25': '1 1 calc((100% / 4) - 2rem)',
+        '33': '1 1 calc((100% / 3) - 2rem)',
+        '50': '1 1 calc((100% / 2) - 2rem)',
+        '100': '1 1 100%',
       },
       boxShadow: {
         DEFAULT: '0 3px 12px rgba(0, 0, 0, 0,03)',

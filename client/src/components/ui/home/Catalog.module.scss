@@ -1,0 +1,17 @@
+.catalog {
+  .upperElements {
+    @apply flex items-center justify-between mb-6;
+
+    .sort {
+      @apply text-white;
+    }
+  }
+}
+
+.itemsUl {
+  @apply flex flex-wrap gap-5;
+
+  li {
+    @apply flex-50 lg:flex-33 xl:flex-25 mb-2.5;
+  }
+}
