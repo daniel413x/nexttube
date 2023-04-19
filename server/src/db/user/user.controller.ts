@@ -18,15 +18,20 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Get()
+  async getAll() {
+    return this.userService.getAll();
+  }
+
   @Get('profile')
   @Auth()
   async getProfile(@CurrentUser('id') id: string) {
     return this.userService.byId(id);
   }
 
-  @Get('by-id/:id')
-  async getUser(@Param('id') id: string) {
-    return this.userService.byId(id);
+  @Get('by-username/:username')
+  async getUser(@Param('username') username: string) {
+    return this.userService.byUsername(username);
   }
 
   @UsePipes(new ValidationPipe())

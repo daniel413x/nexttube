@@ -6,14 +6,14 @@ import { LikeEntity } from './like.entity';
 
 @Entity('User')
 export class UserEntity extends Base {
-  @Column({ unique: true })
+  @Column({ default: '', unique: true, nullable: true })
   email: string;
 
   @Column({ select: false })
   password: string;
 
-  @Column({ default: '' })
-  name: string;
+  @Column({ default: '', unique: true })
+  username: string;
 
   @Column({ type: 'text', array: true, default: () => "ARRAY['registered']" })
   flags: string[];

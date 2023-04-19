@@ -4,19 +4,22 @@ import { $host } from './index';
 
 class AuthService {
   static async registration(
-    email: string,
+    username: string,
     password: string
   ): Promise<IAuthData> {
     const { data } = await $host.post<IAuthData>(`/${AUTH}/${REGISTER}`, {
-      email,
+      username,
       password,
     });
     return data;
   }
 
-  static async login(email: string, password: string): Promise<IAuthData> {
+  static async login(
+    usernameOrEmail: string,
+    password: string
+  ): Promise<IAuthData> {
     const { data } = await $host.post<IAuthData>(`/${AUTH}/${LOGIN}`, {
-      email,
+      usernameOrEmail,
       password,
     });
     return data;

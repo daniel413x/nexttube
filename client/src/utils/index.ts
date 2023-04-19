@@ -1,4 +1,5 @@
 import { toastr } from 'react-redux-toastr';
+import { ISerializedError } from '@types';
 
 export const errorCatch = (error: any): string => {
   if (error.response && error.response.data) {
@@ -13,6 +14,19 @@ export const errorCatch = (error: any): string => {
 export const toastError = (error: any, title = 'Error request') => {
   const message = errorCatch(error);
   toastr.error(title, message);
+};
+
+export const serializeError = (error: any) => {
+  const serializedError: ISerializedError = {};
+  if (error.message) {
+    serializedError.message = error.message;
+  }
+  if (error.response.data) {
+    serializedError.response = {
+      data: error.response.data,
+    };
+  }
+  return serializedError;
 };
 
 export const formatNumber = (number: number): string | number => {

@@ -1,36 +1,38 @@
 import { AUTH, LOGIN, LOGOUT, REGISTER } from '@data/consts';
 import { initialUser } from '@data/state';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { toastr } from 'react-redux-toastr';
 import { IAuthData, IAuthFields } from '@types';
 import AuthService from '@services/authService';
-import { toastError } from '@utils';
+import { serializeError, toastError } from '@utils';
 import { setUser } from './userActions';
+
+export const noLoading = createAction('noLoading');
 
 export const register = createAsyncThunk<IAuthData, IAuthFields>(
   `${AUTH}/${REGISTER}`,
-  async ({ email, password }, thunkAPI) => {
+  async ({ username, password }, thunkAPI) => {
     try {
-      const res = await AuthService.registration(email, password);
+      const res = await AuthService.registration(username, password);
       toastr.success('Registration', 'Success');
       return res;
     } catch (e) {
       toastError(e);
-      return thunkAPI.rejectWithValue(e);
+      return thunkAPI.rejectWithValue(serializeError(e));
     }
   }
 );
 
 export const login = createAsyncThunk<IAuthData, IAuthFields>(
   `${AUTH}/${LOGIN}`,
-  async ({ email, password }, thunkAPI) => {
+  async ({ username, password }, thunkAPI) => {
     try {
-      const res = await AuthService.login(email, password);
+      const res = await AuthService.login(username, password);
       toastr.success('Login', 'Success');
       return res;
     } catch (e) {
       toastError(e);
-      return thunkAPI.rejectWithValue(e);
+      return thunkAPI.rejectWithValue(serializeError(e));
     }
   }
 );

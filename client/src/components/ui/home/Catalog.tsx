@@ -21,7 +21,7 @@ const Catalog: FC<CatalogProps> = ({
     </div>
     <ul className={styles.itemsUl}>
       {newVideos.map((video) => (
-        <li>
+        <li key={video.id}>
           <VideoItem
             video={video}
             key={video.id}

@@ -1,7 +1,7 @@
 import { initialAuth } from '@data/state';
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthSlice } from '@types';
-import { login, logout, register } from '../../actions/authActions';
+import { login, logout, noLoading, register } from '../../actions/authActions';
 
 const initialState: AuthSlice = initialAuth;
 
@@ -11,6 +11,9 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(noLoading, (state) => {
+        state.loading = false;
+      })
       .addCase(register.pending, (state) => {
         state.loading = true;
       })
@@ -29,7 +32,7 @@ export const authSlice = createSlice({
         state.loading = false;
         state.accessToken = payload.accessToken;
       })
-      .addCase(login.rejected, (state) => {
+      .addCase(login.rejected, (state, { payload }) => {
         state.loading = false;
         state.accessToken = '';
       })

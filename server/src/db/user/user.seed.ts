@@ -11,16 +11,16 @@ export default class UserSeeder extends Seeder {
   async run(dataSource: DataSource) {
     const users = [...regularUserSeederIds, ...uploaderUserSeederIds].map(
       (uuid) => {
-        const name = `${faker.name.firstName()} ${faker.name.lastName()}`;
+        const handle = `${faker.name.jobType()}${faker.name.jobType()}`;
+        const realName = `${faker.name.firstName()}${faker.name.lastName()}`;
         const user = new UserEntity();
         user.id = uuid;
-        user.name = name;
+        user.username = Math.random() > 0.5 ? handle : realName;
+        Math.random() > 0.5
+          ? (user.username = user.username.toLowerCase())
+          : null;
         user.password = 'password';
-        user.email = `${name}@${faker.internet.domainName()}`
-          .split(' ')
-          .filter(Boolean)
-          .join(' ')
-          .toLowerCase();
+        user.email = `${realName}@${faker.internet.domainName()}`.toLowerCase();
         user.description = '';
         return user;
       },

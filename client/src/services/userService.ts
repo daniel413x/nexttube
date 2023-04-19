@@ -1,14 +1,16 @@
-import { IAuthData, IUser } from '@types';
+import { IUser } from '@types';
 import { $host } from './index';
 
-export const getAll = async (): Promise<IUser[]> => {
-  const { data } = await $host.post<IUser[]>('user');
-  return data;
-};
+class UserService {
+  static async getOne(username: string): Promise<IUser> {
+    const { data } = await $host.get<IUser>(`user/by-username/${username}`);
+    return data;
+  }
 
-export const getOne = async (id: string): Promise<IAuthData> => {
-  const { data } = await $host.post<IAuthData>(`user/by-id/${id}`, {
-    id,
-  });
-  return data;
-};
+  static async getAll(): Promise<IUser[]> {
+    const { data } = await $host.get<IUser[]>('user');
+    return data;
+  }
+}
+
+export default UserService;

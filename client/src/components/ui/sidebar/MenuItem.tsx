@@ -18,7 +18,7 @@ const MenuItem: FC<IMenuItem> = ({ href, title, Icon, image }) => {
   return (
     <Link
       className={`${styles.menuItem} ${asPath === href ? styles.active : ''}`}
-      href={myChannel ? `${href}/${user!.id}` : href}
+      href={myChannel ? `${href}/${user!.username}` : href}
     >
       {Icon && <IconSpan Icon={Icon} className={styles.iconSpan} />}
       {image && (

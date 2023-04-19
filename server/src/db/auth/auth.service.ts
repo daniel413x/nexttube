@@ -1,15 +1,17 @@
 import {
   BadRequestException,
+  HttpException,
+  HttpStatus,
   Injectable,
-  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '@db/user/user.entity';
 import { Repository } from 'typeorm';
-import { AuthDto } from './auth.dto';
+import { RegisterDto } from './auth.register.dto';
 import { compare, genSalt, hash } from 'bcryptjs';
+import { LoginDto } from './auth.login.dto';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +21,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async login(dto: AuthDto) {
+  async login(dto: LoginDto) {
     const user = await this.validateUser(dto);
     const accessToken = await this.issueAccessToken(user.id);
     return {
@@ -28,15 +30,16 @@ export class AuthService {
     };
   }
 
-  async register(dto: AuthDto) {
-    const { email, password } = dto;
-    const alreadyExists = await this.userRepository.findOneBy({
-      email,
+  async register(dto: RegisterDto) {
+    const { password, username } = dto;
+    const usernameExists = await this.userRepository.findOneBy({
+      username,
     });
-    if (alreadyExists) throw new BadRequestException('Email already exists');
+    if (usernameExists)
+      throw new BadRequestException('Username already exists');
     const salt = await genSalt(10);
     const newUser = await this.userRepository.create({
-      email,
+      username,
       password: await hash(password, salt),
     });
     const user = await this.userRepository.save(newUser);
@@ -47,15 +50,17 @@ export class AuthService {
     };
   }
 
-  async validateUser(dto: AuthDto) {
-    const { email } = dto;
+  async validateUser(dto: LoginDto) {
+    const { usernameOrEmail } = dto;
     const user = await this.userRepository.findOne({
-      where: {
-        email,
-      },
-      select: ['id', 'email', 'password', 'flags'],
+      where: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+      select: ['id', 'username', 'password', 'flags'],
     });
-    if (!user) throw new NotFoundException('User not found');
+    if (!user)
+      throw new HttpException(
+        'User not found',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     const isValidPassword = await compare(dto.password, user.password);
     if (!isValidPassword) throw new UnauthorizedException('Incorrect password');
     return user;
@@ -65,9 +70,8 @@ export class AuthService {
     const data = {
       id: userId,
     };
-
     return await this.jwtService.signAsync(data, {
-      expiresIn: '31d',
+      expiresIn: '15s',
     });
   }
 

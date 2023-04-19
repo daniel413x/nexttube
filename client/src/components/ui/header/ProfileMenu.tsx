@@ -18,23 +18,23 @@ const ProfileMenu: FC = () => {
       <button onClick={() => setShow(!show)} type="button">
         <Image
           src={user?.avatarPath || defaultAvatar}
-          alt={user?.name || 'Avatar'}
+          alt={user?.username || 'Avatar'}
           width={40}
           height={40}
           priority
         />
-        <span className={styles.name}>{user?.name || 'User'}</span>
+        <span className={styles.name}>{user?.username || 'User'}</span>
         <IconSpan Icon={show ? HiChevronUp : HiChevronDown} />
       </button>
       {show && (
         <ul className={styles.itemsUl}>
-          <li>
+          <li key="my-channel">
             <Link href={`/c/${user?.id}`}>My channel</Link>
           </li>
-          <li>
+          <li key="studio">
             <Link href="studio">Studio</Link>
           </li>
-          <li>
+          <li key="logout">
             <button type="button" onClick={logout}>
               Logout
             </button>

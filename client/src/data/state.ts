@@ -3,7 +3,7 @@ import { GUEST } from './consts';
 
 // eslint-disable-next-line import/prefer-default-export
 export const initialUser: IUser = {
-  name: 'Guest',
+  username: 'Guest',
   email: '',
   flags: [GUEST],
   description: '',

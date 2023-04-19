@@ -1,4 +1,4 @@
-import { VALID_EMAIL, VALID_PASSWORD } from '@data/consts';
+import { VALID_PASSWORD, VALID_USERNAME } from '@data/consts';
 import { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaUserCircle } from 'react-icons/fa';
@@ -16,9 +16,9 @@ const AuthForm: FC = () => {
   const [forLogin, setForLogin] = useState<boolean>(true);
   const { ref, setShow, show } = useHideOnOutsideClick(false);
   const { loading } = useAuth();
-  const { register: dispatchRegister, login: dispatchLogin } = useActions();
+  const { register, login } = useActions();
   const {
-    register,
+    register: registerProps,
     formState: { errors },
     handleSubmit,
   } = useForm<IAuthFields>({
@@ -26,9 +26,9 @@ const AuthForm: FC = () => {
   });
   const onSubmit: SubmitHandler<IAuthFields> = (data) => {
     if (forLogin) {
-      dispatchLogin(data);
+      login(data);
     } else {
-      dispatchRegister(data);
+      register(data);
     }
   };
   return (
@@ -43,25 +43,25 @@ const AuthForm: FC = () => {
       {show && (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <Input
-            {...register('email', {
-              required: 'Email required',
+            {...registerProps('username', {
+              required: 'Username required',
               pattern: {
-                value: VALID_EMAIL,
-                message: 'Invalid email format',
+                value: VALID_USERNAME,
+                message: 'Invalid (3-25 alphanumeric characters)',
               },
             })}
-            placeholder="E-mail"
-            error={errors.email}
+            placeholder="Username (3-25 alphanumeric characters)"
+            error={errors.username}
           />
           <Input
-            {...register('password', {
+            {...registerProps('password', {
               required: 'Password required',
               pattern: {
                 value: VALID_PASSWORD,
-                message: 'Invalid password (6-35 characters)',
+                message: 'Invalid (6-35 characters)',
               },
             })}
-            placeholder="Password"
+            placeholder="Password (6-35 characters)"
             error={errors.password}
             type="password"
           />

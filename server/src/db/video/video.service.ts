@@ -35,7 +35,7 @@ export class VideoService {
       select: {
         user: {
           id: true,
-          name: true,
+          username: true,
           avatarPath: true,
           flags: true,
           subscribersCount: true,
@@ -46,7 +46,7 @@ export class VideoService {
           id: true,
           user: {
             id: true,
-            name: true,
+            username: true,
             avatarPath: true,
             flags: true,
             subscribersCount: true,
@@ -67,7 +67,6 @@ export class VideoService {
   }
 
   async getAll(searchTerm?: string) {
-    console.log(searchTerm);
     let options: FindOptionsWhereProperty<VideoEntity> = {};
     if (searchTerm) {
       options = {
@@ -88,7 +87,7 @@ export class VideoService {
       select: {
         user: {
           id: true,
-          name: true,
+          username: true,
           avatarPath: true,
           flags: true,
         },
@@ -107,7 +106,7 @@ export class VideoService {
       select: {
         user: {
           id: true,
-          name: true,
+          username: true,
           avatarPath: true,
           flags: true,
         },

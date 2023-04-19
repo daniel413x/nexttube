@@ -19,11 +19,18 @@ export class UserService {
     private readonly subscriptionRepository: Repository<SubscriptionEntity>,
   ) {}
 
-  async byId(id: string) {
-    // /user/profile
+  async getAll() {
+    return this.userRepository.find({
+      select: {
+        username: true,
+      },
+    });
+  }
+
+  async byAttribute(attribute: string, value: string) {
     const user = await this.userRepository.findOne({
       where: {
-        id,
+        [attribute]: value,
       },
       relations: {
         videos: true,
@@ -39,8 +46,17 @@ export class UserService {
     return user;
   }
 
+  async byId(id: string) {
+    // /user/profile
+    return this.byAttribute('id', id);
+  }
+
+  async byUsername(username: string) {
+    return this.byAttribute('username', username);
+  }
+
   async updateProfile(id: string, dto: UserDto) {
-    const { email, password, name, avatarPath, description } = dto;
+    const { email, password, username, avatarPath, description } = dto;
     const user = await this.byId(id);
     const isSameUser = await this.userRepository.findOneBy({ email });
     if (isSameUser && id !== isSameUser.id)
@@ -52,7 +68,7 @@ export class UserService {
     user.email = email;
     user.description = description;
     user.avatarPath = avatarPath;
-    user.name = name;
+    user.username = username;
     return this.userRepository.save(user);
   }
 

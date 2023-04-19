@@ -15,9 +15,9 @@ interface UserAvatarProps {
 }
 
 const UserAvatar: FC<UserAvatarProps> = ({ user, className, isWhite }) => {
-  const { id, name, avatarPath } = user;
+  const { id, username, avatarPath } = user;
   return (
-    <Link href={`/c/${id}`} title={name}>
+    <Link href={`/c/${id}`} title={username}>
       <div
         className={cn(styles.userAvatar, className, {
           [styles.white]: isWhite,
@@ -27,7 +27,7 @@ const UserAvatar: FC<UserAvatarProps> = ({ user, className, isWhite }) => {
           className={styles.avatar}
           width={45}
           height={45}
-          alt={name}
+          alt={username}
           src={avatarPath || defaultAvatar}
         />
         <IconSpan Icon={FaCheckCircle} className={styles.verifiedIcon} />

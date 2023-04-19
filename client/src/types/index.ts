@@ -43,7 +43,7 @@ export interface IUser extends IBaseProps {
   description: string;
   avatarPath: string;
   videos: IVideo[];
-  name: string;
+  username: string;
   flags: AuthStrings[];
   subscriptions: IUser[];
   subscribersCount: number;
@@ -77,7 +77,7 @@ export interface IAuthData {
 }
 
 export interface IAuthFields {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -85,6 +85,10 @@ export interface IHomeProps {
   newVideos: IVideo[];
   mostViewedVideo: IVideo;
   randomVideo: IVideo;
+}
+
+export interface IChannelProps {
+  channel: IUser;
 }
 
 export interface AuthSlice extends IAuthData {
@@ -123,3 +127,12 @@ export type ReduxQuery = UseQuery<
     'api'
   >
 >;
+
+type ISerializedErrorResponse = {
+  data?: any;
+};
+
+export interface ISerializedError {
+  message?: string;
+  response?: ISerializedErrorResponse;
+}

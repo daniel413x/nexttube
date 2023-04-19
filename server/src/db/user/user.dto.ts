@@ -1,13 +1,14 @@
 import { IsEmail, IsString } from 'class-validator';
+import { IUserDto } from 'src/types';
 
-export class UserDto {
+export class UserDto implements IUserDto {
   @IsEmail()
   email: string;
 
   password?: string;
 
   @IsString()
-  name: string;
+  username: string;
 
   @IsString()
   description: string;
