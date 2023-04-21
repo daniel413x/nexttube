@@ -1,3 +1,4 @@
+import { CHANNEL_ACCESSOR } from '@data/consts';
 import cn from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,9 +16,9 @@ interface UserAvatarProps {
 }
 
 const UserAvatar: FC<UserAvatarProps> = ({ user, className, isWhite }) => {
-  const { id, username, avatarPath } = user;
+  const { username, avatarPath } = user;
   return (
-    <Link href={`/c/${id}`} title={username}>
+    <Link href={`/c/${user[CHANNEL_ACCESSOR]}`} title={username}>
       <div
         className={cn(styles.userAvatar, className, {
           [styles.white]: isWhite,

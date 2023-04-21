@@ -1,8 +1,7 @@
 .profileMenu {
-  height: 62.39px;
-
   button {
-    @apply flex items-center; // delete?
+    @apply flex items-center;
+    height: 62.39px;
 
     img {
       @apply rounded-full;
@@ -21,6 +20,7 @@
     a,
     button {
       @apply py-2.5 block text-white transition-colors relative w-full px-0 flex text-sm;
+      height: max-content;
 
       &::after {
         @apply absolute w-0 left-0 -bottom-0.5 h-0.5 bg-primary bg-opacity-70 transition-all duration-200 rounded-lg;

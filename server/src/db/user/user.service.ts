@@ -28,20 +28,20 @@ export class UserService {
   }
 
   async byAttribute(attribute: string, value: string) {
-    const user = await this.userRepository.findOne({
-      where: {
-        [attribute]: value,
-      },
-      relations: {
-        videos: true,
-        subscriptions: {
-          toChannel: true,
-        },
-      },
-      order: {
-        createdAt: 'DESC',
-      },
-    });
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .where(`user.${attribute} = :value`, { value })
+      .leftJoinAndSelect('user.videos', 'videos')
+      .leftJoin('user.subscriptions', 'subscriptions')
+      .leftJoin('subscriptions.toChannel', 'toChannel')
+      .addSelect([
+        'subscriptions.id',
+        'toChannel.id',
+        'toChannel.username', // Select only the 'name' attribute
+        'toChannel.avatarPath', // Select the 'avatar' attribute
+      ])
+      .orderBy('user.createdAt', 'DESC')
+      .getOne();
     if (!user) throw new NotFoundException('User not found');
     return user;
   }

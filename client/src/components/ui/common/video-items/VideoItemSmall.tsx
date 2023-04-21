@@ -32,52 +32,53 @@ const VideoItem: FC<VideoItemProps> = ({
       className={cn(styles.videoItem, {
         [styles.small]: isSmall,
       })}
-      title={name}
     >
-      {!!removeHandler && (
-        <button
-          className={styles.removeButton}
-          onClick={() => removeHandler(id)}
-          type="button"
-        >
-          <IconSpan className={styles.trashIcon} Icon={FaTrash} />
-        </button>
-      )}
-      {isUpdateLink && (
-        <button
-          className={styles.updateButton}
-          onClick={() => push(`/${VIDEO}/${EDIT}/${id}`)}
-          type="button"
-        >
-          <IconSpan className={styles.editIcon} Icon={FaEdit} />
-        </button>
-      )}
-      <div className={styles.thumbnail}>
-        {thumbnailPath && (
-          <Image
-            src={thumbnailPath}
-            alt={name}
-            width={185}
-            height={103}
-            layout="responsive"
-            priority
-          />
+      <Link title={name} href={`/v/${id}`}>
+        {!!removeHandler && (
+          <button
+            className={styles.removeButton}
+            onClick={() => removeHandler(id)}
+            type="button"
+          >
+            <IconSpan className={styles.trashIcon} Icon={FaTrash} />
+          </button>
         )}
-        <VideoDuration duration={duration} />
-        {video?.user && (
-          <UserAvatar className={styles.userAvatar} user={video?.user} />
+        {isUpdateLink && (
+          <button
+            className={styles.updateButton}
+            onClick={() => push(`/${VIDEO}/${EDIT}/${id}`)}
+            type="button"
+          >
+            <IconSpan className={styles.editIcon} Icon={FaEdit} />
+          </button>
         )}
-        <div className={styles.information}>
-          {!isSmall && <div className={styles.author}>{video.user?.name}</div>}
-          <Link className={styles.name} href={`/v/${id}`}>
-            {name}
-          </Link>
-          <VideoStatistics
-            views={views}
-            createdAt={!isSmall ? createdAt : undefined}
-          />
+        <div className={styles.thumbnail}>
+          {thumbnailPath && (
+            <Image
+              src={thumbnailPath}
+              alt={name}
+              width={185}
+              height={103}
+              layout="responsive"
+              priority
+            />
+          )}
+          <VideoDuration duration={duration} />
+          {video?.user && (
+            <UserAvatar className={styles.userAvatar} user={video?.user} />
+          )}
+          <div className={styles.information}>
+            {!isSmall && (
+              <div className={styles.author}>{video.user?.username}</div>
+            )}
+            <div className={styles.name}>{name}</div>
+            <VideoStatistics
+              views={views}
+              createdAt={!isSmall ? createdAt : undefined}
+            />
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

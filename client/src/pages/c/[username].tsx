@@ -1,9 +1,11 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import ChannelScreen from '@components/screens/channel';
-import { IChannelProps, IUser } from '@types';
+import { IChannelProps } from '@types';
 import UserService from '@services/userService';
 
-const ChannelPage: NextPage<IUser> = (user) => <ChannelScreen channel={user} />;
+const ChannelPage: NextPage<IChannelProps> = (props) => (
+  <ChannelScreen {...props} />
+);
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
@@ -30,14 +32,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const user = await UserService.getOne(params?.username as string);
     return {
       props: {
-        channel: user,
+        user,
       } as IChannelProps,
     };
   } catch (e) {
     return {
-      props: {
-        channel: {} as IUser,
-      },
+      props: {} as IChannelProps,
     };
   }
 };

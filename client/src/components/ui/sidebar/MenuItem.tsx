@@ -10,6 +10,7 @@ import styles from './MenuItem.module.scss';
 const MenuItem: FC<IMenuItem> = ({ href, title, Icon, image }) => {
   const user = useUser();
   const { asPath } = useRouter();
+  const isActive = asPath.startsWith(`${href}/`) || asPath === href;
   const myChannel = href === '/c';
   const dontRender = myChannel && !user.id;
   if (dontRender) {
@@ -17,7 +18,7 @@ const MenuItem: FC<IMenuItem> = ({ href, title, Icon, image }) => {
   }
   return (
     <Link
-      className={`${styles.menuItem} ${asPath === href ? styles.active : ''}`}
+      className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
       href={myChannel ? `${href}/${user!.username}` : href}
     >
       {Icon && <IconSpan Icon={Icon} className={styles.iconSpan} />}

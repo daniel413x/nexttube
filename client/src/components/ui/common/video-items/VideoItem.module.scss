@@ -62,55 +62,55 @@
       }
     }
   }
-}
 
-.userAvatar {
-  @apply absolute right-3;
-  bottom: 150px;
-}
-
-.thumbnail {
-  @apply relative;
-}
-
-.information {
-  @apply p-4;
-
-  .author {
-    @apply font-normal text-gray-500;
-    font-size: 1.15rem;
+  .userAvatar {
+    @apply absolute right-3;
+    bottom: 130px;
   }
 
-  .name {
-    @apply text-white font-medium my-2.5;
-    font-size: 1.3rem;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  .thumbnail {
+    @apply relative;
   }
-}
 
-.numberInfo {
-  @apply flex items-center;
+  .information {
+    @apply p-4;
 
-  div {
-    @apply text-xs text-gray-500;
+    .author {
+      @apply font-normal text-gray-500;
+      font-size: 1.15rem;
+    }
+
+    .name {
+      @apply leading-tight text-white font-medium my-2.5;
+      font-size: 1.3rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
-}
 
-.updateButton {
-  @apply absolute bottom-3 right-11 z-10;
+  .numberInfo {
+    @apply flex items-center;
 
-  .editIcon {
-    @apply text-lg text-blue-600;
+    div {
+      @apply text-xs text-gray-500;
+    }
   }
-}
 
-.removeButton {
-  @apply absolute bottom-3 right-3 z-10;
+  .updateButton {
+    @apply absolute bottom-3 right-11 z-10;
 
-  .trashIcon {
-     @apply text-lg text-red-700;
+    .editIcon {
+      @apply text-lg text-blue-600;
+    }
+  }
+
+  .removeButton {
+    @apply absolute bottom-3 right-3 z-10;
+
+    .trashIcon {
+      @apply text-lg text-red-700;
+    }
   }
 }

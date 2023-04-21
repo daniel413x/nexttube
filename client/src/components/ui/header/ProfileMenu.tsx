@@ -1,3 +1,4 @@
+import { CHANNEL_ACCESSOR } from '@data/consts';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -29,7 +30,7 @@ const ProfileMenu: FC = () => {
       {show && (
         <ul className={styles.itemsUl}>
           <li key="my-channel">
-            <Link href={`/c/${user?.id}`}>My channel</Link>
+            <Link href={`/c/${user[CHANNEL_ACCESSOR]}`}>My channel</Link>
           </li>
           <li key="studio">
             <Link href="studio">Studio</Link>

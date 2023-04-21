@@ -1,15 +1,15 @@
   .channelInfoSmall {
     @apply flex flex-wrap items-center;
 
-    div:last-child {
-      @apply ml-4;
+    .rightCol {
+      @apply ml-3;
+    }
 
-      .name {
-        @apply text-base text-white;
-      }
+    .name {
+      @apply text-base text-white;
+    }
 
-      .subscribersCount {
-        @apply text-xs text-gray-500;
-      }
+    .subscribersCount {
+      @apply text-xs text-gray-500;
     }
   }

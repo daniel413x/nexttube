@@ -32,7 +32,7 @@ export const authSlice = createSlice({
         state.loading = false;
         state.accessToken = payload.accessToken;
       })
-      .addCase(login.rejected, (state, { payload }) => {
+      .addCase(login.rejected, (state) => {
         state.loading = false;
         state.accessToken = '';
       })

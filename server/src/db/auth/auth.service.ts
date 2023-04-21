@@ -8,7 +8,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '@db/user/user.entity';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { RegisterDto } from './auth.register.dto';
 import { compare, genSalt, hash } from 'bcryptjs';
 import { LoginDto } from './auth.login.dto';
@@ -53,7 +53,10 @@ export class AuthService {
   async validateUser(dto: LoginDto) {
     const { usernameOrEmail } = dto;
     const user = await this.userRepository.findOne({
-      where: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+      where: [
+        { username: ILike(`%${usernameOrEmail}%`) },
+        { email: ILike(`%${usernameOrEmail}%`) },
+      ],
       select: ['id', 'username', 'password', 'flags'],
     });
     if (!user)

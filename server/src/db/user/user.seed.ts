@@ -4,26 +4,32 @@ import {
   regularUserSeederIds,
   uploaderUserSeederIds,
 } from '@utils/seeder-data.util';
+import { genSalt, hash } from 'bcryptjs';
 import { DataSource } from 'typeorm';
 import { UserEntity } from './user.entity';
 
 export default class UserSeeder extends Seeder {
   async run(dataSource: DataSource) {
-    const users = [...regularUserSeederIds, ...uploaderUserSeederIds].map(
-      (uuid) => {
+    const users = await Promise.all(
+      [...regularUserSeederIds, ...uploaderUserSeederIds].map(async (uuid) => {
         const handle = `${faker.name.jobType()}${faker.name.jobType()}`;
         const realName = `${faker.name.firstName()}${faker.name.lastName()}`;
         const user = new UserEntity();
+        const salt = await genSalt(10);
+        const password = await hash('password', salt);
+        user.password = password;
         user.id = uuid;
         user.username = Math.random() > 0.5 ? handle : realName;
         Math.random() > 0.5
           ? (user.username = user.username.toLowerCase())
           : null;
-        user.password = 'password';
         user.email = `${realName}@${faker.internet.domainName()}`.toLowerCase();
-        user.description = '';
+        user.description =
+          uploaderUserSeederIds.indexOf(uuid) >= 0
+            ? faker.lorem.paragraph()
+            : '';
         return user;
-      },
+      }),
     );
     await dataSource.createEntityManager().save<UserEntity>(users);
   }

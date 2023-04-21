@@ -45,7 +45,7 @@ export interface IUser extends IBaseProps {
   videos: IVideo[];
   username: string;
   flags: AuthStrings[];
-  subscriptions: IUser[];
+  subscriptions: ISubscription[];
   subscribersCount: number;
   subscribers: ISubscription[];
 }
@@ -62,7 +62,10 @@ export interface ICommentDto {
 }
 
 export interface ISubscription extends IBaseProps {
-  toChannel: IUser;
+  toChannelId: string;
+  toChannel: Pick<IUser, 'username' | 'avatarPath' | 'id'>;
+  fromUserId: string;
+  fromUser: IUser;
 }
 
 export interface IMenuItem {
@@ -88,7 +91,7 @@ export interface IHomeProps {
 }
 
 export interface IChannelProps {
-  channel: IUser;
+  user: IUser;
 }
 
 export interface AuthSlice extends IAuthData {

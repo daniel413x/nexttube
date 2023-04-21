@@ -10,13 +10,13 @@ interface ChannelInfoSmallProps {
 }
 
 const ChannelInfoSmall: FC<ChannelInfoSmallProps> = ({ channel, message }) => {
-  const { username, subscribersCount, avatarPath } = channel;
+  const { username, subscribersCount } = channel;
   return (
     <div className={styles.channelInfoSmall}>
-      {avatarPath && <UserAvatar user={channel} />}
-      <div>
+      <UserAvatar className={styles.userAvatar} user={channel} />
+      <div className={styles.rightCol}>
         <div className={styles.name}>{username}</div>
-        <div className={styles.name}>
+        <div className={styles.subscribersCount}>
           {`${message || formatNumber(subscribersCount) || 0} subscribers`}
         </div>
       </div>

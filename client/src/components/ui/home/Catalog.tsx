@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { FC } from 'react';
 import { IVideo } from '@types';
 import VideoItem from '../common/video-items/VideoItemSmall';
@@ -8,18 +9,20 @@ interface CatalogProps {
   newVideos: IVideo[];
   removeHandler?: (videoId: string) => void;
   isUpdateLink?: boolean;
+  itemsUlClassName?: string;
 }
 
 const Catalog: FC<CatalogProps> = ({
   newVideos,
   removeHandler,
   isUpdateLink,
+  itemsUlClassName,
 }) => (
-  <div className={styles.catalog}>
+  <div className={cn(styles.catalog)}>
     <div className={styles.upperElements}>
       <SectionHeader title={removeHandler ? 'My videos' : 'Recommended'} />
     </div>
-    <ul className={styles.itemsUl}>
+    <ul className={cn(styles.itemsUl, itemsUlClassName)}>
       {newVideos.map((video) => (
         <li key={video.id}>
           <VideoItem
@@ -37,6 +40,7 @@ const Catalog: FC<CatalogProps> = ({
 Catalog.defaultProps = {
   isUpdateLink: false,
   removeHandler: undefined,
+  itemsUlClassName: '',
 };
 
 export default Catalog;

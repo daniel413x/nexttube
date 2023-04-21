@@ -14,3 +14,4 @@ export const USER = 'user';
 export const COMMENT = 'comment';
 export const VIDEO = 'video';
 export const EDIT = 'edit';
+export const CHANNEL_ACCESSOR = 'username';
