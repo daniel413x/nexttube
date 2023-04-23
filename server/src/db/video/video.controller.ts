@@ -20,8 +20,7 @@ import { VideoService } from './video.service';
 export class VideoController {
   constructor(private readonly videoService: VideoService) {}
 
-  @Get('get-private/:id')
-  @Auth()
+  @Get('/by-id/:id')
   async getPrivateVideo(@Param('id') id: string) {
     return this.videoService.byId(id);
   }

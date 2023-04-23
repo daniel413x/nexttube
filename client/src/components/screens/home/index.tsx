@@ -9,9 +9,9 @@ const HomeScreen: FC<IHomeProps> = ({
   mostViewedVideo,
   randomVideo,
 }) => (
-  <GenericLayout title="NextTube">
+  <GenericLayout title="Home">
     <Discover mostViewedVideo={mostViewedVideo} randomVideo={randomVideo} />
-    <Catalog newVideos={newVideos} />
+    <Catalog videos={newVideos} />
   </GenericLayout>
 );
 

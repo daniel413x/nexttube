@@ -6,7 +6,7 @@ export interface MetaProps {
   description?: string;
 }
 
-const standardize = (string: string) => `${string} | Videohosting`;
+const standardize = (string: string) => `${string} | NextTube Videohosting`;
 
 const Meta: FC<PropsWithChildren<MetaProps>> = ({
   title,

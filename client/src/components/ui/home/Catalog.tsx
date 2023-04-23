@@ -6,14 +6,14 @@ import SectionHeader from '../sectionHeader/SectionHeader';
 import styles from './Catalog.module.scss';
 
 interface CatalogProps {
-  newVideos: IVideo[];
+  videos: IVideo[];
   removeHandler?: (videoId: string) => void;
   isUpdateLink?: boolean;
   itemsUlClassName?: string;
 }
 
 const Catalog: FC<CatalogProps> = ({
-  newVideos,
+  videos,
   removeHandler,
   isUpdateLink,
   itemsUlClassName,
@@ -23,7 +23,7 @@ const Catalog: FC<CatalogProps> = ({
       <SectionHeader title={removeHandler ? 'My videos' : 'Recommended'} />
     </div>
     <ul className={cn(styles.itemsUl, itemsUlClassName)}>
-      {newVideos.map((video) => (
+      {videos.map((video) => (
         <li key={video.id}>
           <VideoItem
             video={video}

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import GenericLayout from '@components/layouts/GenericLayout';
-import TopRow from '@components/ui/channel/TopRow';
+import TopRow from '@components/ui/c/TopRow';
 import Catalog from '@components/ui/home/Catalog';
 import { IChannelProps } from '@types';
 import styles from './index.module.scss';
@@ -13,7 +13,7 @@ const ChannelScreen: FC<IChannelProps> = ({ user }) => {
         <TopRow user={user} />
         <article className={styles.description}>{description}</article>
       </div>
-      <Catalog newVideos={videos || []} itemsUlClassName={styles.itemsUl} />
+      <Catalog videos={videos || []} />
     </GenericLayout>
   );
 };

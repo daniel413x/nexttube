@@ -49,6 +49,9 @@
     "import/no-cycle": [
         "off"
     ],
+    "consistent-return": [
+        "off"
+    ],
     "no-param-reassign": ["error", {
         "props": true,
         "ignorePropertyModificationsFor": [

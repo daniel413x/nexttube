@@ -10,8 +10,8 @@ const videoApi = api.injectEndpoints({
         params: { searchTerm },
       }),
     }),
-    getVideosById: builder.query<IVideo, string>({
-      query: (id) => `${VIDEO}/${id}`,
+    getVideoById: builder.query<IVideo, string>({
+      query: (id) => `${VIDEO}/by-id/${id}`,
       providesTags: (result, error, id) => [{ type: 'Video', id }],
     }),
     getVideoPrivate: builder.query<IVideo, string>({

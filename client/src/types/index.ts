@@ -75,6 +75,12 @@ export interface IMenuItem {
   image?: string;
 }
 
+export interface IVideoElement extends HTMLVideoElement {
+  msRequestFullscreen?: () => void;
+  mozRequestFullscreen?: () => void;
+  webkitRequestFullscreen?: () => void;
+}
+
 export interface IAuthData {
   accessToken: string;
 }
@@ -92,6 +98,14 @@ export interface IHomeProps {
 
 export interface IChannelProps {
   user: IUser;
+}
+
+export interface IVideoPageProps {
+  video: IVideo;
+}
+
+export interface ITrendingProps {
+  trendingVideos: IVideo[];
 }
 
 export interface AuthSlice extends IAuthData {
