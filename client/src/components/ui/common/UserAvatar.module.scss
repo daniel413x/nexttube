@@ -1,5 +1,3 @@
-@use '@styles/variables.scss' as v;
-
 .userAvatar {
   @apply rounded-full flex items-center justify-center relative;
   border: 2px solid rgba(255, 255, 255, 0.4);

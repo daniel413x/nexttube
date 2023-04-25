@@ -1,0 +1,19 @@
+@use '../common/ChannelInfoSmall.module';
+
+.commentItem {
+  @apply mt-7;
+  > div > div > {
+    div {
+      &:first-child {
+        @apply text-xs;
+      }
+      &:last-child {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .channelInfoSmall {
+    align-items: initial;
+  }
+}

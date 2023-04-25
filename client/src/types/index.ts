@@ -114,6 +114,10 @@ export interface AuthSlice extends IAuthData {
 
 export type UserSlice = IUser;
 
+export type UtilSlice = {
+  videoHeight: number;
+};
+
 export type ComponentAuthed = {
   auth: AuthStrings[];
 };

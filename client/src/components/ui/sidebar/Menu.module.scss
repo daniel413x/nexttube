@@ -7,6 +7,7 @@
 
   .itemsUl {
     @apply list-none;
+    width: max-content;
 
     li {
       @apply block mb-10;

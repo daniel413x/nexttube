@@ -1,11 +1,11 @@
-.videoLayout {
+.videoScreen {
   @apply flex space-x-8;
 
   div:first-child {
-    @apply basis-4/5;
+    flex: 80%;
   }
 
   div:last-child {
-    @apply basis-1/3;
+    flex: 33%;
   }
 }

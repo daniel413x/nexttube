@@ -1,0 +1,12 @@
+.socialMedia {
+  @apply flex text-tiny;
+
+  .icon {
+    @apply flex p-2.5 transition-colors;
+ 
+    &:hover {
+      @apply bg-primary scale-110;
+
+    }
+  }
+}

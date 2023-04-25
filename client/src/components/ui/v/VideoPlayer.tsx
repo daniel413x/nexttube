@@ -1,8 +1,10 @@
 import cn from 'classnames';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { BsFullscreen } from 'react-icons/bs';
 import { IoMdPause, IoMdPlay } from 'react-icons/io';
+import useActions from '@hooks/useActions';
 import usePlayer from '@hooks/usePlayer';
+import useTrackDimensions from '@hooks/useTrackDimensions';
 import styles from './VideoPlayer.module.scss';
 
 interface VideoPlayerProps {
@@ -10,10 +12,19 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer: FC<VideoPlayerProps> = ({ videoPath }) => {
-  const { videoRef, toggleVideo, status, fullScreen } = usePlayer();
+  const { videoRef, toggleVideo, status, fullScreen, metadataLoaded } =
+    usePlayer();
+  const { setVideoHeight } = useActions();
+  const { height: videoHeight } = useTrackDimensions(videoRef);
+  useEffect(() => {
+    if (metadataLoaded && videoHeight) {
+      setVideoHeight(videoHeight);
+    }
+  }, [metadataLoaded, videoHeight, setVideoHeight]);
   return (
     <div className={styles.wrapper}>
       <video
+        id="video"
         ref={videoRef}
         className={styles.player}
         src={`${videoPath}#t=8`}

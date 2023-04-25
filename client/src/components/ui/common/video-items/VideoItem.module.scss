@@ -1,6 +1,5 @@
 .videoItem {
-  @apply relative rounded-2xl overflow-hidden;
-  background-color: #252836;
+  @apply relative rounded-2xl overflow-hidden bg-fg-item;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
 
   &.small {

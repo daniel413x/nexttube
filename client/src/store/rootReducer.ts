@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import api from './api';
 import auth from './features/auth/authSlice';
 import user from './features/user/userSlice';
+import util from './features/util/utilSlice';
 
 const persistConfig: PersistConfig<any> = {
   key: 'root',
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   api: api.reducer,
   auth,
   user,
+  util,
   toastr: toastrReducer,
 });
 

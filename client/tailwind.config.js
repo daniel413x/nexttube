@@ -11,6 +11,7 @@ module.exports = {
       backgroundColor: {
         'brand': '#202029',
         'black-25': 'rgba(0, 0, 0, 0.25)',
+        'fg-item': '#252836',
       },
       colors: {
         primary: '#FF7652',
@@ -26,6 +27,7 @@ module.exports = {
         placeholder: '#5c5a69',
       },
       gridTemplateColumns: {
+        '80-33': '80% 33%',
         '25': 'repeat(auto-fill, 25%)',
         '33': 'repeat(auto-fill, 33.33%)',
         '50': 'repeat(auto-fill, 50%)',

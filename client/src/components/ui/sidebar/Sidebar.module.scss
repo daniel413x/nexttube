@@ -1,8 +1,10 @@
-.sidebar {
-  @apply py-10 px-7;
-  width: 100%;
-  max-width: max-content;
 
+
+.sidebar {
+  @apply relative flex flex-col justify-between py-10 px-7 sticky top-0;
+  max-width: 240px;
+  height: 100vh;
+  
   .logo {
     @apply text-2xl font-semibold;
     color: #fefefe;
@@ -10,5 +12,29 @@
 
   .copy {
     @apply text-gray-600 text-opacity-60 text-xs;
+  }
+
+  .lower {
+    @apply flex flex-col gap-5 sticky bottom-4;
+    z-index: 3;
+
+    .links {
+      @apply flex gap-1;
+    }
+
+    .links a:hover {
+      @apply text-gray-500;
+    }
+  }
+  
+  &::after {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-image: linear-gradient(to top, #202029, rgba(0, 0, 0, 0));
   }
 }

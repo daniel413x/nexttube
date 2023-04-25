@@ -2,10 +2,10 @@
 
 .genericLayout {
   @apply flex;
-  min-height: v.$page-height;
 
   .content {
-    @apply pl-6 pr-8;
+    @apply flex flex-col pl-6 pr-8;
     width: 100%;
+    min-height: v.$page-height;
   }
 }

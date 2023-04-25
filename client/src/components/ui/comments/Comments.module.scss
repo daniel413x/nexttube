@@ -1,0 +1,47 @@
+@use '@styles/variables.scss' as v;
+
+.comments {
+  @apply relative rounded-xl p-5 relative bg-fg-item;
+
+  h2 {
+    @apply text-white text-tiny;
+  }
+
+  .line {
+    @apply w-full h-0.5 my-4;
+    background-color: #303241;
+  }
+
+  p {
+    @apply text-gray-500 mb-4;
+  }
+
+  /* .commentsUl::-webkit-scrollbar {
+    display: none;
+  } */
+  
+  .commentsUl {
+    padding-bottom: 5rem;
+  }
+
+  .commentsUl::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+    background-color: black;
+  }
+
+  .commentsUl::-webkit-scrollbar-thumb {
+    @apply bg-gray-600;
+  }
+
+  &::after {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 175px;
+    background-image: linear-gradient(to top, v.$fg-item, rgba(0, 0, 0, 0));
+  }
+}

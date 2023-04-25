@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { IUser } from '@types';
 import { formatNumber } from '@utils';
-import UserAvatar from '../common/UserAvatar';
+import commentStyles from '../comments/CommentItem.module.scss';
 import styles from './ChannelInfoSmall.module.scss';
+import UserAvatar from './UserAvatar';
 
 interface ChannelInfoSmallProps {
   channel: IUser;
@@ -12,7 +13,9 @@ interface ChannelInfoSmallProps {
 const ChannelInfoSmall: FC<ChannelInfoSmallProps> = ({ channel, message }) => {
   const { username, subscribersCount } = channel;
   return (
-    <div className={styles.channelInfoSmall}>
+    <div
+      className={`${styles.channelInfoSmall} ${commentStyles.channelInfoSmall}`}
+    >
       <UserAvatar className={styles.userAvatar} user={channel} />
       <div className={styles.rightCol}>
         <div className={styles.name}>{username}</div>

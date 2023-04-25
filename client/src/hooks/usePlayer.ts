@@ -8,6 +8,7 @@ const usePlayer = () => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [videoTime, setVideoTime] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
+  const [metadataLoaded, setMetadataLoaded] = useState(false);
   useEffect(() => {
     const originalDuration = videoRef.current?.duration;
     if (originalDuration) {
@@ -87,6 +88,20 @@ const usePlayer = () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [toggleVideo]);
+  useEffect(() => {
+    const handleMetadataLoaded = () => setMetadataLoaded(true);
+    if (videoRef.current) {
+      videoRef.current.addEventListener('loadedmetadata', handleMetadataLoaded);
+    }
+    return () => {
+      if (videoRef.current) {
+        videoRef.current.removeEventListener(
+          'loadedmetadata',
+          handleMetadataLoaded
+        );
+      }
+    };
+  }, [videoRef]);
   return {
     videoRef,
     toggleVideo,
@@ -98,6 +113,7 @@ const usePlayer = () => {
       currentTime,
       videoTime,
     },
+    metadataLoaded,
   };
 };
 
