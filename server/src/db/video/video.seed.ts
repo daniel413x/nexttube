@@ -31,8 +31,8 @@ export default class VideoSeeder extends Seeder {
     ];
     const programmingVideos = seederIds.programmingVideoIds.map((uuid, i) => {
       const video = new VideoEntity();
-      video.views = randomMinMaxInt(0, 1500);
-      video.likes = 0;
+      video.viewsCount = randomMinMaxInt(0, 1500);
+      video.likesCount = 0;
       video.duration = 5;
       video.flags = ['isPublic'];
       video.videoPath = `/uploads/default/seeder-programming-${i + 1}.mp4`;
@@ -47,8 +47,8 @@ export default class VideoSeeder extends Seeder {
     });
     const catVideos = seederIds.catVideoIds.map((uuid, i) => {
       const video = new VideoEntity();
-      video.views = randomMinMaxInt(1000, 8000);
-      video.likes = 0;
+      video.viewsCount = randomMinMaxInt(1000, 8000);
+      video.likesCount = 0;
       video.duration = 5;
       video.flags = ['isPublic'];
       video.videoPath = `/uploads/default/seeder-cat-${i + 1}.mp4`;
@@ -61,8 +61,8 @@ export default class VideoSeeder extends Seeder {
     });
     const smartphoneVideos = seederIds.smartphoneVideoIds.map((uuid, i) => {
       const video = new VideoEntity();
-      video.views = randomMinMaxInt(100, 5000);
-      video.likes = 0;
+      video.viewsCount = randomMinMaxInt(100, 5000);
+      video.likesCount = 0;
       video.duration = 10;
       video.flags = ['isPublic'];
       video.videoPath = `/uploads/default/seeder-smartphone-${i + 1}.mp4`;
@@ -77,8 +77,8 @@ export default class VideoSeeder extends Seeder {
     });
     const randomVideos = seederIds.randomVideoIds.map((uuid, i) => {
       const video = new VideoEntity();
-      video.views = randomMinMaxInt(100, 5000);
-      video.likes = 0;
+      video.viewsCount = randomMinMaxInt(100, 5000);
+      video.likesCount = 0;
       video.duration = 10;
       video.flags = ['isPublic'];
       video.videoPath = `/uploads/default/seeder-smartphone-${i + 1}.mp4`;

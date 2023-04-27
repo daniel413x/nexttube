@@ -66,6 +66,12 @@ const usePlayer = () => {
   }, [videoTime]);
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.target instanceof HTMLElement &&
+        (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')
+      ) {
+        return;
+      }
       switch (e.key) {
         case 'ArrowRight':
           forward();

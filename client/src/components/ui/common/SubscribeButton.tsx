@@ -1,16 +1,30 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { FaBell } from 'react-icons/fa';
+import { FaBell, FaCheck } from 'react-icons/fa';
+import { SCSSModule } from '@types';
 import useUser from '@hooks/useUser';
 import api from '@store/api';
+import { cobbleStyles } from '@utils';
+import Button from './Button';
 import IconSpan from './IconSpan';
-import styles from './SubscribeButton.module.scss';
+import defaultStyles from './SubscribeButton.module.scss';
 
 interface SubscribeButtonProps {
   idForSubscription: string;
+  iconClassName?: string;
+  subscribedClassName?: string;
+  className?: string;
+  parentStyles?: SCSSModule;
 }
 
-const SubscribeButton: FC<SubscribeButtonProps> = ({ idForSubscription }) => {
+const SubscribeButton: FC<SubscribeButtonProps> = ({
+  idForSubscription,
+  iconClassName,
+  subscribedClassName,
+  className,
+  parentStyles,
+}) => {
+  const styles = cobbleStyles(defaultStyles, parentStyles);
   const user = useUser();
   const [subscribe, { isLoading, data }] = api.useSubscribeToChannelMutation();
   if (user.id === idForSubscription) {
@@ -20,18 +34,30 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({ idForSubscription }) => {
     user.subscriptions.some((sub) => sub.toChannel.id === idForSubscription) ||
     !!data;
   return (
-    <button
+    <Button
       type="button"
-      className={cn(styles.subscribeButton, {
-        [styles.subscribed]: isSubscribed,
+      className={cn(className, styles.subscribeButton, {
+        [subscribedClassName || styles.subscribed]: isSubscribed,
       })}
       onClick={() => subscribe(idForSubscription).unwrap()}
       disabled={isLoading}
     >
-      <IconSpan Icon={FaBell} />
-      {isSubscribed ? 'You subcribed' : 'Subscribe'}
-    </button>
+      <IconSpan
+        className={iconClassName}
+        Icon={isSubscribed ? FaCheck : FaBell}
+      />
+      <span className={styles.text}>
+        {isSubscribed ? 'Subscribed' : 'Subscribe'}
+      </span>
+    </Button>
   );
+};
+
+SubscribeButton.defaultProps = {
+  iconClassName: '',
+  subscribedClassName: '',
+  className: '',
+  parentStyles: undefined,
 };
 
 export default SubscribeButton;

@@ -1,0 +1,63 @@
+.videoDetail {
+  @apply flex space-x-6 justify-between pb-10;
+
+  .leftCol {
+    @apply basis-2/3;
+  }
+
+  .rightCol {
+    width: 390px;
+  }
+
+  h1 {
+    @apply font-medium text-lg my-5 text-white;
+  }
+
+  .article {
+    @apply text-xs text-gray-500;
+  }
+
+  .buttonsWrapper {
+    @apply flex justify-between items-center mb-9;
+
+    button {
+      @apply p-2.5;
+
+      svg {
+        @apply mr-1.5 text-base;
+      }
+
+      &.subscribeButton {
+        @apply bg-gray-800;
+        width: 54%;
+
+        svg {
+          transform: scale(0.85);
+        }
+      }
+
+      &.likeButton {
+        width: 40%;
+        background-color: #353340;
+        
+        .checkIcon {
+          transform: scale(0.85);
+        }
+      }
+
+      &:hover {
+        @apply bg-gray-700;
+      }
+    }
+  }
+
+  .numberInfo {
+    div {
+      @apply text-gray-500 flex items-center mb-4;
+
+      svg {
+        @apply mr-2 text-base;
+      }
+    }
+  }
+} 

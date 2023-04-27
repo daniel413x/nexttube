@@ -12,6 +12,10 @@
 
   .copy {
     @apply text-gray-600 text-opacity-60 text-xs;
+
+    a {
+      @apply underline;
+    }
   }
 
   .lower {
@@ -20,6 +24,10 @@
 
     .links {
       @apply flex gap-1;
+
+      a {
+        @apply underline;
+      }
     }
 
     .links a:hover {

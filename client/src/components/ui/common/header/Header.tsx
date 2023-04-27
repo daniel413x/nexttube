@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Searchbar from '../common/Searchbar';
+import Searchbar from '../Searchbar';
 import styles from './Header.module.scss';
 import IconsRight from './IconsRight';
 

@@ -1,16 +1,22 @@
 import { FC } from 'react';
-import { IUser } from '@types';
-import { formatNumber } from '@utils';
-import commentStyles from '../comments/CommentItem.module.scss';
-import styles from './ChannelInfoSmall.module.scss';
+import { IUser, SCSSModule } from '@types';
+import { cobbleStyles, formatNumber } from '@utils';
+import commentStyles from '../v/comments/CommentItem.module.scss';
+import defaultStyles from './ChannelInfoSmall.module.scss';
 import UserAvatar from './UserAvatar';
 
 interface ChannelInfoSmallProps {
   channel: IUser;
   message?: string;
+  parentStyles?: SCSSModule;
 }
 
-const ChannelInfoSmall: FC<ChannelInfoSmallProps> = ({ channel, message }) => {
+const ChannelInfoSmall: FC<ChannelInfoSmallProps> = ({
+  channel,
+  message,
+  parentStyles,
+}) => {
+  const styles = cobbleStyles(defaultStyles, parentStyles);
   const { username, subscribersCount } = channel;
   return (
     <div
@@ -20,7 +26,7 @@ const ChannelInfoSmall: FC<ChannelInfoSmallProps> = ({ channel, message }) => {
       <div className={styles.rightCol}>
         <div className={styles.name}>{username}</div>
         <div className={styles.subscribersCount}>
-          {`${message || formatNumber(subscribersCount) || 0} subscribers`}
+          {`${message || `${formatNumber(subscribersCount) || 0} subscribers`}`}
         </div>
       </div>
     </div>
@@ -29,6 +35,7 @@ const ChannelInfoSmall: FC<ChannelInfoSmallProps> = ({ channel, message }) => {
 
 ChannelInfoSmall.defaultProps = {
   message: '',
+  parentStyles: undefined,
 };
 
 export default ChannelInfoSmall;

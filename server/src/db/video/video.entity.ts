@@ -2,6 +2,8 @@ import { CommentEntity } from '@db/comment/comment.entity';
 import { UserEntity } from '@db/user/user.entity';
 import { Base } from 'src/utils/base.util';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { LikeEntity } from '../user/like.entity';
+import { ViewEntity } from './view.entity';
 
 @Entity('Video')
 export class VideoEntity extends Base {
@@ -12,10 +14,10 @@ export class VideoEntity extends Base {
   flags: string[];
 
   @Column({ default: 0 })
-  views?: number;
+  viewsCount?: number;
 
   @Column({ default: 0 })
-  likes?: number;
+  likesCount?: number;
 
   @Column({ default: 0 })
   duration?: number;
@@ -38,4 +40,10 @@ export class VideoEntity extends Base {
 
   @OneToMany(() => CommentEntity, (comment) => comment.video)
   comments: CommentEntity[];
+
+  @OneToMany(() => LikeEntity, (like) => like.video)
+  likes: LikeEntity[];
+
+  @OneToMany(() => ViewEntity, () => null)
+  views: ViewEntity[];
 }

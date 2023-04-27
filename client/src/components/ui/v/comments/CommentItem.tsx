@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IComment } from '@types';
-import ChannelInfoSmall from '../common/ChannelInfoSmall';
+import ChannelInfoSmall from '../../common/ChannelInfoSmall';
 import styles from './CommentItem.module.scss';
 
 interface CommentItemProps {
@@ -9,7 +9,11 @@ interface CommentItemProps {
 
 const CommentItem: FC<CommentItemProps> = ({ comment }) => (
   <div className={styles.commentItem}>
-    <ChannelInfoSmall channel={comment.user} message={comment.message} />
+    <ChannelInfoSmall
+      channel={comment.user}
+      message={comment.message}
+      parentStyles={styles}
+    />
   </div>
 );
 

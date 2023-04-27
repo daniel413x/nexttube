@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { FC } from 'react';
 import GenericLayout from '@components/layouts/GenericLayout';
-import NotFoundSvg from '@public/404.svg';
-import styles from './index.module.scss';
+import NotFoundSvg from '@public/images/404.svg';
+import styles from './NotFoundScreen.module.scss';
 
 const NotFoundScreen: FC = () => (
   <GenericLayout title="Not found" className={styles.notFoundScreen}>

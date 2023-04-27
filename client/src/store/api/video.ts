@@ -50,6 +50,10 @@ const videoApi = api.injectEndpoints({
       }),
       invalidatesTags: (result, error, id) => [{ type: 'Video', id }],
     }),
+    checkUserLike: builder.query<boolean, string>({
+      query: (id) => `video/check-likes/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Video', id }],
+    }),
     deleteVideo: builder.mutation<void, string>({
       query: (id) => ({
         method: 'DELETE',

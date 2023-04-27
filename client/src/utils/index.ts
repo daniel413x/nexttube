@@ -41,3 +41,24 @@ export const formatNumber = (number: number): string | number => {
   }
   return number;
 };
+
+// to easily write css rules for a child component from a parent component's scss module file
+export const cobbleStyles = (
+  defaultStyles: Record<string, string>,
+  parentStyles: Record<string, string> | undefined
+) => {
+  if (!parentStyles) {
+    return defaultStyles;
+  }
+  const defaultStylesKeys = Object.keys(defaultStyles);
+  const parentStylesKeys = Object.keys(parentStyles);
+  const newStylesObj: Record<string, string> = {};
+  for (let pk = 0; pk < parentStylesKeys.length; pk += 1) {
+    if (defaultStylesKeys.indexOf(parentStylesKeys[pk]) >= 0) {
+      newStylesObj[parentStylesKeys[pk]] = `${
+        defaultStyles[parentStylesKeys[pk]]
+      } ${parentStyles[parentStylesKeys[pk]]}`;
+    }
+  }
+  return newStylesObj;
+};

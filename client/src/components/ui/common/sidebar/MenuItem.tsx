@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { IMenuItem } from '@types';
 import useUser from '@hooks/useUser';
-import IconSpan from '../common/IconSpan';
+import IconSpan from '../IconSpan';
 import styles from './MenuItem.module.scss';
 
 const MenuItem: FC<IMenuItem> = ({ href, title, Icon, image }) => {

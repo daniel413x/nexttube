@@ -1,8 +1,8 @@
 import cn from 'classnames';
 import { FC } from 'react';
 import { IVideo } from '@types';
+import SectionHeader from '../common/SectionHeader';
 import VideoItem from '../common/video-items/VideoItemSmall';
-import SectionHeader from '../sectionHeader/SectionHeader';
 import styles from './Catalog.module.scss';
 
 interface CatalogProps {

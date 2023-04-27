@@ -2,6 +2,7 @@
 
 .comments {
   @apply relative rounded-xl p-5 relative bg-fg-item;
+  flex-basis: 33.33%;
 
   h2 {
     @apply text-white text-tiny;
@@ -21,7 +22,7 @@
   } */
   
   .commentsUl {
-    padding-bottom: 5rem;
+    padding-bottom: 3rem;
   }
 
   .commentsUl::-webkit-scrollbar {

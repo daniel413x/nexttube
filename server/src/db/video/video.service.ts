@@ -8,6 +8,7 @@ import {
   Repository,
 } from 'typeorm';
 import { LikeEntity } from '../user/like.entity';
+import { ViewEntity } from './view.entity';
 import { VideoDto } from './video.dto';
 import { VideoEntity } from './video.entity';
 
@@ -18,6 +19,8 @@ export class VideoService {
     private readonly videoRepository: Repository<VideoEntity>,
     @InjectRepository(LikeEntity)
     private readonly likeRepository: Repository<LikeEntity>,
+    @InjectRepository(ViewEntity)
+    private readonly viewRepository: Repository<ViewEntity>,
   ) {}
 
   async byId(id: string, isPublic = true) {
@@ -112,7 +115,7 @@ export class VideoService {
         },
       },
       order: {
-        views: -1,
+        viewsCount: -1,
       },
     });
   }
@@ -134,13 +137,27 @@ export class VideoService {
     return this.videoRepository.delete({ id });
   }
 
-  async updateViewCount(id: string) {
-    const video = await this.byId(id);
-    video.views += 1;
+  async updateViewCount(videoId: string, userIp: string) {
+    const viewed = await this.viewRepository.findOne({
+      where: {
+        videoId,
+        userIp,
+      },
+    });
+    if (viewed) {
+      return;
+    }
+    const video = await this.byId(videoId);
+    video.viewsCount += 1;
+    const view = this.viewRepository.create({
+      userIp,
+      videoId,
+    });
+    this.viewRepository.save(view);
     return this.videoRepository.save(video);
   }
 
-  async updateReaction(videoId: string, userId: string) {
+  async updateLikes(videoId: string, userId: string) {
     const video = await this.byId(videoId);
     const like = await this.likeRepository.findOne({
       where: {
@@ -149,10 +166,10 @@ export class VideoService {
       },
     });
     if (like) {
-      video.likes = video.likes - 1;
+      video.likesCount = video.likesCount - 1;
       await this.likeRepository.delete({ id: like.id });
     } else {
-      video.likes = video.likes + 1;
+      video.likesCount = video.likesCount + 1;
       const like = this.likeRepository.create({
         userId,
         videoId,
@@ -160,5 +177,18 @@ export class VideoService {
       await this.likeRepository.save(like);
     }
     return this.videoRepository.save(video);
+  }
+
+  async checkLikes(videoId: string, userId: string) {
+    const like = await this.likeRepository.findOne({
+      where: {
+        userId,
+        videoId,
+      },
+    });
+    if (like) {
+      return true;
+    }
+    return false;
   }
 }

@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { FC, useState } from 'react';
 import { HiUpload } from 'react-icons/hi';
 import videoApi from '@store/api/video';
-import IconSpan from '../common/IconSpan';
+import IconSpan from '../IconSpan';
 import iconsStyles from './IconsRight.module.scss';
 import styles from './UploadVideo.module.scss';
 

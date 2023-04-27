@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import useUser from '@hooks/useUser';
 import logo from '@public/logos/nexttube-logo-lg.png';
-import SocialMedia from '../common/SocialMedia';
+import SocialMedia from '../SocialMedia';
 import Menu from './Menu';
 import styles from './Sidebar.module.scss';
 
@@ -29,12 +29,12 @@ const Sidebar: FC = () => {
           />
         )}
         <span className={styles.copy}>
-          &copy; 2022 NextTube 1.0 <br /> by Daniel Maramba <br />{' '}
-          [danielmaramba.com]
+          &copy; 2022 NextTube 1.0 <br /> by Daniel Maramba <br /> [
+          <a href="https://www.danielmaramba.com/">danielmaramba.com</a>]
         </span>
       </div>
       <div className={styles.lower}>
-        <SocialMedia />
+        <SocialMedia className={styles.socialMedia} />
         <ul className={styles.links}>
           <li>
             <Link href="/">Legal</Link>

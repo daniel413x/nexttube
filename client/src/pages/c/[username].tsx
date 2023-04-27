@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import ChannelScreen from '@components/screens/c';
+import ChannelScreen from '@components/screens/c/ChannelScreen';
 import { IChannelProps } from '@types';
 import UserService from '@services/userService';
 

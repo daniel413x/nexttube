@@ -22,7 +22,7 @@ interface IBaseProps {
 export interface IVideo extends IBaseProps {
   name: string;
   flags: string[];
-  views: number;
+  viewsCount: number;
   likes: number;
   duration: number;
   description: string;
@@ -128,6 +128,8 @@ export interface QueryResGetMultiple<T> {
 }
 
 export type Children = ReactNode | undefined;
+
+export type SCSSModule = Record<string, string>;
 
 export type NextPageAuthed<P = {}> = NextPage<P> & ComponentAuthed;
 

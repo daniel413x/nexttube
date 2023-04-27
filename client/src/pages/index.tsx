@@ -1,6 +1,6 @@
 import shuffle from 'lodash/shuffle';
 import { GetStaticProps, NextPage } from 'next';
-import HomeScreen from '@components/screens/home';
+import HomeScreen from '@components/screens/home/HomeScreen';
 import { IHomeProps, IVideo } from '@types';
 import VideoService from '@services/videoService';
 

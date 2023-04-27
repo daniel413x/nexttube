@@ -8,6 +8,7 @@ import {
   Post,
   Put,
   Query,
+  Req,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -15,6 +16,7 @@ import { Auth } from 'src/db/auth/decorators/auth.decorator';
 import { CurrentUser } from '@db/user/user.decorator';
 import { VideoDto } from './video.dto';
 import { VideoService } from './video.service';
+import { Request } from 'express';
 
 @Controller('video')
 export class VideoController {
@@ -59,17 +61,30 @@ export class VideoController {
 
   @HttpCode(200)
   @Put('update-views/:videoId')
-  async updateViews(@Param('videoId') videoId: string) {
-    return this.videoService.updateViewCount(videoId);
+  async updateViews(
+    @Param('videoId') videoId: string,
+    @Req() request: Request,
+  ) {
+    return this.videoService.updateViewCount(videoId, request.ip);
   }
 
   @HttpCode(200)
-  @Put('update-reaction/:videoId')
+  @Put('update-likes/:videoId')
   @Auth()
-  async updateReaction(
+  async updateLikes(
     @Param('videoId') videoId: string,
     @CurrentUser('id') userId: string,
   ) {
-    return this.videoService.updateReaction(videoId, userId);
+    return this.videoService.updateLikes(videoId, userId);
+  }
+
+  @HttpCode(200)
+  @Get('check-likes/:videoId')
+  @Auth()
+  async checkLikes(
+    @Param('videoId') videoId: string,
+    @CurrentUser('id') userId: string,
+  ) {
+    return this.videoService.checkLikes(videoId, userId);
   }
 }

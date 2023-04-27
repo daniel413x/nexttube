@@ -1,11 +1,16 @@
+import cn from 'classnames';
 import Link from 'next/link';
+import { FC } from 'react';
 import { FaFacebook, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa';
-import sidebarStyles from '../sidebar/Sidebar.module.scss';
 import IconSpan from './IconSpan';
 import styles from './SocialMedia.module.scss';
 
-const SocMediaIcons = () => (
-  <ul className={`${styles.socialMedia} ${sidebarStyles.socialMedia}`}>
+interface SocialMediaProps {
+  className?: string;
+}
+
+const SocialMedia: FC<SocialMediaProps> = ({ className }) => (
+  <ul className={cn(className, styles.socialMedia)}>
     <li>
       <Link className={styles.icon} href="http://localhost:3000">
         <IconSpan Icon={FaInstagram} />
@@ -29,4 +34,8 @@ const SocMediaIcons = () => (
   </ul>
 );
 
-export default SocMediaIcons;
+SocialMedia.defaultProps = {
+  className: '',
+};
+
+export default SocialMedia;

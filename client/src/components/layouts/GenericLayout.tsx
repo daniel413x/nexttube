@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Meta, { MetaProps } from '@components/seo/Meta';
-import Header from '@components/ui/header/Header';
-import Sidebar from '@components/ui/sidebar/Sidebar';
+import Header from '@components/ui/common/header/Header';
+import Sidebar from '@components/ui/common/sidebar/Sidebar';
 import { Children } from '@types';
 import styles from './GenericLayout.module.scss';
 

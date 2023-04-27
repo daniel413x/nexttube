@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IMenuItem } from '@types';
-import Line from '../common/Line';
+import Line from '../Line';
 import styles from './Menu.module.scss';
 import MenuItem from './MenuItem';
 

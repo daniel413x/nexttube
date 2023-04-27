@@ -3,8 +3,8 @@ import { FieldError, SubmitHandler, useForm } from 'react-hook-form';
 import { IoMdSend } from 'react-icons/io';
 import { ICommentDto } from '@types';
 import commentApi from '@store/api/comment';
-import IconSpan from '../common/IconSpan';
-import Input from '../common/Input';
+import IconSpan from '../../common/IconSpan';
+import Input from '../../common/Input';
 import styles from './CommentForm.module.scss';
 
 interface CommentFormProps {

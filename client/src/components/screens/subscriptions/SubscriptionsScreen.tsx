@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import GenericLayout from '@components/layouts/GenericLayout';
-import Menu from '@components/ui/sidebar/Menu';
+import Menu from '@components/ui/common/sidebar/Menu';
 import useUser from '@hooks/useUser';
 
 const SubscriptionsScreen: FC = () => {

@@ -17,6 +17,7 @@ export default class UserSeeder extends Seeder {
         const user = new UserEntity();
         const salt = await genSalt(10);
         const password = await hash('password', salt);
+        user.subscribersCount = Math.floor(Math.random() * 3000000);
         user.password = password;
         user.id = uuid;
         user.username = Math.random() > 0.5 ? handle : realName;

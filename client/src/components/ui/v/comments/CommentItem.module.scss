@@ -1,5 +1,3 @@
-@use '../common/ChannelInfoSmall.module';
-
 .commentItem {
   @apply mt-7;
   > div > div > {
@@ -15,5 +13,13 @@
 
   .channelInfoSmall {
     align-items: initial;
+
+    .rightCol {
+      width: 70%;
+    }
+
+    .subscribersCount {
+      @apply text-gray-500;
+    }
   }
 }

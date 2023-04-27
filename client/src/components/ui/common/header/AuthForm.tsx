@@ -6,9 +6,9 @@ import { IAuthFields } from '@types';
 import useActions from '@hooks/useActions';
 import useAuth from '@hooks/useAuth';
 import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
-import Button from '../common/Button';
-import IconSpan from '../common/IconSpan';
-import Input from '../common/Input';
+import Button from '../Button';
+import IconSpan from '../IconSpan';
+import Input from '../Input';
 import styles from './AuthForm.module.scss';
 import iconsStyles from './IconsRight.module.scss';
 

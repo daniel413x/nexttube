@@ -1,0 +1,15 @@
+.row {
+  @apply flex space-x-8;
+
+  > div:first-child {
+    flex: 70%;
+  }
+
+  > div:last-child {
+    flex: 30%;
+  }
+}
+
+  .lowerRow {
+    @apply mt-6;
+  }

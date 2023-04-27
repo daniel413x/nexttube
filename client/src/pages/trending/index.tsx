@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from 'next';
-import TrendingScreen from '@components/screens/trending';
+import TrendingScreen from '@components/screens/trending/TrendingScreen';
 import { ITrendingProps } from '@types';
 import VideoService from '@services/videoService';
 

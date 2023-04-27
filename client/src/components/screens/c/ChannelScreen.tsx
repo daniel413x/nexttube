@@ -3,15 +3,14 @@ import GenericLayout from '@components/layouts/GenericLayout';
 import TopRow from '@components/ui/c/TopRow';
 import Catalog from '@components/ui/home/Catalog';
 import { IChannelProps } from '@types';
-import styles from './index.module.scss';
 
 const ChannelScreen: FC<IChannelProps> = ({ user }) => {
   const { username, description, videos } = user;
   return (
-    <GenericLayout title={username} className={styles.channelScreen}>
+    <GenericLayout title={username}>
       <div className="mb-10 w-1/3">
         <TopRow user={user} />
-        <article className={styles.description}>{description}</article>
+        <article>{description}</article>
       </div>
       <Catalog videos={videos || []} />
     </GenericLayout>

@@ -7,7 +7,7 @@ import useActions from '@hooks/useActions';
 import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
 import useUser from '@hooks/useUser';
 import defaultAvatar from '@public/images/default-avatar.png';
-import IconSpan from '../common/IconSpan';
+import IconSpan from '../IconSpan';
 import styles from './ProfileMenu.module.scss';
 
 const ProfileMenu: FC = () => {
