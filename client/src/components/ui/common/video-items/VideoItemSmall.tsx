@@ -26,14 +26,14 @@ const VideoItem: FC<VideoItemProps> = ({
   video,
 }) => {
   const { push } = useRouter();
-  const { id, thumbnailPath, name, duration, views, createdAt } = video;
+  const { id, thumbnailPath, name, duration, viewsCount, createdAt } = video;
   return (
     <div
       className={cn(styles.videoItem, {
         [styles.small]: isSmall,
       })}
     >
-      <Link title={name} href={`/v/${id}`}>
+      <div>
         {!!removeHandler && (
           <button
             className={styles.removeButton}
@@ -54,31 +54,35 @@ const VideoItem: FC<VideoItemProps> = ({
         )}
         <div className={styles.thumbnail}>
           {thumbnailPath && (
-            <Image
-              src={thumbnailPath}
-              alt={name}
-              width={185}
-              height={103}
-              layout="responsive"
-              priority
-            />
+            <Link title={name} href={`/v/${id}`}>
+              <Image
+                src={thumbnailPath}
+                alt={name}
+                width={185}
+                height={103}
+                layout="responsive"
+                priority
+              />
+            </Link>
           )}
           <VideoDuration duration={duration} />
           {video?.user && (
             <UserAvatar className={styles.userAvatar} user={video?.user} />
           )}
-          <div className={styles.information}>
-            {!isSmall && (
-              <div className={styles.author}>{video.user?.username}</div>
-            )}
-            <div className={styles.name}>{name}</div>
-            <VideoStatistics
-              views={views}
-              createdAt={!isSmall ? createdAt : undefined}
-            />
-          </div>
+          <Link title={name} href={`/v/${id}`}>
+            <div className={styles.information}>
+              {!isSmall && (
+                <div className={styles.author}>{video.user?.username}</div>
+              )}
+              <div className={styles.name}>{name}</div>
+              <VideoStatistics
+                viewsCount={viewsCount}
+                createdAt={!isSmall ? createdAt : undefined}
+              />
+            </div>
+          </Link>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

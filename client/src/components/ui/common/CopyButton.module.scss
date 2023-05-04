@@ -1,0 +1,13 @@
+.copyButton {
+  all: unset;
+  @apply relative flex gap-1;
+
+  .popup {
+    @apply flex items-center gap-1.5 font-black;
+    transform: scale(0.8);
+  }
+
+  .checkIcon {
+    transform: scale(1);
+  }
+}

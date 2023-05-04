@@ -9,7 +9,7 @@ import styles from './Searchbar.module.scss';
 import VideoItemSmall from './video-items/VideoItemSmall';
 
 const Searchbar: FC = () => {
-  const { ref, setShow, show } = useHideOnOutsideClick(false);
+  const { ref, setShow, show } = useHideOnOutsideClick(true);
   const {
     handleSearch,
     data: results,

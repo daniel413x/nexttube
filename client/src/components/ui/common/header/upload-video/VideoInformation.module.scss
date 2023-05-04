@@ -1,0 +1,39 @@
+.videoInformation {
+  @apply rounded-lg overflow-hidden;
+
+  .thumbnailCol {
+    .imgWrapper {
+      @apply relative bg-brand overflow-hidden mt-2;
+      width: 344px;
+      height: 190px;
+    }
+
+    .statusMessage {
+      @apply absolute top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 w-max pointer-events-none text-gray-600;
+    }
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .label {
+    @apply text-gray-500 text-tiny mb-1;
+  }
+
+  .details {
+    @apply bg-gray-900;
+    
+    .pairing {
+      @apply mb-3 last:mb-0;
+
+      span {
+        @apply block text-tiny;
+      }
+      
+      .link {
+        @apply text-primary text-tiny;
+      }
+    }
+  }
+}

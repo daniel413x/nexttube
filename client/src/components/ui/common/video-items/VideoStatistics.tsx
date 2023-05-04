@@ -5,15 +5,18 @@ import { formatNumber } from '@utils';
 import styles from './VideoStatistics.module.scss';
 
 interface VideoStatisticsProps {
-  views: number;
+  viewsCount: number;
   createdAt?: Date;
 }
 
 dayjs.extend(relativeTime);
 
-const VideoStatistics: FC<VideoStatisticsProps> = ({ views, createdAt }) => (
+const VideoStatistics: FC<VideoStatisticsProps> = ({
+  viewsCount,
+  createdAt,
+}) => (
   <div className={styles.videoStatistics}>
-    <div className={styles.views}>{formatNumber(views)} views</div>
+    <div className={styles.views}>{formatNumber(viewsCount)} views</div>
     {!!createdAt && (
       <>
         <div className={styles.seperator}>&middot;</div>

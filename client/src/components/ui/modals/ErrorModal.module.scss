@@ -1,0 +1,7 @@
+.errorModal {
+  @apply text-tiny py-8;
+
+  .closeButton {
+    @apply bg-purple;
+  }
+}

@@ -27,11 +27,11 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
   const styles = cobbleStyles(defaultStyles, parentStyles);
   const user = useUser();
   const [subscribe, { isLoading, data }] = api.useSubscribeToChannelMutation();
-  if (user.id === idForSubscription) {
+  if (user?.id === idForSubscription) {
     return null;
   }
   const isSubscribed =
-    user.subscriptions.some((sub) => sub.toChannel.id === idForSubscription) ||
+    user?.subscriptions.some((sub) => sub.toChannel.id === idForSubscription) ||
     !!data;
   return (
     <Button

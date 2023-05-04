@@ -1,7 +1,16 @@
 import { CommentEntity } from '@db/comment/comment.entity';
 import { UserEntity } from '@db/user/user.entity';
+import { INCOMPLETE } from 'src/consts';
 import { Base } from 'src/utils/base.util';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { LikeEntity } from '../user/like.entity';
 import { ViewEntity } from './view.entity';
 
@@ -10,7 +19,7 @@ export class VideoEntity extends Base {
   @Column({ default: '' })
   name: string;
 
-  @Column({ type: 'text', array: true, default: () => "ARRAY['isPublic']" })
+  @Column({ type: 'text', array: true, default: () => "ARRAY['public']" })
   flags: string[];
 
   @Column({ default: 0 })
@@ -44,6 +53,22 @@ export class VideoEntity extends Base {
   @OneToMany(() => LikeEntity, (like) => like.video)
   likes: LikeEntity[];
 
-  @OneToMany(() => ViewEntity, () => null)
+  @OneToMany(() => ViewEntity, (view) => view.video)
   views: ViewEntity[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  assessComplete() {
+    const flagIncomplete =
+      this.flags.indexOf(INCOMPLETE) === -1 &&
+      (!this.name ||
+        !this.videoPath ||
+        !this.description ||
+        !this.thumbnailPath);
+    if (flagIncomplete) {
+      this.flags = [...this.flags, INCOMPLETE];
+    } else {
+      this.flags = this.flags.filter((s) => s !== INCOMPLETE);
+    }
+  }
 }

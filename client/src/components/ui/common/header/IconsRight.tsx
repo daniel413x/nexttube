@@ -3,16 +3,16 @@ import useUser from '@hooks/useUser';
 import AuthForm from './AuthForm';
 import styles from './IconsRight.module.scss';
 import ProfileMenu from './ProfileMenu';
-import UploadVideo from './UploadVideo';
+import UploadVideoButton from './upload-video/UploadVideoButton';
 
 const IconsRight: FC = () => {
   const user = useUser();
   return (
     <div className={styles.iconsRight}>
-      {user.id ? (
+      {user?.id ? (
         <>
           <ProfileMenu />
-          <UploadVideo />
+          <UploadVideoButton />
         </>
       ) : (
         <AuthForm />

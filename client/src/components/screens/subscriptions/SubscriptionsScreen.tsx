@@ -7,7 +7,7 @@ const SubscriptionsScreen: FC = () => {
   const user = useUser();
   return (
     <GenericLayout title="Subscriptions">
-      {user.id && (
+      {user?.id && (
         <Menu
           title="My subscriptions"
           items={user.subscriptions.map(({ toChannel }) => ({

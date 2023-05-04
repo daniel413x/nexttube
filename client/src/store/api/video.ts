@@ -22,6 +22,7 @@ const videoApi = api.injectEndpoints({
       query: () => ({
         method: 'POST',
         url: `/${VIDEO}`,
+        responseHandler: (response) => response.text(),
       }),
       invalidatesTags: () => [{ type: 'Profile' }],
     }),

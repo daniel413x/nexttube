@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import GenericLayout from '@components/layouts/GenericLayout';
 import TopRow from '@components/ui/c/TopRow';
-import Catalog from '@components/ui/home/Catalog';
+import Catalog from '@components/ui/common/Catalog';
 import { IChannelProps } from '@types';
 
 const ChannelScreen: FC<IChannelProps> = ({ user }) => {

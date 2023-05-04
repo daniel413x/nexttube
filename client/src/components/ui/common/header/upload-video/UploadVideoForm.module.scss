@@ -1,0 +1,21 @@
+.uploadVideoForm {
+  @apply flex flex-wrap h-full items-center justify-center;
+  width: 1000px;
+  height: 610px;
+
+  .nameDescription {
+    @apply w-7/12 pr-6 pt-3;
+  }
+
+  .upper {
+    @apply flex w-full self-start;
+
+    .thumbnailPath {
+      @apply mt-6 mb-4;
+    }
+
+    .videoInformation {
+      @apply w-5/12 p-3 pl-10;
+    }
+  }
+}

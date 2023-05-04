@@ -10,7 +10,7 @@ import styles from './Sidebar.module.scss';
 
 const Sidebar: FC = () => {
   const user = useUser();
-  const renderSubscriptions = user.id && user.subscriptions.length > 0;
+  const renderSubscriptions = user?.id && user?.subscriptions.length > 0;
   return (
     <aside className={styles.sidebar}>
       <div className={styles.upper}>
@@ -21,7 +21,7 @@ const Sidebar: FC = () => {
         {renderSubscriptions && (
           <Menu
             title="My subscriptions"
-            items={user.subscriptions.map(({ toChannel }) => ({
+            items={user!.subscriptions.map(({ toChannel }) => ({
               image: toChannel.avatarPath,
               title: toChannel.username,
               href: `${toChannel.username}`,

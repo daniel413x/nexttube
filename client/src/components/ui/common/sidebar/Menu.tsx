@@ -5,11 +5,11 @@ import styles from './Menu.module.scss';
 import MenuItem from './MenuItem';
 
 interface MenuProps {
-  items: IMenuItem[];
+  items: IMenuItem[] | [];
   title: string;
 }
 
-const Menu: FC<MenuProps> = ({ items, title }: MenuProps) => (
+const Menu: FC<MenuProps> = ({ items = [], title }: MenuProps) => (
   <nav className={styles.menu}>
     <h3>{title}</h3>
     <ul className={styles.itemsUl}>

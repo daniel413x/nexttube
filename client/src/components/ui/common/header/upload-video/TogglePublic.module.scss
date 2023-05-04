@@ -1,0 +1,16 @@
+.togglePublic {
+  @apply flex items-center mt-4;
+
+  .switchBg {
+    @apply relative inline-flex h-6 w-11 items-center rounded-full;
+  }
+
+  .switchBall {
+    @apply inline-block h-4 w-4 transform rounded-full bg-white transition;
+  }
+
+  .label {
+    all: unset;
+    @apply cursor-pointer ml-1;
+  }
+}

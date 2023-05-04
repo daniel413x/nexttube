@@ -1,0 +1,41 @@
+@keyframes successMessageAnimation {
+  0% {
+    transform: scale(0.8) translate(-60%, -50%);
+    left: 50%;
+    top: 50%;
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1) translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    opacity: 1;
+  }
+  70%, 100% {
+    transform: scale(1) translate(-50%, 0%);
+    left: 50%;
+    top: 4%;
+  }
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.background {
+  @apply z-10 absolute top-0 left-0 w-full h-full bg-black-25;
+  animation: backgroundAnimation 1s ease-in-out 1;
+}
+
+.successMessage {
+  @apply absolute text-lg p-2 z-10 flex items-center justify-center shadow-block animate-scaleIn w-1/2 bg-green-500 text-white text-center mx-auto shadow-block;
+  transform: scale(1) translate(-50%, 0%);
+  left: 50%;
+  top: 4%;
+  animation: successMessageAnimation 1s ease-in-out 1;
+}

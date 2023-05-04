@@ -1,0 +1,29 @@
+.modal {
+  @apply relative z-50;
+
+  .overlay {
+    @apply fixed inset-0 bg-black/30;
+  }
+
+  .wrapper {
+    @apply fixed inset-0 flex items-center justify-center p-4;
+
+    > div {
+      @apply flex min-h-full items-center justify-center;
+
+      .window {
+        @apply flex flex-col mx-auto shadow-block p-6 relative bg-gray-900 rounded-2xl text-white;
+
+        .closeButton {
+          all: unset;
+          @apply bg-purple p-1.5 text-lg self-end cursor-pointer;
+
+        }
+      }
+    }
+  }
+}
+
+.uploadScreen {
+  @apply flex w-full h-full absolute left-0 top-0;
+} 

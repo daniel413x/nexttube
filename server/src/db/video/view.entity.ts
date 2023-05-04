@@ -1,7 +1,6 @@
-import { CommentEntity } from '@db/comment/comment.entity';
-import { UserEntity } from '@db/user/user.entity';
 import { Base } from 'src/utils/base.util';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
+import { VideoEntity } from './video.entity';
 
 @Entity('View')
 export class ViewEntity extends Base {
@@ -10,4 +9,7 @@ export class ViewEntity extends Base {
 
   @Column()
   videoId: string;
+
+  @ManyToOne(() => VideoEntity, (video) => video.views)
+  video: VideoEntity;
 }

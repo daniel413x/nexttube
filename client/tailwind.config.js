@@ -3,8 +3,7 @@ const plugin = require('tailwindcss/plugin');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/pages/**/*.(js,ts,jsx,tsx)",
-    "./src/components/**/*.(js,ts,jsx,tsx)"
+    "./src/**/*.{js,jsx,ts,tsx,scss}"
   ],
   theme: {
     extend: {
@@ -18,6 +17,7 @@ module.exports = {
         primary: '#FF7652',
         purple: '#6C5ECF',
         'light-blue': '#32A8E2',
+        'success-green': '#4E712D',
         gray: {
           400: '#9898ad',
           500: '#6B6B7B',

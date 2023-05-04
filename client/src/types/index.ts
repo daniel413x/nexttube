@@ -61,6 +61,11 @@ export interface ICommentDto {
   videoId: string;
 }
 
+export interface IMediaResponse {
+  name: string;
+  url: string;
+}
+
 export interface ISubscription extends IBaseProps {
   toChannelId: string;
   toChannel: Pick<IUser, 'username' | 'avatarPath' | 'id'>;

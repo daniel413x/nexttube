@@ -60,5 +60,9 @@ export const cobbleStyles = (
       } ${parentStyles[parentStylesKeys[pk]]}`;
     }
   }
+  const newStylesKeys = Object.keys(newStylesObj);
+  if (newStylesKeys.length === 0) {
+    return defaultStyles;
+  }
   return newStylesObj;
 };

@@ -7,12 +7,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: Children;
   type?: 'button' | 'submit';
   overlay?: boolean;
+  color?: 'purple' | 'blank' | '';
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, className, type = 'button', overlay, ...rest }, passedInRef) => (
+  (
+    { children, className, color, type = 'button', overlay, ...rest },
+    passedInRef
+  ) => (
     <button
-      className={cn(styles.button, className, {
+      className={cn(styles.button, styles[color || ''], className, {
         [styles.overlay]: overlay,
       })}
       // eslint-disable-next-line react/button-has-type
@@ -28,6 +32,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 Button.defaultProps = {
   children: undefined,
   type: 'button',
+  color: '',
   overlay: false,
 };
 

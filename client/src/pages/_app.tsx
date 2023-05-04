@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import NextProgressBar from 'nextjs-progressbar';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -8,12 +9,14 @@ import { AppAuthed } from '@types';
 import { persistor, store } from '@store/configureStore';
 import '@styles/globals.scss';
 
+const queryClient = new QueryClient();
+
 const AuthWrapper = dynamic(() => import('@components/misc/AuthWrapper'), {
   ssr: false,
 });
 
 const App = ({ Component, pageProps }: AppAuthed) => (
-  <>
+  <QueryClientProvider client={queryClient}>
     <NextProgressBar
       color="#fF7652"
       startPosition={0.3}
@@ -42,7 +45,7 @@ const App = ({ Component, pageProps }: AppAuthed) => (
         />
       </PersistGate>
     </Provider>
-  </>
+  </QueryClientProvider>
 );
 
 export default App;

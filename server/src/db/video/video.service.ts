@@ -1,16 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
+  And,
   ArrayContains,
   FindOptionsWhereProperty,
   ILike,
   MoreThan,
+  Not,
   Repository,
 } from 'typeorm';
 import { LikeEntity } from '../user/like.entity';
 import { ViewEntity } from './view.entity';
 import { VideoDto } from './video.dto';
 import { VideoEntity } from './video.entity';
+import { INCOMPLETE, PUBLIC } from 'src/consts';
 
 @Injectable()
 export class VideoService {
@@ -27,7 +30,7 @@ export class VideoService {
     const video = await this.videoRepository.findOne({
       where: {
         id,
-        flags: isPublic ? ArrayContains(['isPublic']) : null,
+        flags: isPublic ? ArrayContains([PUBLIC]) : null,
       },
       relations: {
         user: true,
@@ -62,7 +65,7 @@ export class VideoService {
   }
 
   async update(id: string, dto: VideoDto) {
-    const video = await this.byId(id);
+    const video = await this.byId(id, false);
     return this.videoRepository.save({
       ...video,
       ...dto,
@@ -79,7 +82,7 @@ export class VideoService {
     return this.videoRepository.find({
       where: {
         ...options,
-        flags: ArrayContains(['isPublic']),
+        flags: And(ArrayContains([PUBLIC]), Not(ArrayContains([INCOMPLETE]))),
       },
       order: {
         createdAt: 'DESC',
@@ -101,7 +104,9 @@ export class VideoService {
   async getMostViewed() {
     return this.videoRepository.find({
       where: {
-        views: MoreThan(0),
+        viewsCount: MoreThan(0),
+        videoPath: Not(''),
+        thumbnailPath: Not(''),
       },
       relations: {
         user: true,
@@ -124,6 +129,7 @@ export class VideoService {
     const defaultValues = {
       name: '',
       user: { id: userId },
+      flags: [],
       videoPath: '',
       description: '',
       thumbnailPath: '',

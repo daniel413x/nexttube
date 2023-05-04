@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Seeder } from '@jorgebodega/typeorm-seeding';
 import * as seederIds from '@utils/seeder-data.util';
+import { PUBLIC } from 'src/consts';
 import randomMinMaxInt from 'src/utils/randomMinMaxInt.util';
 import { DataSource } from 'typeorm';
 import { VideoEntity } from './video.entity';
@@ -34,7 +35,7 @@ export default class VideoSeeder extends Seeder {
       video.viewsCount = randomMinMaxInt(0, 1500);
       video.likesCount = 0;
       video.duration = 5;
-      video.flags = ['isPublic'];
+      video.flags = [PUBLIC];
       video.videoPath = `/uploads/default/seeder-programming-${i + 1}.mp4`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-programming-${
         i + 1
@@ -50,7 +51,7 @@ export default class VideoSeeder extends Seeder {
       video.viewsCount = randomMinMaxInt(1000, 8000);
       video.likesCount = 0;
       video.duration = 5;
-      video.flags = ['isPublic'];
+      video.flags = [PUBLIC];
       video.videoPath = `/uploads/default/seeder-cat-${i + 1}.mp4`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-cat-${i + 1}.jpg`;
       video.id = uuid;
@@ -64,7 +65,7 @@ export default class VideoSeeder extends Seeder {
       video.viewsCount = randomMinMaxInt(100, 5000);
       video.likesCount = 0;
       video.duration = 10;
-      video.flags = ['isPublic'];
+      video.flags = [PUBLIC];
       video.videoPath = `/uploads/default/seeder-smartphone-${i + 1}.mp4`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-smartphone-${
         i + 1
@@ -80,7 +81,7 @@ export default class VideoSeeder extends Seeder {
       video.viewsCount = randomMinMaxInt(100, 5000);
       video.likesCount = 0;
       video.duration = 10;
-      video.flags = ['isPublic'];
+      video.flags = [PUBLIC];
       video.videoPath = `/uploads/default/seeder-smartphone-${i + 1}.mp4`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-random-${i + 1}.jpg`;
       video.id = uuid;

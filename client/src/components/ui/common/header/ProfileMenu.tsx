@@ -1,4 +1,4 @@
-import { CHANNEL_ACCESSOR } from '@data/consts';
+import { CHANNEL_ACCESSOR, CHANNEL_ROUTE, STUDIO_ROUTE } from '@data/consts';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -16,10 +16,10 @@ const ProfileMenu: FC = () => {
   const { show, setShow, ref } = useHideOnOutsideClick(false);
   return (
     <div className={styles.profileMenu} ref={ref}>
-      <button onClick={() => setShow(!show)} type="button">
+      <button onClick={() => setShow(!show)} type="button" title="Menu toggle">
         <Image
-          src={user?.avatarPath || defaultAvatar}
-          alt={user?.username || 'Avatar'}
+          src={user!.avatarPath || defaultAvatar}
+          alt={user!.username || 'Avatar'}
           width={40}
           height={40}
           priority
@@ -30,10 +30,12 @@ const ProfileMenu: FC = () => {
       {show && (
         <ul className={styles.itemsUl}>
           <li key="my-channel">
-            <Link href={`/c/${user[CHANNEL_ACCESSOR]}`}>My channel</Link>
+            <Link href={`/${CHANNEL_ROUTE}/${user![CHANNEL_ACCESSOR]}`}>
+              My channel
+            </Link>
           </li>
           <li key="studio">
-            <Link href="studio">Studio</Link>
+            <Link href={`/${STUDIO_ROUTE}`}>Studio</Link>
           </li>
           <li key="logout">
             <button type="button" onClick={logout}>

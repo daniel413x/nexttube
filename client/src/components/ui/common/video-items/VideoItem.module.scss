@@ -98,18 +98,18 @@
   }
 
   .updateButton {
-    @apply absolute bottom-3 right-11 z-10;
+    @apply absolute bottom-0 right-11 z-10;
 
     .editIcon {
-      @apply text-lg text-blue-600;
+      @apply text-base text-blue-600;
     }
   }
 
   .removeButton {
-    @apply absolute bottom-3 right-3 z-10;
+    @apply absolute bottom-0 right-0 z-10;
 
     .trashIcon {
-      @apply text-lg text-red-700;
+      @apply text-base text-red-700;
     }
   }
 }

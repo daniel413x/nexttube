@@ -28,7 +28,7 @@ const VideoDetail: FC<VideoDetailProps> = ({ video, channel }) => {
   const { data: hasLiked } = videoApi.useCheckUserLikeQuery(
     video.id as string,
     {
-      skip: !user.id || !video.id,
+      skip: !user?.id || !video.id,
     }
   );
   useEffect(() => {
@@ -53,7 +53,7 @@ const VideoDetail: FC<VideoDetailProps> = ({ video, channel }) => {
       </div>
       <div className={styles.rightCol}>
         <div className={styles.buttonsWrapper}>
-          {user.id && (
+          {user?.id && (
             <SubscribeButton idForSubscription={userId} parentStyles={styles} />
           )}
           <Button

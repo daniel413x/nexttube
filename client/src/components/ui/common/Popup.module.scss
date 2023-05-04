@@ -1,0 +1,15 @@
+.popup {
+  @apply bg-black text-purple absolute bottom-2 -left-5 w-max py-2 px-4 pointer-events-none text-tiny rounded;
+
+  &::after {
+  pointer-events: none;
+  background-color: rgba(0,0,0);
+  content: '';
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  position: absolute;
+  bottom: -6px;
+  right: 50%;
+  }
+}

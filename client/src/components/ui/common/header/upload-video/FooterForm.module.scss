@@ -1,0 +1,29 @@
+.footerForm {
+  @apply flex w-full justify-between self-center;
+  
+  .status {
+    @apply flex gap-2 items-center text-xl;
+
+    .checkmarkIcon {
+      @apply text-xl text-gray-800;
+    }
+
+    .uploadIcon {
+      @apply text-primary;
+    }
+
+    &.uploaded {
+      .checkmarkIcon {
+        @apply text-success-green;
+      }
+
+      .uploadIcon {
+        @apply opacity-25;
+      }
+    }
+  }
+
+  .submitButton {
+    @apply z-10;
+  }
+}
