@@ -4,7 +4,19 @@
     @apply cursor-pointer;
   }
   
-  @apply flex items-center justify-center py-1.5 rounded-lg px-7 text-white bg-primary bg-opacity-80 transition-colors duration-300 hover:bg-opacity-100 text-base;
+  &.lightBlue {
+    @apply bg-light-blue bg-opacity-80;
+  }
+
+  &.purple {
+    @apply bg-purple bg-opacity-80;
+  }
+
+  @apply flex items-center justify-center py-1.5 rounded-lg px-7 text-white bg-primary bg-opacity-80 transition-colors duration-300 text-base;
+
+  &:hover {
+    @apply bg-opacity-100;
+  }
 
   &.overlay {
     all: unset;

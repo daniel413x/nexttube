@@ -15,9 +15,11 @@
         @apply flex flex-col mx-auto shadow-block p-6 relative bg-gray-900 rounded-2xl text-white;
 
         .closeButton {
-          all: unset;
-          @apply bg-purple p-1.5 text-lg self-end cursor-pointer;
+          @apply py-1 text-lg self-end cursor-pointer;
 
+          span {
+            transform: translateX(5%);
+          }
         }
       }
     }

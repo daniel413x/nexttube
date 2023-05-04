@@ -22,7 +22,7 @@ const VideoScreen: FC = () => {
     if (query.id) {
       updateViews(query.id as string);
     }
-  }, [query.id]);
+  }, [query.id, updateViews]);
   if (!video) {
     return null;
   }

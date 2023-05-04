@@ -51,7 +51,11 @@ const Modal = forwardRef(
                   className={cn(styles.window, className)}
                 >
                   {!noCloseButton && (
-                    <Button className={styles.closeButton} onClick={close}>
+                    <Button
+                      className={styles.closeButton}
+                      color="purple"
+                      onClick={close}
+                    >
                       <IconSpan Icon={IoMdClose} />
                     </Button>
                   )}

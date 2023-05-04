@@ -1,0 +1,27 @@
+.videoEdit {
+  @apply p-6;
+
+  .form {
+    @apply flex flex-wrap;
+  }
+
+  .leftColFields {
+    @apply w-7/12 pr-6 pt-8;
+  }
+
+  .videoField {
+    @apply mt-3;
+
+    .label {
+      @apply block mb-1;
+    }
+  }
+
+  .videoInformation {
+    @apply w-5/12 p-3 pl-10;
+  }
+
+  .submitButton {
+    @apply mx-auto px-11 mt-7;
+  }
+}

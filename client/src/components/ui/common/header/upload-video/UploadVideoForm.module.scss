@@ -10,10 +10,6 @@
   .upper {
     @apply flex w-full self-start;
 
-    .thumbnailPath {
-      @apply mt-6 mb-4;
-    }
-
     .videoInformation {
       @apply w-5/12 p-3 pl-10;
     }

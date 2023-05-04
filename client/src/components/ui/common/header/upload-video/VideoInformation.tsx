@@ -1,14 +1,17 @@
 import Image from 'next/image';
 import { FC, ReactElement } from 'react';
+import { BsFiletypeMp4 } from 'react-icons/bs';
+import { CgClipboard } from 'react-icons/cg';
 import CopyButton from '../../CopyButton';
+import IconSpan from '../../IconSpan';
 import styles from './VideoInformation.module.scss';
 
 interface VideoInformationProps {
-  fileName: string;
+  fileName?: string;
   videoId: string;
   isUploaded: boolean;
   thumbnailPath: string;
-  ThumbnailInput: ReactElement;
+  ThumbnailInput?: ReactElement;
 }
 
 const VideoInformation: FC<VideoInformationProps> = ({
@@ -20,9 +23,9 @@ const VideoInformation: FC<VideoInformationProps> = ({
 }) => {
   const videoLink = `${process.env.NEXT_PUBLIC_API_URL}/v/${videoId}`;
   const videoLinkShortened = `${videoLink.slice(0, 16)}...`;
-  const fileNameShortened = `${fileName.slice(0, 25)}...${fileName.slice(
-    fileName.length - 3
-  )}`;
+  const fileNameShortened = fileName
+    ? `${fileName.slice(0, 25)}...${fileName.slice(fileName.length - 3)}`
+    : '';
   return (
     <div className={styles.videoInformation}>
       <div className={styles.thumbnailCol}>
@@ -42,24 +45,35 @@ const VideoInformation: FC<VideoInformationProps> = ({
             />
           )}
         </div>
-        {ThumbnailInput}
+        <div className={styles.thumbnailInput}>{ThumbnailInput}</div>
       </div>
       <div className={styles.details}>
         <div className={styles.pairing}>
           <span className={styles.label}>Video link</span>
-          <span className={styles.link}>
-            <CopyButton className={styles.link} copyText={videoLink}>
+          <CopyButton copyText={videoLink}>
+            <span className={styles.link}>
+              <IconSpan Icon={CgClipboard} />
               {videoLinkShortened || '.'}
-            </CopyButton>
-          </span>
+            </span>
+          </CopyButton>
         </div>
         <div className={styles.pairing}>
           <span className={styles.label}>Video filename</span>
-          <span className={styles.fileName}>{fileNameShortened || '.'}</span>
+          <div>
+            <span className={styles.fileName}>
+              <IconSpan Icon={BsFiletypeMp4} />
+              {fileNameShortened || '.'}
+            </span>
+          </div>
         </div>
       </div>
     </div>
   );
+};
+
+VideoInformation.defaultProps = {
+  ThumbnailInput: undefined,
+  fileName: '',
 };
 
 export default VideoInformation;

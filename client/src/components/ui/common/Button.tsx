@@ -7,7 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: Children;
   type?: 'button' | 'submit';
   overlay?: boolean;
-  color?: 'purple' | 'blank' | '';
+  color?: 'purple' | 'lightBlue' | 'blank' | '';
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(

@@ -79,7 +79,6 @@ const UploadVideoForm: FC<UploadVideoFormProps> = ({
                     name="thumbnailPath"
                     render={({ field: { onChange } }) => (
                       <UploadField
-                        className={styles.thumbnailPath}
                         folder="thumbnails"
                         onChange={(value: IMediaResponse) => {
                           onChange(value.url);

@@ -8,6 +8,10 @@
       height: 190px;
     }
 
+    .thumbnailInput {
+      @apply mt-4 mb-6;
+    }
+
     .statusMessage {
       @apply absolute top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 w-max pointer-events-none text-gray-600;
     }
@@ -22,13 +26,11 @@
   }
 
   .details {
-    @apply bg-gray-900;
-    
     .pairing {
       @apply mb-3 last:mb-0;
 
       span {
-        @apply block text-tiny;
+        @apply flex items-center gap-1 text-tiny;
       }
       
       .link {

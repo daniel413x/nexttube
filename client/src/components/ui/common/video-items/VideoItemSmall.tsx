@@ -1,4 +1,4 @@
-import { EDIT, VIDEO } from '@data/consts';
+import { EDIT, VIDEO_ROUTE } from '@data/consts';
 import cn from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -46,7 +46,7 @@ const VideoItem: FC<VideoItemProps> = ({
         {isUpdateLink && (
           <button
             className={styles.updateButton}
-            onClick={() => push(`/${VIDEO}/${EDIT}/${id}`)}
+            onClick={() => push(`/${VIDEO_ROUTE}/${EDIT}/${id}`)}
             type="button"
           >
             <IconSpan className={styles.editIcon} Icon={FaEdit} />

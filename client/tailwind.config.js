@@ -12,6 +12,7 @@ module.exports = {
         'black-25': 'rgba(0, 0, 0, 0.25)',
         'fg-item': '#252836',
         'like-red': '#FF5555',
+        '0': 'rgba(0, 0, 0, 0)',
       },
       colors: {
         primary: '#FF7652',
