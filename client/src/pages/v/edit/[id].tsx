@@ -1,6 +1,6 @@
 import { REGISTERED } from '@data/consts';
-import { NextPageAuthed } from '@types';
 import EditVideoPageScreen from '@components/screens/v/edit-video-page/EditVideoPageScreen';
+import { NextPageAuthed } from '@types';
 
 const EditVideoPage: NextPageAuthed = () => <EditVideoPageScreen />;
 

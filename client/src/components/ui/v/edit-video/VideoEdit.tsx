@@ -2,9 +2,9 @@ import { PUBLIC } from '@data/consts';
 import { useRouter } from 'next/router';
 import { FC, useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { toastr } from 'react-redux-toastr';
 import { IMediaResponse, IVideoDto } from '@types';
 import videoApi from '@store/api/video';
+import { toastSuccess } from '@utils';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import Loader from '../../common/Loader';
@@ -45,7 +45,7 @@ const VideoEdit: FC = () => {
     updateVideo({ ...submitData, id: videoId })
       .unwrap()
       .then(() => {
-        toastr.success('Status', 'Video updated!');
+        toastSuccess('Video updated!', 'Success');
       });
   };
   return (
@@ -128,6 +128,7 @@ const VideoEdit: FC = () => {
             className={styles.submitButton}
             color="lightBlue"
             type="submit"
+            disabled={isUpdateLoading}
           >
             {isUpdateLoading ? 'Please wait...' : 'Save'}
           </Button>

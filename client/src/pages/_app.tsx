@@ -39,7 +39,8 @@ const App = ({ Component, pageProps }: AppAuthed) => (
           preventDuplicates
           progressBar
           closeOnToastrClick
-          timeOut={4000}
+          position="bottom-right"
+          timeOut={3500}
           transitionIn="fadeIn"
           transitionOut="fadeOut"
         />

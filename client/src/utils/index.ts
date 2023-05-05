@@ -11,6 +11,10 @@ export const errorCatch = (error: any): string => {
   return error.message;
 };
 
+export const toastSuccess = (message: string, title = 'Success') => {
+  toastr.success(title, message);
+};
+
 export const toastError = (error: any, title = 'Error request') => {
   const message = errorCatch(error);
   toastr.error(title, message);

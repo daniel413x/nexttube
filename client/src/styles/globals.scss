@@ -3,16 +3,13 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import 'react-redux-toastr/src/styles/index';
 
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
 :root {
   font-family: 'Titillium Web', sans-serif;
   --max-width: 1100px;
-}
-
-.layoutContent {
-  min-height: v.$page-height;
 }
 
 * {
