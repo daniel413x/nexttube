@@ -11,10 +11,26 @@
       @apply sr-only;
     }
 
-    > input {
-      @apply cursor-pointer block text-sm text-gray-500 file:cursor-pointer file:mr-2 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-700 hover:file:text-white;
+    .iconInput {
+      @apply w-max flex items-center rounded-full;
 
-      width: 160px;
+      svg {
+        @apply text-tiny;
+      }
+
+      input {
+        @apply cursor-pointer block text-sm text-gray-500 file:cursor-pointer file:mr-2 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-0 file:text-white hover:file:text-purple -ml-3;
+
+        width: 160px;
+      }
+
+      &:hover {
+        @apply text-purple file:text-purple;
+
+        input {
+          @apply file:text-purple;
+        }
+      }
     }
   }
 }

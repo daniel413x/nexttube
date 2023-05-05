@@ -21,6 +21,10 @@
     }
   }
 
+  svg {
+    @apply text-tiny;
+  }
+      
   .label {
     @apply text-gray-500 text-tiny mb-1;
   }

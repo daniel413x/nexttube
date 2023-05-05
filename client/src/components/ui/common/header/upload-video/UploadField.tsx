@@ -1,9 +1,11 @@
 import cn from 'classnames';
 import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { BsFiletypeJpg, BsFiletypeMp4 } from 'react-icons/bs';
 import ErrorModal from '@components/ui/modals/ErrorModal';
 import { SCSSModule } from '@types';
 import useUploadFile from '@hooks/useUploadFile';
 import { cobbleStyles } from '@utils';
+import IconSpan from '../../IconSpan';
 import defaultStyles from './UploadField.module.scss';
 
 interface UploadFieldProps {
@@ -42,15 +44,19 @@ const UploadField: FC<UploadFieldProps> = ({
         {title && <h1>{title}</h1>}
         <label htmlFor="file-input">
           <span className={styles.srLabel}>Choose file</span>
-          <input
-            id="file-input"
-            type="file"
-            value=""
-            onChange={uploadFile}
-            accept={
-              imageUpload ? 'image/jpg, image/jpeg, image/png' : 'video/mp4'
-            }
-          />
+          <div className={styles.iconInput}>
+            <IconSpan Icon={imageUpload ? BsFiletypeJpg : BsFiletypeMp4} />
+            <input
+              className={styles.fileInput}
+              id="file-input"
+              type="file"
+              value=""
+              onChange={uploadFile}
+              accept={
+                imageUpload ? 'image/jpg, image/jpeg, image/png' : 'video/mp4'
+              }
+            />
+          </div>
         </label>
       </div>
     </>
