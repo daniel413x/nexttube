@@ -10,7 +10,7 @@ const useUploadFile = (
   setValue?: (val: number) => void,
   setIsChosen?: Dispatch<SetStateAction<boolean>>
 ) => {
-  const imageUpload = folder === 'thumbnails';
+  const imageUpload = folder === 'thumbnails' || folder === 'avatars';
   const { mutateAsync } = useMutation(
     'upload file',
     (data: FormData) => MediaService.upload(data, folder, setValue),

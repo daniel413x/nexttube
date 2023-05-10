@@ -1,0 +1,35 @@
+@use '../CommonStyles.module.scss';
+
+.deleteForm {  
+  .showModalButton {
+    @apply px-0;
+
+    &:hover {
+      @apply text-warning opacity-100 bg-opacity-0;
+    }
+  }
+}
+
+.modal {
+  @apply w-full max-w-lg;
+
+  .info {
+    @apply flex flex-col gap-3 text-tiny mb-3 mt-5;
+
+    .unblockLine {
+      @apply m-auto text-base;
+    }
+  }
+
+  input {
+    @apply w-1/2 m-auto;
+  }
+
+  .submitButton {
+    @apply m-auto;
+  }
+  
+  .successMessage {
+    @apply my-8 mx-4;
+  }
+}

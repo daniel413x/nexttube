@@ -74,7 +74,7 @@ export class AuthService {
       id: userId,
     };
     return await this.jwtService.signAsync(data, {
-      expiresIn: '15s',
+      expiresIn: '24h',
     });
   }
 

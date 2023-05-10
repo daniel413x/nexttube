@@ -3,7 +3,7 @@ import Meta, { MetaProps } from '@components/seo/Meta';
 import Header from '@components/ui/common/header/Header';
 import Sidebar from '@components/ui/common/sidebar/Sidebar';
 import { Children } from '@types';
-import styles from './GenericLayout.module.scss';
+import styles from './MainLayout.module.scss';
 
 interface LayoutProps extends MetaProps {
   className?: string;
@@ -17,7 +17,7 @@ const Layout: FC<LayoutProps> = ({
   className,
 }: LayoutProps) => (
   <Meta title={title} description={description}>
-    <div className={`${styles.genericLayout} ${className}`}>
+    <div className={`${styles.mainLayout} ${className}`}>
       <Sidebar />
       <section className={styles.content}>
         <Header />

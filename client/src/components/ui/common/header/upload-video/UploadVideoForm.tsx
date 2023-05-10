@@ -55,6 +55,7 @@ const UploadVideoForm: FC<UploadVideoFormProps> = ({
                 name="flags"
                 render={({ field: { onChange, value } }) => (
                   <TogglePublic
+                    label="Public video"
                     clickHandler={() => {
                       if (value.includes(PUBLIC)) {
                         onChange([]);

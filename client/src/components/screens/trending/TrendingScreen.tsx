@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import GenericLayout from '@components/layouts/GenericLayout';
+import MainLayout from '@components/layouts/MainLayout';
 import Catalog from '@components/ui/common/Catalog';
 import { ITrendingProps } from '@types';
 
 const TrendingScreen: FC<ITrendingProps> = ({ trendingVideos }) => (
-  <GenericLayout title="Trending">
+  <MainLayout title="Trending">
     <Catalog videos={trendingVideos || []} />
-  </GenericLayout>
+  </MainLayout>
 );
 
 export default TrendingScreen;

@@ -1,7 +1,7 @@
 import { initialUtil } from '@data/state';
 import { createSlice } from '@reduxjs/toolkit';
 import { UtilSlice } from '@types';
-import { setVideoHeight } from '@store/actions/utilActions';
+import { setUserDeletion, setVideoHeight } from '@store/actions/utilActions';
 
 const initialState: UtilSlice = initialUtil;
 
@@ -12,6 +12,10 @@ export const utilSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(setVideoHeight, (state, action) => {
       state.videoHeight = action.payload;
+    });
+    builder.addCase(setUserDeletion, (state, action) => {
+      // prevent rtk query from auto-fetching a deleted user
+      state.userDeletion = action.payload;
     });
   },
 });

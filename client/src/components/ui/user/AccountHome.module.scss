@@ -1,0 +1,7 @@
+@use 'CommonStyles.module.scss';
+
+.accountHome {
+  .info {
+    @apply mt-5;
+  }
+}

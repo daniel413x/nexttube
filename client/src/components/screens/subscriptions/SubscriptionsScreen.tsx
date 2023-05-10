@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import GenericLayout from '@components/layouts/GenericLayout';
+import MainLayout from '@components/layouts/MainLayout';
 import Menu from '@components/ui/common/sidebar/Menu';
 import useUser from '@hooks/useUser';
 
 const SubscriptionsScreen: FC = () => {
   const user = useUser();
   return (
-    <GenericLayout title="Subscriptions">
+    <MainLayout title="Subscriptions">
       {user?.id && (
         <Menu
           title="My subscriptions"
@@ -17,7 +17,7 @@ const SubscriptionsScreen: FC = () => {
           }))}
         />
       )}
-    </GenericLayout>
+    </MainLayout>
   );
 };
 

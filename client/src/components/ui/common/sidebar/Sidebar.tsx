@@ -1,6 +1,8 @@
-import { sidebarMenuItems } from '@data/arrays';
+import { sidebarAccountItems, sidebarIndexItems } from '@data/arrays';
+import { USER_ROUTE } from '@data/consts';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import useUser from '@hooks/useUser';
 import logo from '@public/logos/nexttube-logo-lg.png';
@@ -9,6 +11,8 @@ import Menu from './Menu';
 import styles from './Sidebar.module.scss';
 
 const Sidebar: FC = () => {
+  const isUserPage =
+    useRouter().pathname.split('/').filter(Boolean)[0] === USER_ROUTE;
   const user = useUser();
   const renderSubscriptions = user?.id && user?.subscriptions.length > 0;
   return (
@@ -17,7 +21,8 @@ const Sidebar: FC = () => {
         <Link className={styles.logo} href="/">
           <Image width={155} height={29} src={logo} alt="NextTube logo" />
         </Link>
-        <Menu title="Menu" items={sidebarMenuItems} />
+        {isUserPage && <Menu title="Account" items={sidebarAccountItems} />}
+        <Menu title="Index" items={sidebarIndexItems} />
         {renderSubscriptions && (
           <Menu
             title="My subscriptions"

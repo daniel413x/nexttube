@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   Param,
@@ -50,5 +51,12 @@ export class UserController {
     @Param('channelId') channelId: string,
   ) {
     return this.userService.subscribe(id, channelId);
+  }
+
+  @HttpCode(200)
+  @Delete(':id')
+  @Auth()
+  async deleteVideo(@Param('id') id: string) {
+    return this.userService.delete(id);
   }
 }

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import GenericLayout from '@components/layouts/GenericLayout';
+import MainLayout from '@components/layouts/MainLayout';
 import Catalog from '@components/ui/common/Catalog';
 import useUser from '@hooks/useUser';
 import videoApi from '@store/api/video';
@@ -10,14 +10,14 @@ const StudioScreen: FC = () => {
   const { videos } = user!;
   const renderCatalog = videos.length > 0;
   return (
-    <GenericLayout title="Sudio">
+    <MainLayout title="Sudio">
       <div>
         {renderCatalog && (
           <Catalog videos={videos} removeHandler={removeVideo} isUpdateLink />
         )}
         {!renderCatalog && <p>You have not uploaded have any videos.</p>}
       </div>
-    </GenericLayout>
+    </MainLayout>
   );
 };
 

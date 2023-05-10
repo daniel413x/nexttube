@@ -88,18 +88,21 @@ const VideoEdit: FC = () => {
               defaultValue={[]}
               control={control}
               name="flags"
-              render={({ field: { onChange, value } }) => (
-                <TogglePublic
-                  clickHandler={() => {
-                    if (value.includes(PUBLIC)) {
-                      onChange([]);
-                    } else {
-                      onChange([PUBLIC]);
-                    }
-                  }}
-                  isEnabled={value.includes(PUBLIC)}
-                />
-              )}
+              render={({ field: { onChange, value } }) =>
+                (
+                  <TogglePublic
+                    label="Public video"
+                    clickHandler={() => {
+                      if (value.includes(PUBLIC)) {
+                        onChange([]);
+                      } else {
+                        onChange([PUBLIC]);
+                      }
+                    }}
+                    isEnabled={value.includes(PUBLIC)}
+                  />
+                ) as any
+              }
             />
           </div>
           <div className={styles.videoInformation}>

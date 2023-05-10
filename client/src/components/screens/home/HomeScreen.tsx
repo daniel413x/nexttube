@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import GenericLayout from '@components/layouts/GenericLayout';
+import MainLayout from '@components/layouts/MainLayout';
 import Catalog from '@components/ui/common/Catalog';
 import Discover from '@components/ui/home/Discover';
 import { IHomeProps } from '@types';
@@ -9,10 +9,10 @@ const HomeScreen: FC<IHomeProps> = ({
   mostViewedVideo,
   randomVideo,
 }) => (
-  <GenericLayout title="Home">
+  <MainLayout title="Home">
     <Discover mostViewedVideo={mostViewedVideo} randomVideo={randomVideo} />
     <Catalog videos={newVideos} />
-  </GenericLayout>
+  </MainLayout>
 );
 
 export default HomeScreen;

@@ -12,7 +12,7 @@ const MenuItem: FC<IMenuItem> = ({ href, title, Icon, image }) => {
   const { asPath } = useRouter();
   const isActive = asPath.startsWith(`${href}/`) || asPath === href;
   const myChannel = href === '/c';
-  const dontRender = myChannel && !user.id;
+  const dontRender = myChannel && !user?.id;
   if (dontRender) {
     return null;
   }

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { FaBell, FaCheck } from 'react-icons/fa';
 import { SCSSModule } from '@types';
 import useUser from '@hooks/useUser';
-import api from '@store/api';
+import userApi from '@store/api/user';
 import { cobbleStyles } from '@utils';
 import Button from './Button';
 import IconSpan from './IconSpan';
@@ -26,7 +26,8 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
 }) => {
   const styles = cobbleStyles(defaultStyles, parentStyles);
   const user = useUser();
-  const [subscribe, { isLoading, data }] = api.useSubscribeToChannelMutation();
+  const [subscribe, { isLoading, data }] =
+    userApi.useSubscribeToChannelMutation();
   if (user?.id === idForSubscription) {
     return null;
   }

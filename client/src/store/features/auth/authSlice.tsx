@@ -1,7 +1,13 @@
 import { initialAuth } from '@data/state';
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthSlice } from '@types';
-import { login, logout, noLoading, register } from '../../actions/authActions';
+import {
+  login,
+  logout,
+  noLoading,
+  register,
+  removeToken,
+} from '../../actions/authActions';
 
 const initialState: AuthSlice = initialAuth;
 
@@ -13,6 +19,9 @@ export const authSlice = createSlice({
     builder
       .addCase(noLoading, (state) => {
         state.loading = false;
+      })
+      .addCase(removeToken, (state) => {
+        state.accessToken = '';
       })
       .addCase(register.pending, (state) => {
         state.loading = true;

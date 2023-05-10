@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import GenericLayout from '@components/layouts/GenericLayout';
+import MainLayout from '@components/layouts/MainLayout';
 import TopRow from '@components/ui/c/TopRow';
 import Catalog from '@components/ui/common/Catalog';
 import { IChannelProps } from '@types';
@@ -7,13 +7,13 @@ import { IChannelProps } from '@types';
 const ChannelScreen: FC<IChannelProps> = ({ user }) => {
   const { username, description, videos } = user;
   return (
-    <GenericLayout title={username}>
-      <div className="mb-10 w-1/3">
+    <MainLayout title={username}>
+      <div className="mb-10">
         <TopRow user={user} />
-        <article>{description}</article>
+        <article className="mt-5">{description}</article>
       </div>
       <Catalog videos={videos || []} />
-    </GenericLayout>
+    </MainLayout>
   );
 };
 

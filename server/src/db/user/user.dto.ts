@@ -1,4 +1,4 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsArray, IsEmail, IsString } from 'class-validator';
 import { IUserDto } from 'src/types';
 
 export class UserDto implements IUserDto {
@@ -15,4 +15,7 @@ export class UserDto implements IUserDto {
 
   @IsString()
   avatarPath: string;
+
+  @IsArray()
+  flags: string[];
 }

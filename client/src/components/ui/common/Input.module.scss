@@ -1,6 +1,10 @@
 .input {
   @apply relative block mb-6;
 
+  .label {
+    @apply text-gray-500;
+  }
+
   input {
     @apply rounded-lg py-2 px-4 w-full block outline-0 text-white bg-gray-800;
     transition: box-shadow 0.4s ease;

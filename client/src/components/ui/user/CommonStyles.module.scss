@@ -1,0 +1,19 @@
+.userPage {  
+  max-width: 450px;
+
+  .input {
+    @apply my-8 ;
+  }
+
+  input {
+    @apply text-gray-400;
+  }
+
+  button[type="submit"] {
+    @apply mt-8;
+  }
+
+  .info {
+    @apply flex flex-col gap-4 text-gray-500;
+  }
+}

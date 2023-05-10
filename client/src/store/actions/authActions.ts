@@ -36,9 +36,12 @@ export const login = createAsyncThunk<IAuthData, IAuthFields>(
   }
 );
 
+export const removeToken = createAction<void>('removeToken');
+
 export const logout = createAsyncThunk(
   `${AUTH}/${LOGOUT}`,
   async (_, thunkAPI) => {
+    thunkAPI.dispatch(removeToken());
     thunkAPI.dispatch(setUser(initialUser));
     return {};
   }

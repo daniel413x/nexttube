@@ -7,9 +7,14 @@ import styles from './TogglePublic.module.scss';
 interface TogglePublicProps {
   isEnabled: boolean;
   clickHandler: () => void;
+  label: string;
 }
 
-const TogglePublic: FC<TogglePublicProps> = ({ isEnabled, clickHandler }) => (
+const TogglePublic: FC<TogglePublicProps> = ({
+  isEnabled,
+  clickHandler,
+  label,
+}) => (
   <div className={styles.togglePublic}>
     <Switch
       checked={isEnabled}
@@ -27,7 +32,7 @@ const TogglePublic: FC<TogglePublicProps> = ({ isEnabled, clickHandler }) => (
       />
     </Switch>
     <Button onClick={clickHandler} className={styles.label}>
-      <span>Public video</span>
+      <span>{label}</span>
     </Button>
   </div>
 );

@@ -36,7 +36,7 @@ const UploadField: FC<UploadFieldProps> = ({
     setValue,
     setIsChosen
   );
-  const imageUpload = folder === 'thumbnails';
+  const imageUpload = folder === 'thumbnails' || folder === 'avatars';
   return (
     <>
       <ErrorModal show={showErrorModal} close={() => setShowErrorModal('')} />

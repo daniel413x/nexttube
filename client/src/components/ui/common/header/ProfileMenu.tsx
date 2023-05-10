@@ -1,4 +1,9 @@
-import { CHANNEL_ACCESSOR, CHANNEL_ROUTE, STUDIO_ROUTE } from '@data/consts';
+import {
+  CHANNEL_ACCESSOR,
+  CHANNEL_ROUTE,
+  STUDIO_ROUTE,
+  USER_ROUTE,
+} from '@data/consts';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -36,6 +41,9 @@ const ProfileMenu: FC = () => {
           </li>
           <li key="studio">
             <Link href={`/${STUDIO_ROUTE}`}>Studio</Link>
+          </li>
+          <li key="user">
+            <Link href={`/${USER_ROUTE}`}>Account</Link>
           </li>
           <li key="logout">
             <button type="button" onClick={logout}>

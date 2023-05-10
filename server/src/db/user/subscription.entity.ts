@@ -10,7 +10,9 @@ export class SubscriptionEntity extends Base {
   @Column({ name: 'to_channel_id' })
   toChannelId: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.subscriptions)
+  @ManyToOne(() => UserEntity, (user) => user.subscriptions, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'from_user_id' })
   fromUser: UserEntity;
 

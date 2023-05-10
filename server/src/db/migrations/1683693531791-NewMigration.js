@@ -1,7 +1,7 @@
 const { MigrationInterface, QueryRunner } = require("typeorm");
 
-module.exports = class NewMigration1682805980733 {
-    name = 'NewMigration1682805980733'
+module.exports = class NewMigration1683693531791 {
+    name = 'NewMigration1683693531791'
 
     async up(queryRunner) {
         await queryRunner.query(`CREATE TABLE "Like" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "from_user_id" uuid NOT NULL, "to_video_id" uuid NOT NULL, CONSTRAINT "PK_20ede1755cb694ecf15674c8ba1" PRIMARY KEY ("id"))`);
@@ -14,7 +14,7 @@ module.exports = class NewMigration1682805980733 {
         await queryRunner.query(`ALTER TABLE "Like" ADD CONSTRAINT "FK_6c7de771ed37d3278fa6dd2ea21" FOREIGN KEY ("to_video_id") REFERENCES "Video"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "View" ADD CONSTRAINT "FK_57802911da1bc896b68ff3debcc" FOREIGN KEY ("videoId") REFERENCES "Video"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "Video" ADD CONSTRAINT "FK_287e5cf7671bef66254834de3fb" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
-        await queryRunner.query(`ALTER TABLE "Subscription" ADD CONSTRAINT "FK_866db7d4e7afeb1b4f8e1db28cb" FOREIGN KEY ("from_user_id") REFERENCES "User"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "Subscription" ADD CONSTRAINT "FK_866db7d4e7afeb1b4f8e1db28cb" FOREIGN KEY ("from_user_id") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "Subscription" ADD CONSTRAINT "FK_fce052ef48d963016e16e43e6ec" FOREIGN KEY ("to_channel_id") REFERENCES "User"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "Comment" ADD CONSTRAINT "FK_35807048116cf822fd0ef9c0299" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "Comment" ADD CONSTRAINT "FK_ee3208e6011f580f1022169a56b" FOREIGN KEY ("video_id") REFERENCES "Video"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);

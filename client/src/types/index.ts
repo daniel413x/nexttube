@@ -38,13 +38,21 @@ export interface IVideoDto
     'id' | 'thumbnailPath' | 'description' | 'name' | 'videoPath' | 'flags'
   > {}
 
+export interface IUserDto
+  extends Pick<
+    IUser,
+    'id' | 'avatarPath' | 'description' | 'username' | 'flags'
+  > {
+  password?: string;
+}
+
 export interface IUser extends IBaseProps {
   email: string;
   description: string;
   avatarPath: string;
   videos: IVideo[];
   username: string;
-  flags: AuthStrings[];
+  flags: string[];
   subscriptions: ISubscription[];
   subscribersCount: number;
   subscribers: ISubscription[];
@@ -121,10 +129,7 @@ export type UserSlice = IUser;
 
 export type UtilSlice = {
   videoHeight: number;
-};
-
-export type ComponentAuthed = {
-  auth: AuthStrings[];
+  userDeletion: boolean;
 };
 
 export interface QueryResGetMultiple<T> {
@@ -135,6 +140,10 @@ export interface QueryResGetMultiple<T> {
 export type Children = ReactNode | undefined;
 
 export type SCSSModule = Record<string, string>;
+
+export type ComponentAuthed = {
+  auth: AuthStrings[];
+};
 
 export type NextPageAuthed<P = {}> = NextPage<P> & ComponentAuthed;
 

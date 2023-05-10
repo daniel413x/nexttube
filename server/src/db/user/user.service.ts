@@ -6,6 +6,10 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash } from 'bcryptjs';
 import { Repository } from 'typeorm';
+import { CommentEntity } from '../comment/comment.entity';
+import { VideoEntity } from '../video/video.entity';
+import { ViewEntity } from '../video/view.entity';
+import { LikeEntity } from './like.entity';
 import { SubscriptionEntity } from './subscription.entity';
 import { UserDto } from './user.dto';
 import { UserEntity } from './user.entity';
@@ -17,6 +21,14 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(SubscriptionEntity)
     private readonly subscriptionRepository: Repository<SubscriptionEntity>,
+    @InjectRepository(CommentEntity)
+    private readonly commentRepository: Repository<CommentEntity>,
+    @InjectRepository(ViewEntity)
+    private readonly viewRepository: Repository<ViewEntity>,
+    @InjectRepository(VideoEntity)
+    private readonly videoRepository: Repository<VideoEntity>,
+    @InjectRepository(LikeEntity)
+    private readonly likeRepository: Repository<LikeEntity>,
   ) {}
 
   async getAll() {
@@ -56,7 +68,7 @@ export class UserService {
   }
 
   async updateProfile(id: string, dto: UserDto) {
-    const { email, password, username, avatarPath, description } = dto;
+    const { email, password, username, avatarPath, description, flags } = dto;
     const user = await this.byId(id);
     const isSameUser = await this.userRepository.findOneBy({ email });
     if (isSameUser && id !== isSameUser.id)
@@ -69,6 +81,7 @@ export class UserService {
     user.description = description;
     user.avatarPath = avatarPath;
     user.username = username;
+    user.flags = flags;
     return this.userRepository.save(user);
   }
 
@@ -89,5 +102,23 @@ export class UserService {
     }
     await this.subscriptionRepository.delete(data);
     return false;
+  }
+
+  async delete(id: string) {
+    await this.subscriptionRepository.delete({ fromUserId: id });
+    await this.commentRepository.delete({ userId: id });
+    await this.likeRepository.delete({ userId: id });
+    const videos = await this.videoRepository.find({ where: { userId: id } });
+    if (videos.length) {
+      await Promise.all(
+        videos.map(async ({ id: videoId }) => {
+          await this.commentRepository.delete({ videoId });
+          await this.likeRepository.delete({ videoId });
+          await this.viewRepository.delete({ videoId });
+          await this.videoRepository.delete({ id: videoId });
+        }),
+      );
+    }
+    return this.userRepository.delete({ id });
   }
 }

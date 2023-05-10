@@ -22,6 +22,7 @@ export const initialAuth: AuthSlice = {
 
 export const initialUtil: UtilSlice = {
   videoHeight: 100,
+  userDeletion: false,
 };
 
 export const placeholderVideo: IVideo = {

@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { IUser, SCSSModule } from '@types';
 import { cobbleStyles, formatNumber } from '@utils';
-import commentStyles from '../v/comments/CommentItem.module.scss';
 import defaultStyles from './ChannelInfoSmall.module.scss';
 import UserAvatar from './UserAvatar';
 
@@ -19,9 +18,7 @@ const ChannelInfoSmall: FC<ChannelInfoSmallProps> = ({
   const styles = cobbleStyles(defaultStyles, parentStyles);
   const { username, subscribersCount } = channel;
   return (
-    <div
-      className={`${styles.channelInfoSmall} ${commentStyles.channelInfoSmall}`}
-    >
+    <div className={`${styles.channelInfoSmall}`}>
       <UserAvatar className={styles.userAvatar} user={channel} />
       <div className={styles.rightCol}>
         <div className={styles.name}>{username}</div>

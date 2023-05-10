@@ -12,7 +12,7 @@ interface ModalProps {
   close: () => void;
   children: Children;
   noCloseButton?: boolean;
-  className?: '';
+  className?: string;
 }
 
 const Modal = forwardRef(
