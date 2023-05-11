@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { IVideo } from '@types';
+import placeholderThumbnail from '@public/images/placeholder-thumbnail.png';
 import IconSpan from '../IconSpan';
 import UserAvatar from '../UserAvatar';
 import VideoDuration from './VideoDuration';
@@ -17,6 +18,7 @@ interface VideoItemProps {
   removeHandler?: (videoId: string) => void;
   isUpdateLink?: boolean;
   isSmall?: boolean;
+  placeholder?: boolean;
 }
 
 const VideoItem: FC<VideoItemProps> = ({
@@ -24,6 +26,7 @@ const VideoItem: FC<VideoItemProps> = ({
   isUpdateLink,
   removeHandler,
   video,
+  placeholder,
 }) => {
   const { push } = useRouter();
   const { id, thumbnailPath, name, duration, viewsCount, createdAt } = video;
@@ -31,6 +34,7 @@ const VideoItem: FC<VideoItemProps> = ({
     <div
       className={cn(styles.videoItem, {
         [styles.small]: isSmall,
+        [styles.placeholder]: placeholder,
       })}
     >
       <div>
@@ -65,20 +69,33 @@ const VideoItem: FC<VideoItemProps> = ({
               />
             </Link>
           )}
+          {placeholder && (
+            <Image
+              src={placeholderThumbnail}
+              alt="LOlolv"
+              width={640}
+              height={360}
+              layout="responsive"
+              priority
+            />
+          )}
         </div>
-        <VideoDuration duration={duration} />
-        {video?.user && (
+        {!placeholder && <VideoDuration duration={duration} />}
+        {!placeholder && video?.user && (
           <UserAvatar className={styles.userAvatar} user={video?.user} />
         )}
         <Link title={name} href={`/v/${id}`}>
           <div className={styles.information}>
             {!isSmall && (
-              <div className={styles.author}>{video.user?.username}</div>
+              <div className={styles.author}>
+                {!placeholder && video.user?.username}
+              </div>
             )}
             <div className={styles.name}>{name}</div>
             <VideoStatistics
               viewsCount={viewsCount}
               createdAt={!isSmall ? createdAt : undefined}
+              placeholder={placeholder}
             />
           </div>
         </Link>
@@ -90,6 +107,7 @@ const VideoItem: FC<VideoItemProps> = ({
 VideoItem.defaultProps = {
   removeHandler: undefined,
   isUpdateLink: false,
+  placeholder: false,
   isSmall: undefined,
 };
 

@@ -14,4 +14,9 @@
   li {
     @apply flex-50 lg:flex-33 xl:flex-25 mb-2.5;
   }
+
+  .spacer {
+    @apply flex-100 lg:flex-33 xl:flex-25 mb-2.5;
+    @apply w-full;
+  }
 }

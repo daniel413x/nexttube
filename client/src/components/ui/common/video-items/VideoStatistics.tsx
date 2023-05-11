@@ -7,6 +7,7 @@ import styles from './VideoStatistics.module.scss';
 interface VideoStatisticsProps {
   viewsCount: number;
   createdAt?: Date;
+  placeholder?: boolean;
 }
 
 dayjs.extend(relativeTime);
@@ -14,15 +15,20 @@ dayjs.extend(relativeTime);
 const VideoStatistics: FC<VideoStatisticsProps> = ({
   viewsCount,
   createdAt,
+  placeholder,
 }) => (
   <div className={styles.videoStatistics}>
-    <div className={styles.views}>{formatNumber(viewsCount)} views</div>
-    {!!createdAt && (
+    {!placeholder && (
       <>
-        <div className={styles.seperator}>&middot;</div>
-        <div className={styles.date}>
-          {dayjs(new Date(createdAt)).fromNow()}
-        </div>
+        <div className={styles.views}>{formatNumber(viewsCount)} views</div>
+        {!!createdAt && (
+          <>
+            <div className={styles.seperator}>&middot;</div>
+            <div className={styles.date}>
+              {dayjs(new Date(createdAt)).fromNow()}
+            </div>
+          </>
+        )}
       </>
     )}
   </div>
@@ -30,6 +36,7 @@ const VideoStatistics: FC<VideoStatisticsProps> = ({
 
 VideoStatistics.defaultProps = {
   createdAt: undefined,
+  placeholder: false,
 };
 
 export default VideoStatistics;

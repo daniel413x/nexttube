@@ -80,7 +80,8 @@
     ],
     "react/jsx-props-no-spreading": "off",
     "prefer-destructuring": "off",
-    "no-alert": "off"
+    "no-alert": "off",
+    "no-array-index-key": "off"
   },
   "overrides": [
     {
