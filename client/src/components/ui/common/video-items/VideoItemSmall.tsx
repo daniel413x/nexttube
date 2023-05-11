@@ -52,36 +52,36 @@ const VideoItem: FC<VideoItemProps> = ({
             <IconSpan className={styles.editIcon} Icon={FaEdit} />
           </button>
         )}
-        <div className={styles.thumbnail}>
+        <div className={styles.thumbnailWrapper}>
           {thumbnailPath && (
             <Link title={name} href={`/v/${id}`}>
               <Image
                 src={thumbnailPath}
                 alt={name}
-                width={185}
-                height={103}
+                width={640}
+                height={360}
                 layout="responsive"
                 priority
               />
             </Link>
           )}
-          <VideoDuration duration={duration} />
-          {video?.user && (
-            <UserAvatar className={styles.userAvatar} user={video?.user} />
-          )}
-          <Link title={name} href={`/v/${id}`}>
-            <div className={styles.information}>
-              {!isSmall && (
-                <div className={styles.author}>{video.user?.username}</div>
-              )}
-              <div className={styles.name}>{name}</div>
-              <VideoStatistics
-                viewsCount={viewsCount}
-                createdAt={!isSmall ? createdAt : undefined}
-              />
-            </div>
-          </Link>
         </div>
+        <VideoDuration duration={duration} />
+        {video?.user && (
+          <UserAvatar className={styles.userAvatar} user={video?.user} />
+        )}
+        <Link title={name} href={`/v/${id}`}>
+          <div className={styles.information}>
+            {!isSmall && (
+              <div className={styles.author}>{video.user?.username}</div>
+            )}
+            <div className={styles.name}>{name}</div>
+            <VideoStatistics
+              viewsCount={viewsCount}
+              createdAt={!isSmall ? createdAt : undefined}
+            />
+          </div>
+        </Link>
       </div>
     </div>
   );

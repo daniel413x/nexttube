@@ -29,7 +29,7 @@ const VideoInformation: FC<VideoInformationProps> = ({
   return (
     <div className={styles.videoInformation}>
       <div className={styles.thumbnailCol}>
-        <span className={styles.label}>Thumbnail</span>
+        <span className={styles.label}>Thumbnail (16:9)</span>
         <div className={styles.imgWrapper}>
           {!thumbnailPath ? (
             <span className={styles.statusMessage}>

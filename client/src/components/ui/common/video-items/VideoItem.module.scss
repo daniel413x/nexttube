@@ -6,6 +6,7 @@
     .information {
       .name {
         @apply mt-3;
+        height: 21.98px;
         font-size: 1.1rem;
         -webkit-line-clamp: 1;
       }
@@ -26,6 +27,7 @@
       .name {
         @apply text-lg font-semibold leading-snug mb-8 mt-0;
         -webkit-line-clamp: 3;
+        height: 99px;
       }
 
       .author {
@@ -67,6 +69,9 @@
     bottom: 130px;
   }
 
+  .thumbnailWrapper {
+  }
+
   .thumbnail {
     @apply relative;
   }
@@ -81,6 +86,7 @@
 
     .name {
       @apply leading-tight text-white font-medium my-2.5;
+      height: 51.97px;
       font-size: 1.3rem;
       overflow: hidden;
       display: -webkit-box;

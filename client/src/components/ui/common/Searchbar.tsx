@@ -50,7 +50,12 @@ const Searchbar: FC = () => {
             results.map((video) => (
               <li className={styles.result} key={video.name}>
                 <Button onClick={handleResultClick} overlay>
-                  <VideoItemSmall isSmall video={video} key={video.id} />
+                  <VideoItemSmall
+                    isSmall
+                    lineClamp={1}
+                    video={video}
+                    key={video.id}
+                  />
                 </Button>
               </li>
             ))

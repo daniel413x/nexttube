@@ -1,12 +1,16 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { path } from 'app-root-path';
 import { writeFile, ensureDir } from 'fs-extra';
-import { VIDEOS_WRITE_FOLDER } from 'src/consts';
-import fileExtensionRegex from 'src/utils/getFileExtension.util';
+import { THUMBNAILS_WRITE_FOLDER, VIDEOS_WRITE_FOLDER } from 'src/consts';
 import { v4 as uuid } from 'uuid';
+import { ImageProcessingService } from './image-processing.service';
 
 @Injectable()
 export class MediaService {
+  constructor(
+    private readonly imageProcessingService: ImageProcessingService,
+  ) {}
+
   async writer(
     mediaFile: Express.Multer.File,
     folder = 'default',
@@ -14,8 +18,16 @@ export class MediaService {
     const uploadFolder = `${path}/uploads/${folder}`;
     const { originalname } = mediaFile;
     const writtenName = originalname.replace(/\./, `-${uuid()}.`);
+    const buffer =
+      folder === THUMBNAILS_WRITE_FOLDER
+        ? await this.imageProcessingService.resizeImage(
+            mediaFile.buffer,
+            640,
+            360,
+          )
+        : mediaFile.buffer;
     await ensureDir(uploadFolder);
-    await writeFile(`${uploadFolder}/${writtenName}`, mediaFile.buffer);
+    await writeFile(`${uploadFolder}/${writtenName}`, buffer);
     return writtenName;
   }
 
