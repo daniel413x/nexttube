@@ -1,21 +1,17 @@
 import { Switch } from '@headlessui/react';
 import cn from 'classnames';
 import { FC } from 'react';
-import Button from '../../Button';
-import styles from './TogglePublic.module.scss';
+import Button from './Button';
+import styles from './Toggle.module.scss';
 
-interface TogglePublicProps {
+interface ToggleProps {
   isEnabled: boolean;
   clickHandler: () => void;
   label: string;
 }
 
-const TogglePublic: FC<TogglePublicProps> = ({
-  isEnabled,
-  clickHandler,
-  label,
-}) => (
-  <div className={styles.togglePublic}>
+const Toggle: FC<ToggleProps> = ({ isEnabled, clickHandler, label }) => (
+  <div className={styles.toggle}>
     <Switch
       checked={isEnabled}
       onChange={clickHandler}
@@ -37,4 +33,4 @@ const TogglePublic: FC<TogglePublicProps> = ({
   </div>
 );
 
-export default TogglePublic;
+export default Toggle;

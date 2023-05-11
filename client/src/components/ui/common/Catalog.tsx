@@ -22,8 +22,9 @@ const Catalog: FC<CatalogProps> = ({
 }) => {
   const placeholders = useCalculatePlaceholders({
     itemsLength: videos.length,
-    lgCt: 3,
     xlCt: 4,
+    xxlCt: 4,
+    lgCt: 3,
     mdCt: 2,
   });
   return (

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '@components/ui/common/Button';
 import SectionHeader from '@components/ui/common/SectionHeader';
-import TogglePublic from '@components/ui/common/header/upload-video/TogglePublic';
+import Toggle from '@components/ui/common/Toggle';
 import { IUserDto } from '@types';
 import useUser from '@hooks/useUser';
 import userApi from '@store/api/user';
@@ -32,7 +32,7 @@ const SettingsUpdateForm: FC = () => {
         name="flags"
         render={({ field: { onChange, value } }) =>
           (
-            <TogglePublic
+            <Toggle
               label="Private mode"
               clickHandler={() => {
                 if (value.includes(PRIVATE)) {

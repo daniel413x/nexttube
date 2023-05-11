@@ -9,7 +9,7 @@ import Button from '../../common/Button';
 import Input from '../../common/Input';
 import Loader from '../../common/Loader';
 import Textarea from '../../common/Textarea';
-import TogglePublic from '../../common/header/upload-video/TogglePublic';
+import Toggle from '../../common/Toggle';
 import UploadField from '../../common/header/upload-video/UploadField';
 import VideoInformation from '../../common/header/upload-video/VideoInformation';
 import styles from './VideoEdit.module.scss';
@@ -90,7 +90,7 @@ const VideoEdit: FC = () => {
               name="flags"
               render={({ field: { onChange, value } }) =>
                 (
-                  <TogglePublic
+                  <Toggle
                     label="Public video"
                     clickHandler={() => {
                       if (value.includes(PUBLIC)) {

@@ -5,9 +5,9 @@ import { IMediaResponse } from '@types';
 import useUploadVideoForm from '@hooks/useUploadVideoForm';
 import Input from '../../Input';
 import Textarea from '../../Textarea';
+import Toggle from '../../Toggle';
 import SuccessMessage from '../SuccessMessage';
 import FooterForm from './FooterForm';
-import TogglePublic from './TogglePublic';
 import UploadField from './UploadField';
 import styles from './UploadVideoForm.module.scss';
 import VideoInformation from './VideoInformation';
@@ -54,7 +54,7 @@ const UploadVideoForm: FC<UploadVideoFormProps> = ({
                 control={form.control}
                 name="flags"
                 render={({ field: { onChange, value } }) => (
-                  <TogglePublic
+                  <Toggle
                     label="Public video"
                     clickHandler={() => {
                       if (value.includes(PUBLIC)) {
