@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { FC, ReactElement } from 'react';
 import { BsFiletypeMp4 } from 'react-icons/bs';
 import { CgClipboard } from 'react-icons/cg';
-import CopyButton from '../../CopyButton';
-import IconSpan from '../../IconSpan';
+import CopyButton from './CopyButton';
+import IconSpan from './IconSpan';
 import styles from './VideoInformation.module.scss';
 
 interface VideoInformationProps {

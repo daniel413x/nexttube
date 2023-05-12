@@ -6,11 +6,11 @@ import useUploadVideoForm from '@hooks/useUploadVideoForm';
 import Input from '../../Input';
 import Textarea from '../../Textarea';
 import Toggle from '../../Toggle';
+import UploadField from '../../UploadField';
+import VideoInformation from '../../VideoInformation';
 import SuccessMessage from '../SuccessMessage';
 import FooterForm from './FooterForm';
-import UploadField from '../../UploadField';
 import styles from './UploadVideoForm.module.scss';
-import VideoInformation from './VideoInformation';
 
 interface UploadVideoFormProps {
   videoId: string;
