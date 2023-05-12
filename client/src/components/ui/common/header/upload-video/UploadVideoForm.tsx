@@ -8,7 +8,7 @@ import Textarea from '../../Textarea';
 import Toggle from '../../Toggle';
 import SuccessMessage from '../SuccessMessage';
 import FooterForm from './FooterForm';
-import UploadField from './UploadField';
+import UploadField from '../../UploadField';
 import styles from './UploadVideoForm.module.scss';
 import VideoInformation from './VideoInformation';
 

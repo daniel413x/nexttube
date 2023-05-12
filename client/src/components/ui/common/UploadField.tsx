@@ -5,7 +5,7 @@ import ErrorModal from '@components/ui/modals/ErrorModal';
 import { SCSSModule } from '@types';
 import useUploadFile from '@hooks/useUploadFile';
 import { cobbleStyles } from '@utils';
-import IconSpan from '../../IconSpan';
+import IconSpan from './IconSpan';
 import defaultStyles from './UploadField.module.scss';
 
 interface UploadFieldProps {

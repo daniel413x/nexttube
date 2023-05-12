@@ -2,7 +2,7 @@ import cn from 'classnames';
 import Image from 'next/image';
 import { FC } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import UploadField from '@components/ui/common/header/upload-video/UploadField';
+import UploadField from '@components/ui/common/UploadField';
 import { IMediaResponse, IUserDto } from '@types';
 import useUser from '@hooks/useUser';
 import userApi from '@store/api/user';

@@ -10,7 +10,7 @@ import Input from '../../common/Input';
 import Loader from '../../common/Loader';
 import Textarea from '../../common/Textarea';
 import Toggle from '../../common/Toggle';
-import UploadField from '../../common/header/upload-video/UploadField';
+import UploadField from '../../common/UploadField';
 import VideoInformation from '../../common/header/upload-video/VideoInformation';
 import styles from './VideoEdit.module.scss';
 
