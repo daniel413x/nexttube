@@ -72,14 +72,14 @@ export class VideoService {
     });
   }
 
-  async getAll(searchTerm?: string) {
+  async getAll(searchTerm?: string, page?: number, limit?: number) {
     let options: FindOptionsWhereProperty<VideoEntity> = {};
     if (searchTerm) {
       options = {
         name: ILike(`%${searchTerm}%`),
       };
     }
-    return this.videoRepository.find({
+    const asdf = await this.videoRepository.findAndCount({
       where: {
         ...options,
         flags: And(ArrayContains([PUBLIC]), Not(ArrayContains([INCOMPLETE]))),
@@ -98,7 +98,10 @@ export class VideoService {
           flags: true,
         },
       },
+      take: limit || undefined,
+      skip: page * limit - limit || 0,
     });
+    return asdf;
   }
 
   async getMostViewed() {

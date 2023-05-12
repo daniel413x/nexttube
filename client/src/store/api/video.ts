@@ -1,13 +1,17 @@
 import { VIDEO } from '@data/consts';
-import { IVideo, IVideoDto } from '@types';
+import { IVideo, IVideoDto, VideoGetResponse, VideoSearchQuery } from '@types';
 import api from '.';
 
 const videoApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getVideosBySearchTerm: builder.query<IVideo[], string>({
-      query: (searchTerm) => ({
+    getVideosBySearchTerm: builder.query<VideoGetResponse, VideoSearchQuery>({
+      query: ({ searchTerm, page, limit }) => ({
         url: `${VIDEO}`,
-        params: { searchTerm },
+        params: {
+          searchTerm,
+          limit,
+          page,
+        },
       }),
     }),
     getVideoById: builder.query<IVideo, string>({

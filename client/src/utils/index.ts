@@ -113,3 +113,7 @@ export const createUserDto = (user: IUser) => {
     flags,
   };
 };
+
+export function getMaxPage(itemsInDb: number, itemsPerPage: number) {
+  return Math.ceil(itemsInDb / itemsPerPage);
+}

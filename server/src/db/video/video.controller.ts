@@ -28,8 +28,12 @@ export class VideoController {
   }
 
   @Get()
-  async getAll(@Query('searchTerm') searchTerm?: string) {
-    return this.videoService.getAll(searchTerm);
+  async getAll(
+    @Query('searchTerm') searchTerm?: string,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
+  ) {
+    return this.videoService.getAll(searchTerm, page, limit);
   }
 
   @Get('most-viewed')

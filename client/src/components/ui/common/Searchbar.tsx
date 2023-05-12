@@ -10,12 +10,8 @@ import VideoItemSmall from './video-items/VideoItemSmall';
 
 const Searchbar: FC = () => {
   const { ref, setShow, show } = useHideOnOutsideClick(true);
-  const {
-    handleSearch,
-    data: results,
-    isSuccess,
-    searchTerm,
-  } = useSearch({
+  const { handleSearch, results, isSuccess, searchTerm } = useSearch({
+    itemsPerPage: 6,
     api: videoApi.useGetVideosBySearchTermQuery,
   });
   const handleInputClick = () => {
@@ -50,12 +46,7 @@ const Searchbar: FC = () => {
             results.map((video) => (
               <li className={styles.result} key={video.name}>
                 <Button onClick={handleResultClick} overlay>
-                  <VideoItemSmall
-                    isSmall
-                    lineClamp={1}
-                    video={video}
-                    key={video.id}
-                  />
+                  <VideoItemSmall isSmall video={video} key={video.id} />
                 </Button>
               </li>
             ))

@@ -160,10 +160,20 @@ export type ReduxQuery = UseQuery<
       FetchBaseQueryMeta
     >,
     any,
-    any[],
+    GetResponse<any>,
     'api'
   >
 >;
+
+export type VideoSearchQuery = {
+  limit: number;
+  page: number;
+  searchTerm: string;
+};
+
+export type GetResponse<T> = [T[], number];
+
+export type VideoGetResponse = GetResponse<IVideo>;
 
 type ISerializedErrorResponse = {
   data?: any;
