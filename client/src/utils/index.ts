@@ -11,13 +11,38 @@ export const errorCatch = (error: any): string => {
   return error.message;
 };
 
-export const toastSuccess = (message: string, title = 'Success') => {
-  toastr.success(title, message);
+export const toastSuccess = (
+  message: string,
+  title = 'Success',
+  timeout?: number
+) => {
+  toastr.success(title, message, {
+    timeOut: timeout,
+  });
 };
 
-export const toastError = (error: any, title = 'Error request') => {
-  const message = errorCatch(error);
-  toastr.error(title, message);
+export const toastWarn = (
+  message: any,
+  title = 'Error request',
+  timeout?: number
+) => {
+  toastr.warning(
+    title,
+    typeof message === 'string' ? message : errorCatch(message),
+    {
+      timeOut: timeout,
+    }
+  );
+};
+
+export const toastError = (
+  error: any,
+  title = 'Error request',
+  timeout?: number
+) => {
+  toastr.error(title, typeof error === 'string' ? error : errorCatch(error), {
+    timeOut: timeout,
+  });
 };
 
 export const serializeError = (error: any) => {

@@ -1,4 +1,3 @@
-import { DELETE_CHANNEL_ROUTE } from '@data/consts';
 import { FC, ReactElement, useEffect } from 'react';
 import Loader from '@components/ui/common/Loader';
 import useActions from '@hooks/useActions';
