@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { useRouter } from 'next/router';
 import { FC, useEffect } from 'react';
 import { BsFullscreen } from 'react-icons/bs';
 import { IoMdPause, IoMdPlay } from 'react-icons/io';
@@ -12,6 +13,8 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer: FC<VideoPlayerProps> = ({ videoPath }) => {
+  const router = useRouter();
+  const { t } = router.query;
   const { videoRef, toggleVideo, status, fullScreen, metadataLoaded } =
     usePlayer();
   const { setVideoHeight } = useActions();
@@ -27,7 +30,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ videoPath }) => {
         id="video"
         ref={videoRef}
         className={styles.player}
-        src={`${videoPath}#t=8`}
+        src={`${videoPath}#${t ? `t=${t}` : ''}`}
         preload="metadata"
         onClick={toggleVideo}
       >
