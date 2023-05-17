@@ -4,18 +4,26 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
-import { IUser } from '@types';
+import { IUser, SCSSModule } from '@types';
+import { cobbleStyles } from '@utils';
 import defaultAvatar from '@public/images/default-avatar.png';
 import IconSpan from './IconSpan';
-import styles from './UserAvatar.module.scss';
+import defaultStyles from './UserAvatar.module.scss';
 
 interface UserAvatarProps {
   user: IUser;
   isWhite?: boolean;
   className?: string;
+  parentStyles?: SCSSModule;
 }
 
-const UserAvatar: FC<UserAvatarProps> = ({ user, className, isWhite }) => {
+const UserAvatar: FC<UserAvatarProps> = ({
+  user,
+  className,
+  isWhite,
+  parentStyles,
+}) => {
+  const styles = cobbleStyles(defaultStyles, parentStyles);
   const { username, avatarPath } = user;
   return (
     <Link href={`/c/${user[CHANNEL_ACCESSOR]}`} title={username}>
@@ -40,6 +48,7 @@ const UserAvatar: FC<UserAvatarProps> = ({ user, className, isWhite }) => {
 UserAvatar.defaultProps = {
   isWhite: false,
   className: '',
+  parentStyles: undefined,
 };
 
 export default UserAvatar;

@@ -4,7 +4,7 @@ import { getMaxPage } from '@utils';
 interface UsePaginationProps {
   itemsPerPage: number;
   itemsInDb: number;
-  concurrentlySetQuery?: boolean;
+  concurrentlySetQueryPage?: boolean;
 }
 
 interface UsePaginationReturn {
@@ -22,7 +22,7 @@ const usePagination = ({
 }: UsePaginationProps): UsePaginationReturn => {
   const [page, setPage] = useState<number>(1);
   const [pageLimit, setPageLimit] = useState<number>(1);
-  const [pageLimitReached, setPageLimitReached] = useState<boolean>(false);
+  const [pageLimitReached, setPageLimitReached] = useState<boolean>(true);
   const changePage = useCallback(
     (number: number) => {
       const newPage = number > pageLimit || number < 1 ? pageLimit : number;

@@ -28,3 +28,4 @@ export const PRIVATE = 'private';
 export const SETTINGS_ROUTE = 'settings';
 export const DETAILS_ROUTE = 'details';
 export const DELETE_CHANNEL_ROUTE = 'delete';
+export const SEARCH_ROUTE = 'search';

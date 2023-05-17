@@ -132,6 +132,12 @@ export type UtilSlice = {
   userDeletion: boolean;
 };
 
+export type VideoSlice = {
+  searchResults: IVideo[];
+  dbCount: number;
+  searchInput: string;
+};
+
 export interface QueryResGetMultiple<T> {
   rows: T[];
   count: number;
@@ -165,11 +171,21 @@ export type ReduxQuery = UseQuery<
   >
 >;
 
+export type VideoSearchQueryFilters = {
+  min?: number;
+  max?: number;
+  range?: 'hour' | 'day' | 'week' | 'month' | 'year';
+  createdAt?: 'ASC' | 'DESC';
+  views?: 'ASC' | 'DESC';
+  likes?: 'ASC' | 'DESC';
+  duration?: 'ASC' | 'DESC';
+};
+
 export type VideoSearchQuery = {
   limit: number;
   page: number;
   searchTerm: string;
-};
+} & VideoSearchQueryFilters;
 
 export type GetResponse<T> = [T[], number];
 

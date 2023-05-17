@@ -6,6 +6,7 @@ import api from './api';
 import auth from './features/auth/authSlice';
 import user from './features/user/userSlice';
 import util from './features/util/utilSlice';
+import video from './features/video/videoSlice';
 
 const persistConfig: PersistConfig<any> = {
   key: 'root',
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   auth,
   user,
   util,
+  video,
   toastr: toastrReducer,
 });
 

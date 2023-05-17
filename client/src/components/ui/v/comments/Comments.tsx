@@ -36,7 +36,7 @@ const Comments: FC<CommentsProps> = ({ comments, videoId }) => {
           ))}
         </ul>
       ) : (
-        <p>Viewers have not commented on this video.</p>
+        <p>Be the first to comment!</p>
       )}
       {user && <CommentForm videoId={videoId} />}
     </div>

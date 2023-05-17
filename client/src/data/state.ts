@@ -1,4 +1,4 @@
-import { AuthSlice, IUser, IVideo, UtilSlice } from '@types';
+import { AuthSlice, IUser, IVideo, UtilSlice, VideoSlice } from '@types';
 import { GUEST } from './consts';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -23,6 +23,12 @@ export const initialAuth: AuthSlice = {
 export const initialUtil: UtilSlice = {
   videoHeight: 100,
   userDeletion: false,
+};
+
+export const initialVideo: VideoSlice = {
+  searchResults: [],
+  dbCount: 0,
+  searchInput: '',
 };
 
 export const placeholderVideo: IVideo = {

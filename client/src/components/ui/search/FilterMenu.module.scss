@@ -1,0 +1,22 @@
+.filterMenu {
+  @apply overflow-hidden flex mt-2;
+    height: 0px;
+
+  transition: height 0.3s ease-out;
+
+  &.show {
+    height: 230px;
+  }
+
+  .label {
+    @apply my-2;
+  }
+
+  .col {
+    @apply flex flex-col w-full;
+
+    a {
+      @apply text-gray-500 text-xs py-1.5;
+    }
+  }
+}

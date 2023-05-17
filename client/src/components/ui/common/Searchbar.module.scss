@@ -27,11 +27,19 @@
     @apply absolute right-4 top-3 opacity-25;
   }
 
-  .results {
-    @apply shadow-block rounded-lg animate-scaleIn absolute w-full z-20 p-5 mt-3 bg-gray-900 grid justify-items-center grid-cols-100 xl:grid-cols-50 2xl:grid-cols-33;
+  .resultsWrapper {
+    @apply shadow-block rounded-lg animate-scaleIn absolute w-full z-20 p-5 mt-3 bg-gray-900;
+
+    .results {
+      @apply grid justify-items-center grid-cols-100 xl:grid-cols-50 2xl:grid-cols-33;
+    }
 
     .result {
       @apply m-auto p-1;
+    }
+    
+    .moreResultsLink {
+      @apply w-full m-auto flex items-center justify-center rounded-lg text-center text-white p-2 pt-4 gap-1 text-tiny text-gray-500 bg-fg-item font-bold;
     }
 
     &.hide {

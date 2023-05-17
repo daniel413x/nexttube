@@ -1,0 +1,55 @@
+.searchPageResults {
+  @apply gap-5 h-full;
+
+  .resultsWrapper {
+    @apply relative flex flex-col gap-5 w-full m-auto h-full;
+    transition: height 0.3s ease-out;
+
+    max-width: 1000px;
+
+    .message {
+      @apply absolute left-1/2 -translate-x-1/2 text-gray-600 font-bold pt-0 opacity-0 text-center;
+      transition: all 0.3s ease-out;
+
+      padding-top: 6rem;
+
+      &.show {
+        @apply opacity-100;
+
+        padding-top: 12rem;
+      }
+    }
+
+    .results {
+      @apply relative flex flex-col gap-6;
+    }
+
+    .topRow {
+      @apply flex flex-col gap-2;
+      
+      button {
+        @apply w-max;
+      }
+
+      .filtersButtons {
+        @apply flex items-center gap-2;
+
+        .filtersButton {
+          @apply gap-2 text-tiny px-5;
+        }
+
+        .removeButton {
+          @apply bg-black-25 py-2 ps-2.5 pe-3;
+          
+          .label {
+            @apply text-xs;
+          }
+        }
+      }
+    }
+
+    .moreButton {
+      margin-top: auto;
+    }
+  }
+}

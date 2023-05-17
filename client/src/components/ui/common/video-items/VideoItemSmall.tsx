@@ -72,7 +72,7 @@ const VideoItem: FC<VideoItemProps> = ({
           {placeholder && (
             <Image
               src={placeholderThumbnail}
-              alt="LOlolv"
+              alt="Placeholder"
               width={640}
               height={360}
               layout="responsive"

@@ -1,5 +1,6 @@
 import { placeholderVideo } from '@data/state';
 import cn from 'classnames';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { IVideo } from '@types';
 import useCalculatePlaceholders from '@hooks/useCalculatePlaceholders';
@@ -20,6 +21,8 @@ const Catalog: FC<CatalogProps> = ({
   isUpdateLink,
   itemsUlClassName,
 }) => {
+  const router = useRouter();
+  const { pathname } = router;
   const placeholders = useCalculatePlaceholders({
     itemsLength: videos.length,
     xlCt: 4,
@@ -30,7 +33,7 @@ const Catalog: FC<CatalogProps> = ({
   return (
     <div className={cn(styles.catalog)}>
       <div className={styles.upperElements}>
-        <SectionHeader title={removeHandler ? 'My videos' : 'Recommended'} />
+        <SectionHeader title={pathname !== '/' ? 'My videos' : 'Recommended'} />
       </div>
       <ul className={cn(styles.itemsUl, itemsUlClassName)}>
         {videos.map((video) => (

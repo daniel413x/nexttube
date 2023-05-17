@@ -3,9 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import {
   And,
   ArrayContains,
+  Between,
+  FindOptionsOrderProperty,
   FindOptionsWhereProperty,
   ILike,
+  LessThan,
+  LessThanOrEqual,
   MoreThan,
+  MoreThanOrEqual,
   Not,
   Repository,
 } from 'typeorm';
@@ -14,6 +19,7 @@ import { ViewEntity } from './view.entity';
 import { VideoDto } from './video.dto';
 import { VideoEntity } from './video.entity';
 import { INCOMPLETE, PUBLIC } from 'src/consts';
+import { subDays, subHours, subMonths, subWeeks, subYears } from 'date-fns';
 
 @Injectable()
 export class VideoService {
@@ -72,20 +78,69 @@ export class VideoService {
     });
   }
 
-  async getAll(searchTerm?: string, page?: number, limit?: number) {
-    let options: FindOptionsWhereProperty<VideoEntity> = {};
+  async getAll({
+    searchTerm,
+    page,
+    limit,
+    createdAt,
+    min,
+    max,
+    views,
+    likes,
+    duration,
+    range,
+  }) {
+    const where: FindOptionsWhereProperty<VideoEntity> = {};
     if (searchTerm) {
-      options = {
-        name: ILike(`%${searchTerm}%`),
-      };
+      where.name = ILike(`%${searchTerm}%`);
     }
-    const asdf = await this.videoRepository.findAndCount({
+    if (min && max) {
+      where.duration = Between(Number(min) * 60, Number(max) * 60);
+    } else if (min) {
+      where.duration = MoreThanOrEqual(Number(min) * 60);
+    } else if (max) {
+      where.duration = LessThanOrEqual(Number(max) * 60);
+    }
+    if (range) {
+      const now = new Date();
+      switch (range) {
+        case 'hour':
+          where.createdAt = MoreThan(subHours(now, 1));
+          break;
+        case 'day':
+          where.createdAt = MoreThan(subDays(now, 1));
+          break;
+        case 'week':
+          where.createdAt = MoreThan(subWeeks(now, 1));
+          break;
+        case 'month':
+          where.createdAt = MoreThan(subMonths(now, 1));
+          break;
+        case 'year':
+          where.createdAt = MoreThan(subYears(now, 1));
+          break;
+      }
+    }
+    const order: FindOptionsOrderProperty<VideoEntity> = {};
+    if (createdAt) {
+      order.createdAt = createdAt.toUpperCase(); // ASC or DESC
+    }
+    if (views) {
+      order.viewsCount = views.toUpperCase();
+    }
+    if (likes) {
+      order.likesCount = likes.toUpperCase();
+    }
+    if (duration) {
+      order.duration = duration.toUpperCase();
+    }
+    const videos = await this.videoRepository.findAndCount({
       where: {
-        ...options,
+        ...where,
         flags: And(ArrayContains([PUBLIC]), Not(ArrayContains([INCOMPLETE]))),
       },
       order: {
-        createdAt: 'DESC',
+        ...order,
       },
       relations: {
         user: true,
@@ -101,7 +156,7 @@ export class VideoService {
       take: limit || undefined,
       skip: page * limit - limit || 0,
     });
-    return asdf;
+    return videos;
   }
 
   async getMostViewed() {

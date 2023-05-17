@@ -5,13 +5,9 @@ import api from '.';
 const videoApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getVideosBySearchTerm: builder.query<VideoGetResponse, VideoSearchQuery>({
-      query: ({ searchTerm, page, limit }) => ({
+      query: ({ ...params }: VideoSearchQuery) => ({
         url: `${VIDEO}`,
-        params: {
-          searchTerm,
-          limit,
-          page,
-        },
+        params,
       }),
     }),
     getVideoById: builder.query<IVideo, string>({

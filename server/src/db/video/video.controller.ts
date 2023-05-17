@@ -32,8 +32,26 @@ export class VideoController {
     @Query('searchTerm') searchTerm?: string,
     @Query('page') page?: number,
     @Query('limit') limit?: number,
+    @Query('createdAt') createdAt?: 'ASC' | 'DESC',
+    @Query('min') min?: number,
+    @Query('max') max?: number,
+    @Query('views') views?: 'ASC' | 'DESC',
+    @Query('likes') likes?: 'ASC' | 'DESC',
+    @Query('duration') duration?: 'ASC' | 'DESC',
+    @Query('range') range?: 'hour' | 'day' | 'week' | 'month' | 'year',
   ) {
-    return this.videoService.getAll(searchTerm, page, limit);
+    return this.videoService.getAll({
+      searchTerm,
+      page,
+      limit,
+      createdAt,
+      min,
+      max,
+      views,
+      likes,
+      duration,
+      range,
+    });
   }
 
   @Get('most-viewed')

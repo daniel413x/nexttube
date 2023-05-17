@@ -1,0 +1,58 @@
+
+.videoItemListView {
+  @apply relative flex gap-3 opacity-0;
+  max-width: 1000px;
+  transition: opacity 0.25s linear;
+
+  .aOverlay {
+    @apply absolute top-0 left-0 w-full h-full z-10;
+  }
+
+  &.show {
+    @apply opacity-100;
+  }
+
+  .thumbnailWrapper {
+    @apply relative;
+
+    img {
+      @apply rounded-lg;
+      max-width: 320px;
+      max-height: 180px;
+    }
+  }
+
+  .information {
+    @apply flex flex-col gap-2;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .name {
+    @apply w-full;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  .avatarWrapper {
+    @apply w-max z-10;
+
+    .uploaderName {
+      @apply text-gray-500;
+
+      font-size: 0.8rem;
+    }
+  }
+
+  .description {
+    @apply w-full text-gray-500;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+}
