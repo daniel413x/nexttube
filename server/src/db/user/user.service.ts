@@ -105,7 +105,13 @@ export class UserService {
   }
 
   async delete(id: string) {
-    await this.subscriptionRepository.delete({ fromUserId: id });
+    await this.subscriptionRepository
+      .createQueryBuilder()
+      .delete()
+      .from(SubscriptionEntity)
+      .where('fromUserId = :id', { id })
+      .orWhere('toChannelId = :id', { id })
+      .execute();
     await this.commentRepository.delete({ userId: id });
     await this.likeRepository.delete({ userId: id });
     const videos = await this.videoRepository.find({ where: { userId: id } });
