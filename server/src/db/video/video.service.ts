@@ -7,7 +7,6 @@ import {
   FindOptionsOrderProperty,
   FindOptionsWhereProperty,
   ILike,
-  LessThan,
   LessThanOrEqual,
   MoreThan,
   MoreThanOrEqual,

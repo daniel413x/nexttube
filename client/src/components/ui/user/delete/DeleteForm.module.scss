@@ -2,7 +2,7 @@
 
 .deleteForm {  
   .showModalButton {
-    @apply px-0;
+    @apply p-0 mt-3.5;
 
     &:hover {
       @apply text-warning opacity-100 bg-opacity-0;

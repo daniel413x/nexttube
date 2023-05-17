@@ -4,9 +4,10 @@ import {
   STUDIO_ROUTE,
   USER_ROUTE,
 } from '@data/consts';
+import cn from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
 import useActions from '@hooks/useActions';
 import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
@@ -16,12 +17,27 @@ import IconSpan from '../IconSpan';
 import styles from './ProfileMenu.module.scss';
 
 const ProfileMenu: FC = () => {
+  const [show, setShow] = useState<boolean>(false);
   const user = useUser();
   const { logout } = useActions();
-  const { show, setShow, ref } = useHideOnOutsideClick(false);
+  const {
+    show: showPopup,
+    setShow: setShowPopup,
+    ref,
+  } = useHideOnOutsideClick(false);
+  useEffect(() => setShow(true), [setShow]);
   return (
-    <div className={styles.profileMenu} ref={ref}>
-      <button onClick={() => setShow(!show)} type="button" title="Menu toggle">
+    <div
+      className={cn(styles.profileMenu, {
+        [styles.show]: show,
+      })}
+      ref={ref}
+    >
+      <button
+        onClick={() => setShowPopup(!showPopup)}
+        type="button"
+        title="Menu toggle"
+      >
         <Image
           src={user!.avatarPath || defaultAvatar}
           alt={user!.username || 'Avatar'}
@@ -30,9 +46,9 @@ const ProfileMenu: FC = () => {
           priority
         />
         <span className={styles.name}>{user?.username || 'User'}</span>
-        <IconSpan Icon={show ? HiChevronUp : HiChevronDown} />
+        <IconSpan Icon={showPopup ? HiChevronUp : HiChevronDown} />
       </button>
-      {show && (
+      {showPopup && (
         <ul className={styles.itemsUl}>
           <li key="my-channel">
             <Link href={`/${CHANNEL_ROUTE}/${user![CHANNEL_ACCESSOR]}`}>

@@ -27,7 +27,7 @@
   }
   
   .progressBarWrapper {
-    @apply h-1.5 w-3/4 rounded overflow-hidden bg-gray-500 bg-opacity-50;
+    @apply h-1.5 w-1/2 xl:w-2/3 rounded overflow-hidden bg-gray-500 bg-opacity-50 2xl:w-2/3;
 
     .progressBar {
       @apply h-full bg-white;

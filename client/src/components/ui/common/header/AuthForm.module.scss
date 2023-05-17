@@ -1,5 +1,11 @@
 .authForm {
-  @apply relative inline-flex;
+  @apply me-10 relative inline-flex;
+
+  transition: margin 0.25s ease-out;
+
+  &.place {
+    @apply me-0;
+  }
 
   .form {
     @apply flex flex-col shadow-block animate-scaleIn p-6 pt-12 absolute right-2 w-80 z-20 rounded-lg;

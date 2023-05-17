@@ -1,5 +1,6 @@
 import { VALID_PASSWORD, VALID_USERNAME } from '@data/consts';
-import { FC, useState } from 'react';
+import cn from 'classnames';
+import { FC, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaUserCircle } from 'react-icons/fa';
 import { IAuthFields } from '@types';
@@ -31,8 +32,17 @@ const AuthForm: FC = () => {
       register(data);
     }
   };
+  const [place, setPlace] = useState<boolean>(false);
+  useEffect(() => {
+    setPlace(true);
+  }, []);
   return (
-    <div className={styles.authForm} ref={ref}>
+    <div
+      className={cn(styles.authForm, {
+        [styles.place]: place,
+      })}
+      ref={ref}
+    >
       <button
         className={iconsStyles.button}
         onClick={() => setShow(!show)}

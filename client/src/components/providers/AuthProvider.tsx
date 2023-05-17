@@ -13,14 +13,15 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const { accessToken } = useAuth();
   const { userDeletion } = useUtil();
   const { setUser } = useActions();
-  const { data, isLoading } = userApi.useGetProfileQuery(null, {
+  const { data, isLoading } = userApi.useGetProfileQuery(accessToken, {
     skip: !accessToken || userDeletion,
   });
   useEffect(() => {
     if (data && accessToken) {
       setUser(data);
     }
-  }, [data, accessToken, setUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
   return isLoading ? <Loader /> : children;
 };
 

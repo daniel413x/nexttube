@@ -78,7 +78,6 @@ const DeleteForm: FC = () => {
       </Modal>
       <Button
         className={styles.showModalButton}
-        type="submit"
         onClick={() => setConfirmModal(true)}
         color="primaryBlank"
       >

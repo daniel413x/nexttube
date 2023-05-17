@@ -1,4 +1,12 @@
 .profileMenu {
+  @apply relative opacity-0 bottom-3;
+
+  transition: all 0.075s linear;
+
+  &.show {
+    @apply opacity-100 bottom-0;
+  }
+
   button {
     @apply flex items-center;
     height: 62.39px;
