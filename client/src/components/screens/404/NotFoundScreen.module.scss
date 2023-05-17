@@ -1,12 +1,12 @@
 @use '@styles/variables.scss' as v;
 
 .notFoundScreen {
-  background-color: #aaa;
   display: flex;
   align-items: center;
   justify-content: center;
   
   .graphic {
-    max-width: 400px;
+    margin: 12rem auto;
+    max-width: 550px;
   }
 }

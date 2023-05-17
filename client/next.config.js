@@ -19,23 +19,6 @@ const nextConfig = {
     config.resolve.alias['@features'] = path.resolve(__dirname, 'src/store/features');
     config.resolve.alias['@store'] = path.resolve(__dirname, 'src/store');
     config.resolve.alias['@styles'] = path.resolve(__dirname, 'src/styles');
-    const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.('.svg'),
-    )
-    config.module.rules.push(
-      {
-        ...fileLoaderRule,
-        test: /\.svg$/i,
-        resourceQuery: /url/,
-      },
-      {
-        test: /\.svg$/i,
-        issuer: /\.[jt]sx?$/,
-        resourceQuery: { not: /url/ },
-        use: ['@svgr/webpack'],
-      },
-    )
-    fileLoaderRule.exclude = /\.svg$/i
     return config;
   },
   images: {
