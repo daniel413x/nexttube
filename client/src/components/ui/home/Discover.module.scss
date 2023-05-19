@@ -1,8 +1,8 @@
 .discover {
-  @apply flex gap-7 mb-10;
+  @apply flex flex-col xl:flex-row gap-7 mb-10;
 
   .top {
-    @apply w-2/3;
+    @apply w-full xl:w-2/3;
 
     .subName {
       @apply text-lg;
@@ -18,6 +18,6 @@
   }
 
   .random {
-    @apply w-1/3;
+    @apply w-full xl:w-1/3;
   }
 }

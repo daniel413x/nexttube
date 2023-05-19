@@ -24,7 +24,7 @@ const FilterMenu: FC<FilterMenuProps> = ({ show, searchTerm }) => (
         Under 4 minutes
       </Link>
       <Link href={`/${SEARCH_ROUTE}?searchTerm=${searchTerm}&min=4&max=16`}>
-        4 &#8211; 20 minutes
+        4&#8211;20 minutes
       </Link>
       <Link href={`/${SEARCH_ROUTE}?searchTerm=${searchTerm}&min=20`}>
         Over 20 minutes

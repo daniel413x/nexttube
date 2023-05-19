@@ -1,17 +1,31 @@
+@use '@styles/variables.scss' as v;
+
 .uploadVideoForm {
   @apply flex flex-wrap h-full items-center justify-center;
-  width: 1000px;
-  height: 610px;
+  width: 100%;
+  height: 1000px;
+
+  @media (min-width: theme('screens.md')) {
+    height: 610px;
+  }
+
+  @media (min-width: theme('screens.lg')) {
+    width: 1000px;
+  }
 
   .nameDescription {
-    @apply w-7/12 pr-6 pt-3;
+    @apply w-7/12 px-5 py-6 md:pr-6 md:pt-3;
   }
 
   .upper {
-    @apply flex w-full self-start;
+    @apply flex flex-wrap w-full self-start md:flex-nowrap justify-center md:w-full;
+
+    .nameDescription {
+      @apply w-96 md:w-7/12;
+    }
 
     .videoInformation {
-      @apply w-5/12 p-3 pl-10;
+      @apply w-full flex justify-center md:p-3 md:pl-10 md:w-96;
     }
   }
 }

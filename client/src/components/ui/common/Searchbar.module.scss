@@ -1,5 +1,5 @@
 .searchbar {
-  @apply relative w-7/12;
+  @apply relative w-full md:w-1/2 lg:w-7/12;
 
   label {
     @apply w-full block relative;

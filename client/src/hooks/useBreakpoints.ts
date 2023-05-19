@@ -23,13 +23,17 @@ const useBreakpoints: () => {
       setSm(false);
       if (width! >= 1536) {
         setXxl(true);
-      } else if (width! >= 1280) {
+      }
+      if (width! >= 1280) {
         setXl(true);
-      } else if (width! >= 1024) {
+      }
+      if (width! >= 1024) {
         setLg(true);
-      } else if (width! >= 768) {
+      }
+      if (width! >= 768) {
         setMd(true);
-      } else if (width! >= 640) {
+      }
+      if (width! >= 640) {
         setSm(true);
       }
     };

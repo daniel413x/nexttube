@@ -1,3 +1,4 @@
+import { CHANNEL_ROUTE, TRENDING_ROUTE } from '@data/consts';
 import { placeholderVideo } from '@data/state';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
@@ -30,10 +31,17 @@ const Catalog: FC<CatalogProps> = ({
     lgCt: 3,
     mdCt: 2,
   });
+  let title = 'Recommended';
+  if (pathname.startsWith(`/${CHANNEL_ROUTE}`)) {
+    title = 'My videos';
+  }
+  if (pathname.startsWith(`/${TRENDING_ROUTE}`)) {
+    title = 'Trending';
+  }
   return (
     <div className={cn(styles.catalog)}>
       <div className={styles.upperElements}>
-        <SectionHeader title={pathname !== '/' ? 'My videos' : 'Recommended'} />
+        <SectionHeader title={title} />
       </div>
       <ul className={cn(styles.itemsUl, itemsUlClassName)}>
         {videos.map((video) => (

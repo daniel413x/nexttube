@@ -6,11 +6,11 @@
   }
 
   .rightCol {
-    width: 390px;
+    width: max-content;
   }
 
   h1 {
-    @apply font-medium text-lg my-5 text-white;
+    @apply font-medium text-lg my-5 text-gray-300;
   }
 
   .article {
@@ -18,7 +18,7 @@
   }
 
   .buttonsWrapper {
-    @apply flex justify-between items-center mb-9;
+    @apply flex justify-between gap-2 items-center mb-9;
 
     button {
       @apply p-2.5;
@@ -29,7 +29,7 @@
 
       &.subscribeButton {
         @apply bg-gray-800;
-        width: 54%;
+        width: 190px;
 
         svg {
           transform: scale(0.85);
@@ -37,7 +37,7 @@
       }
 
       &.likeButton {
-        width: 40%;
+        width: 106px;
         background-color: #353340;
         
         .checkIcon {

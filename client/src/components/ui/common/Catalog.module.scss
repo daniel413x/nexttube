@@ -12,7 +12,7 @@
   @apply flex flex-wrap gap-5;
 
   li {
-    @apply flex-50 lg:flex-33 xl:flex-25 mb-2.5;
+    @apply flex-100 md:flex-50 lg:flex-33 xl:flex-25 mb-2.5;
   }
 
   .spacer {

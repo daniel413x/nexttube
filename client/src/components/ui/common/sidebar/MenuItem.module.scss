@@ -3,6 +3,7 @@
 
   &.active {
     @apply text-white;
+    
     .iconSpan {
       @apply bg-primary;
     }
@@ -13,18 +14,17 @@
   }
 
   span {
-    @apply mr-4 p-2 rounded-xl;
+    @apply p-2 rounded-xl sidebar-lg:mr-4;
 
     &.image {
-      @apply overflow-hidden p-0 shadow flex items-center justify-center;
-      margin-right: 1rem;
+      @apply overflow-hidden p-0 shadow flex items-center justify-center sidebar-lg:mr-4;
       background: none;
       border: 1px solid #363440;
     }
   }
   
   .title {
-    @apply font-bold;
+    @apply font-bold hidden sidebar-lg:flex;
   }
 
   span.number {

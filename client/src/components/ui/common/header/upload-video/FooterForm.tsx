@@ -28,7 +28,9 @@ const FooterForm: FC<FooterFormProps> = ({
     >
       <IconSpan className={styles.uploadIcon} Icon={IoMdCloudUpload} />
       <IconSpan className={styles.checkmarkIcon} Icon={IoMdCheckmarkCircle} />
-      <span>{isUploaded ? 'Video chosen' : `Uploading ${percent}%...`}</span>
+      <span className={styles.text}>
+        {isUploaded ? 'Video chosen' : `Uploading ${percent}%...`}
+      </span>
     </div>
     <Button
       className={styles.submitButton}

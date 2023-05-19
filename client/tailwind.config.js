@@ -7,6 +7,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+        'sidebar-lg': '1024px',
+      },
       backgroundColor: {
         'brand': '#202029',
         'black-25': 'rgba(0, 0, 0, 0.25)',
@@ -21,6 +29,7 @@ module.exports = {
         'success-green': '#4E712D',
         'warning': '#eaa84c',
         gray: {
+          300: '#B3a9BE',
           400: '#9898ad',
           500: '#6B6B7B',
           600: '#5B5B6B',
@@ -80,7 +89,7 @@ module.exports = {
         fade: 'fade 0.5s ease-in-out',
         scaleIn: 'scaleIn 0.35s ease-in-out',
       }
-    }
+    },
   },
   plugins: [
     plugin(({ addComponents }) => {

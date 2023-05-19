@@ -4,6 +4,10 @@
   .status {
     @apply flex gap-2 items-center text-xl;
 
+    .text {
+      @apply text-xs;
+    }
+
     .checkmarkIcon {
       @apply text-xl text-gray-800;
     }

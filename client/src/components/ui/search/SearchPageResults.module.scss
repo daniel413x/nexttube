@@ -4,18 +4,15 @@
   .resultsWrapper {
     @apply relative flex flex-col gap-5 w-full m-auto h-full;
     transition: height 0.3s ease-out;
-
     max-width: 1000px;
 
     .message {
       @apply absolute left-1/2 -translate-x-1/2 text-gray-600 font-bold pt-0 opacity-0 text-center;
       transition: all 0.3s ease-out;
-
       padding-top: 6rem;
 
       &.show {
         @apply opacity-100;
-
         padding-top: 12rem;
       }
     }

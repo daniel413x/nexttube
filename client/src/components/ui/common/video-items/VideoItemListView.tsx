@@ -31,7 +31,6 @@ const VideoItem: FC<VideoItemProps> = ({ video }) => {
             alt={name}
             width={640}
             height={360}
-            layout="responsive"
             priority
           />
         )}

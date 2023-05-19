@@ -9,7 +9,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
+import { RxDividerHorizontal } from 'react-icons/rx';
 import useActions from '@hooks/useActions';
+import useBreakpoints from '@hooks/useBreakpoints';
 import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
 import useUser from '@hooks/useUser';
 import defaultAvatar from '@public/images/default-avatar.png';
@@ -18,7 +20,8 @@ import styles from './ProfileMenu.module.scss';
 
 const ProfileMenu: FC = () => {
   const [show, setShow] = useState<boolean>(false);
-  const user = useUser();
+  const { md } = useBreakpoints();
+  const user = useUser()!;
   const { logout } = useActions();
   const {
     show: showPopup,
@@ -45,28 +48,40 @@ const ProfileMenu: FC = () => {
           height={40}
           priority
         />
-        <span className={styles.name}>{user?.username || 'User'}</span>
-        <IconSpan Icon={showPopup ? HiChevronUp : HiChevronDown} />
+        {md && (
+          <>
+            <span className={styles.name}>{user.username || 'User'}</span>
+            <IconSpan Icon={showPopup ? HiChevronUp : HiChevronDown} />
+          </>
+        )}
       </button>
       {showPopup && (
-        <ul className={styles.itemsUl}>
-          <li key="my-channel">
-            <Link href={`/${CHANNEL_ROUTE}/${user![CHANNEL_ACCESSOR]}`}>
-              My channel
-            </Link>
-          </li>
-          <li key="studio">
-            <Link href={`/${STUDIO_ROUTE}`}>Studio</Link>
-          </li>
-          <li key="user">
-            <Link href={`/${USER_ROUTE}`}>Account</Link>
-          </li>
-          <li key="logout">
-            <button type="button" onClick={logout}>
-              Logout
-            </button>
-          </li>
-        </ul>
+        <div className={styles.itemsWrapper}>
+          {!md && (
+            <>
+              <span className={styles.name}>{user.username || 'User'}</span>
+              <IconSpan Icon={RxDividerHorizontal} />
+            </>
+          )}
+          <ul className={styles.itemsUl}>
+            <li key="my-channel">
+              <Link href={`/${CHANNEL_ROUTE}/${user![CHANNEL_ACCESSOR]}`}>
+                My channel
+              </Link>
+            </li>
+            <li key="studio">
+              <Link href={`/${STUDIO_ROUTE}`}>Studio</Link>
+            </li>
+            <li key="user">
+              <Link href={`/${USER_ROUTE}`}>Account</Link>
+            </li>
+            <li key="logout">
+              <button type="button" onClick={logout}>
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
       )}
     </div>
   );

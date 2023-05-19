@@ -1,15 +1,11 @@
 
 .videoItemListView {
-  @apply relative flex gap-3 opacity-0;
+  @apply relative flex gap-3;
   max-width: 1000px;
   transition: opacity 0.25s linear;
 
   .aOverlay {
     @apply absolute top-0 left-0 w-full h-full z-10;
-  }
-
-  &.show {
-    @apply opacity-100;
   }
 
   .thumbnailWrapper {

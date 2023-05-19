@@ -6,17 +6,19 @@ import { BsSliders } from 'react-icons/bs';
 import { CiCircleRemove } from 'react-icons/ci';
 import SectionHeader from '@components/ui/common/SectionHeader';
 import { IVideo, VideoSearchQueryFilters } from '@types';
+import useBreakpoints from '@hooks/useBreakpoints';
 import useScrollDownLimit from '@hooks/useScrollDownLimit';
 import useSearch from '@hooks/useSearch';
 import useVideo from '@hooks/useVideo';
 import videoApi from '@store/api/video';
 import Button from '../common/Button';
 import IconSpan from '../common/IconSpan';
-import VideoItemListView from '../common/video-items/VideoItemListView';
 import FilterMenu from './FilterMenu';
+import Result from './Result';
 import styles from './SearchPageResults.module.scss';
 
 const SearchPageResults: FC = () => {
+  const { md } = useBreakpoints();
   const router = useRouter();
   const filters = { ...router.query };
   const showResetButton = Object.keys(filters).length > 1;
@@ -105,11 +107,7 @@ const SearchPageResults: FC = () => {
               : `"${noResultsTerm}" yielded no results`}
           </span>
           {results.length
-            ? results.map((video) => (
-                <li className={styles.result} key={video.name}>
-                  <VideoItemListView video={video} key={video.id} />
-                </li>
-              ))
+            ? results.map((video) => <Result video={video} md={md} />)
             : null}
         </ul>
         <Button

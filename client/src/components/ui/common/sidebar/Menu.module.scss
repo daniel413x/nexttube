@@ -1,20 +1,30 @@
 .menu {
-  @apply my-8;
+  @apply my-8 flex flex-col flex-wrap items-center sidebar-lg:block;
 
-  h3 {
-    @apply text-gray-600 mb-7;
+    .label {
+      @apply mb-7;
+
+      h3 {
+        @apply text-gray-600;
+      }
+
+      .mobileIcon {
+        @apply text-tiny;
+      }
+    }
+    
   }
 
-  .itemsUl {
-    @apply list-none;
-    width: max-content;
 
-    li {
-      @apply block mb-10;
+.itemsUl {
+  @apply list-none;
+  width: max-content;
 
-      &:last-child {
-        @apply mb-8;
-      }
+  li {
+    @apply block mb-10;
+
+    &:last-child {
+      @apply mb-8;
     }
   }
 }

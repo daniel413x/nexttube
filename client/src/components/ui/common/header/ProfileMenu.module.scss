@@ -1,6 +1,7 @@
 .profileMenu {
   @apply relative opacity-0 bottom-3;
 
+  flex-shrink: 0;
   transition: all 0.075s linear;
 
   &.show {
@@ -20,8 +21,15 @@
     }
   }
 
-  .itemsUl {
+  .itemsWrapper {
     @apply shadow-block animate-scaleIn p-4 absolute right-2 w-60 z-20 rounded-lg pb-6;
+  }
+
+  .name {
+    @apply text-primary font-bold;
+  }
+
+  .itemsUl {
     top: calc(100% + 1.4rem);
     background-color: #272532;
 

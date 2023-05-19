@@ -4,7 +4,7 @@
   @apply flex;
 
   .content {
-    @apply flex flex-col pl-6 pr-8;
+    @apply flex flex-col pl-3.5 pr-8 sm:pl-6;
     width: 100%;
     min-height: v.$page-height;
   }

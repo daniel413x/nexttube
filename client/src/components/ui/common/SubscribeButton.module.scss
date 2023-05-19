@@ -1,5 +1,5 @@
 .subscribeButton {
-  @apply bg-gray-400 bg-opacity-80 text-sm p-2.5;
+  @apply bg-gray-400 bg-opacity-80 text-sm font-semibold p-2.5;
 
   &.subscribed {
     @apply bg-primary;

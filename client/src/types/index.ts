@@ -7,6 +7,7 @@ import {
 } from '@reduxjs/toolkit/dist/query/fetchBaseQuery';
 import { UseQuery } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import { AppProps } from 'next/app';
+import { StaticImageData } from 'next/image';
 import { NextPage } from 'next/types';
 import { ReactNode } from 'react';
 import { IconType } from 'react-icons';
@@ -85,7 +86,7 @@ export interface IMenuItem {
   href: string;
   title: string;
   Icon?: IconType;
-  image?: string;
+  image?: string | StaticImageData;
 }
 
 export interface IVideoElement extends HTMLVideoElement {

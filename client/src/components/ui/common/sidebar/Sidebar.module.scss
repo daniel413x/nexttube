@@ -1,17 +1,17 @@
 
 
 .sidebar {
-  @apply relative flex flex-col justify-between py-10 px-7 sticky top-0;
+  @apply relative flex flex-col justify-between py-10 sticky top-0 sidebar-lg:px-7;
   max-width: 240px;
   height: 100vh;
   
   .logo {
-    @apply text-2xl font-semibold;
+    @apply flex w-14 text-2xl font-semibold sm:w-full;
     color: #fefefe;
   }
 
   .copy {
-    @apply text-gray-600 text-opacity-60 text-xs;
+    @apply hidden text-gray-600 text-opacity-60 text-xs sidebar-lg:block;
 
     a {
       @apply underline;
@@ -19,11 +19,15 @@
   }
 
   .lower {
-    @apply flex flex-col gap-5 sticky bottom-4;
+    @apply flex-col gap-5 sticky bottom-4;
     z-index: 3;
 
+    .socialMedia {
+      @apply flex flex-col sidebar-lg:flex-row;
+    }
+
     .links {
-      @apply flex gap-1;
+      @apply hidden gap-1 sidebar-lg:flex;
 
       a {
         @apply underline;

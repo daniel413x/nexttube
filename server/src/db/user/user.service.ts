@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash } from 'bcryptjs';
+import { INCOMPLETE } from 'src/consts';
 import { Repository } from 'typeorm';
 import { CommentEntity } from '../comment/comment.entity';
 import { VideoEntity } from '../video/video.entity';
@@ -43,14 +44,19 @@ export class UserService {
     const user = await this.userRepository
       .createQueryBuilder('user')
       .where(`user.${attribute} = :value`, { value })
-      .leftJoinAndSelect('user.videos', 'videos')
+      .leftJoinAndSelect(
+        'user.videos',
+        'videos',
+        'NOT (videos.flags @> ARRAY[:flag]::text[])',
+        { flag: 'incomplete' },
+      )
       .leftJoin('user.subscriptions', 'subscriptions')
       .leftJoin('subscriptions.toChannel', 'toChannel')
       .addSelect([
         'subscriptions.id',
         'toChannel.id',
-        'toChannel.username', // Select only the 'name' attribute
-        'toChannel.avatarPath', // Select the 'avatar' attribute
+        'toChannel.username',
+        'toChannel.avatarPath',
       ])
       .orderBy('user.createdAt', 'DESC')
       .getOne();

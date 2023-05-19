@@ -1,16 +1,20 @@
 import { sidebarAccountItems, sidebarIndexItems } from '@data/arrays';
-import { USER_ROUTE } from '@data/consts';
+import { CHANNEL_ROUTE, USER_ROUTE } from '@data/consts';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
+import { RiNotificationLine } from 'react-icons/ri';
+import useBreakpoints from '@hooks/useBreakpoints';
 import useUser from '@hooks/useUser';
+import defaultAvatar from '@public/images/default-avatar.png';
 import logo from '@public/logos/nexttube-logo-lg.png';
 import SocialMedia from '../SocialMedia';
 import Menu from './Menu';
 import styles from './Sidebar.module.scss';
 
 const Sidebar: FC = () => {
+  const { lg } = useBreakpoints();
   const isUserPage =
     useRouter().pathname.split('/').filter(Boolean)[0] === USER_ROUTE;
   const user = useUser();
@@ -19,17 +23,24 @@ const Sidebar: FC = () => {
     <aside className={styles.sidebar}>
       <div className={styles.upper}>
         <Link className={styles.logo} href="/">
-          <Image width={155} height={29} src={logo} alt="NextTube logo" />
+          <Image
+            width={155}
+            height={29}
+            src={logo}
+            alt="NextTube logo"
+            layout={lg ? '' : 'responsive'}
+          />
         </Link>
         {isUserPage && <Menu title="Account" items={sidebarAccountItems} />}
         <Menu title="Index" items={sidebarIndexItems} />
         {renderSubscriptions && (
           <Menu
+            mobileIcon={RiNotificationLine}
             title="My subscriptions"
             items={user!.subscriptions.map(({ toChannel }) => ({
-              image: toChannel.avatarPath,
+              image: toChannel.avatarPath || defaultAvatar,
               title: toChannel.username,
-              href: `${toChannel.username}`,
+              href: `/${CHANNEL_ROUTE}/${toChannel.username}`,
             }))}
           />
         )}

@@ -1,3 +1,4 @@
+import { CHANNEL_ROUTE } from '@data/consts';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,16 +11,20 @@ import styles from './MenuItem.module.scss';
 const MenuItem: FC<IMenuItem> = ({ href, title, Icon, image }) => {
   const user = useUser();
   const { asPath } = useRouter();
-  const isActive = asPath.startsWith(`${href}/`) || asPath === href;
-  const myChannel = href === '/c';
-  const dontRender = myChannel && !user?.id;
+  let isActive = asPath.startsWith(`${href}/`) || asPath === href;
+  const isChannel = href === `/${CHANNEL_ROUTE}`;
+  const isMyChannel = asPath === `/${href}/${user.username}`;
+  if (isChannel && !isMyChannel) {
+    isActive = false;
+  }
+  const dontRender = isChannel && !user?.id;
   if (dontRender) {
     return null;
   }
   return (
     <Link
       className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
-      href={myChannel ? `${href}/${user!.username}` : href}
+      href={isChannel ? `${href}/${user!.username}` : href}
     >
       {Icon && <IconSpan Icon={Icon} className={styles.iconSpan} />}
       {image && (

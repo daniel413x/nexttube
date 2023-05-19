@@ -21,7 +21,7 @@ interface VideoItemProps {
   placeholder?: boolean;
 }
 
-const VideoItem: FC<VideoItemProps> = ({
+const VideoItemSmall: FC<VideoItemProps> = ({
   isSmall,
   isUpdateLink,
   removeHandler,
@@ -104,11 +104,11 @@ const VideoItem: FC<VideoItemProps> = ({
   );
 };
 
-VideoItem.defaultProps = {
+VideoItemSmall.defaultProps = {
   removeHandler: undefined,
   isUpdateLink: false,
   placeholder: false,
   isSmall: undefined,
 };
 
-export default VideoItem;
+export default VideoItemSmall;

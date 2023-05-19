@@ -9,10 +9,35 @@
     @apply fixed inset-0 flex items-center justify-center p-4;
 
     > div {
-      @apply flex min-h-full items-center justify-center;
+      @apply flex min-h-full items-center justify-center w-full;
+
+      @media (min-width: theme('screens.lg')) {
+        height: 610px;
+        width: max-content;
+      }
 
       .window {
-        @apply flex flex-col mx-auto shadow-block p-6 relative bg-gray-900 rounded-2xl text-white;
+        @apply flex flex-col mx-auto shadow-block p-6 relative bg-gray-900 rounded-2xl text-white w-full;
+        height: 600px;
+        overflow-y: hidden;
+
+        @media (max-width: theme('screens.lg')) {
+          overflow-y: scroll;
+
+          &::-webkit-scrollbar {
+            width: 6px;
+            height: 8px;
+            background-color: black;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            @apply bg-gray-600;
+          }
+        }
+
+        @media (min-width: theme('screens.lg')) {
+          width: max-content;
+        }
 
         .closeButton {
           @apply py-1 text-lg self-end cursor-pointer;
