@@ -1,16 +1,16 @@
 .videoDetail {
-  @apply flex space-x-6 justify-between pb-10;
+  @apply flex flex-col space-y-6 justify-between pb-10 md:space-x-6 md:space-y-0 md:flex-row;
 
   .leftCol {
     @apply basis-2/3;
   }
 
   .rightCol {
-    width: max-content;
+    @apply flex flex-col sm:flex-row-reverse md:block justify-between w-full md:w-max;
   }
 
   h1 {
-    @apply font-medium text-lg my-5 text-gray-300;
+    @apply text-tiny font-medium md:text-base my-5 text-gray-300;
   }
 
   .article {
@@ -18,7 +18,7 @@
   }
 
   .buttonsWrapper {
-    @apply flex justify-between gap-2 items-center mb-9;
+    @apply flex flex-row md:flex-col items-start sm:justify-between md:justify-normal gap-2 mb-9 lg:flex-row lg:items-center;
 
     button {
       @apply p-2.5;

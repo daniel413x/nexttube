@@ -36,7 +36,7 @@ export default class VideoSeeder extends Seeder {
       video.likesCount = 0;
       video.duration = 5;
       video.flags = [PUBLIC];
-      video.videoPath = `/uploads/default/seeder-programming-${i + 1}.mp4`;
+      video.videoPath = `/uploads/default/seeder-programming.mp4`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-programming-${
         i + 1
       }.jpg`;
@@ -52,7 +52,7 @@ export default class VideoSeeder extends Seeder {
       video.likesCount = 0;
       video.duration = 5;
       video.flags = [PUBLIC];
-      video.videoPath = `/uploads/default/seeder-cat-${i + 1}.mp4`;
+      video.videoPath = `/uploads/default/seeder-cat.mp4`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-cat-${i + 1}.jpg`;
       video.id = uuid;
       video.name = `${catVideoTitles[i]} (Cat Video ${i + 1})`;
@@ -66,7 +66,7 @@ export default class VideoSeeder extends Seeder {
       video.likesCount = 0;
       video.duration = 10;
       video.flags = [PUBLIC];
-      video.videoPath = `/uploads/default/seeder-smartphone-${i + 1}.mp4`;
+      video.videoPath = `/uploads/default/seeder-smartphone.mp4`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-smartphone-${
         i + 1
       }.jpg`;
@@ -82,7 +82,7 @@ export default class VideoSeeder extends Seeder {
       video.likesCount = 0;
       video.duration = 10;
       video.flags = [PUBLIC];
-      video.videoPath = `/uploads/default/seeder-smartphone-${i + 1}.mp4`;
+      video.videoPath = `/uploads/default/seeder-smartphone.mp4`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-random-${i + 1}.jpg`;
       video.id = uuid;
       video.name = `${smartphoneVideoTitles[i]} (Random Video ${i + 1})`;

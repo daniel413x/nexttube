@@ -1,7 +1,23 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { IVideoElement } from '@types';
+import {
+  ChangeEvent,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { IVideoElement, VideoStatus } from '@types';
 
-const usePlayer = () => {
+interface UsePlayerReturn {
+  videoRef: RefObject<IVideoElement>;
+  toggleVideo: () => void;
+  fullScreen: () => void;
+  status: VideoStatus;
+  metadataLoaded: boolean;
+  handleProgressChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const usePlayer = (): UsePlayerReturn => {
   const videoRef = useRef<IVideoElement>(null);
   const [isShowButton, setIsShowButton] = useState<boolean>(true);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -50,10 +66,23 @@ const usePlayer = () => {
       video.webkitRequestFullscreen();
     }
   };
+  const handleProgressChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const value = Number(e.target.value);
+    const time = (video.duration / 100) * value;
+
+    setProgress(value);
+    video.currentTime = time;
+  };
   useEffect(() => {
     const video = videoRef.current;
     if (!video) {
       return;
+    }
+    if (currentTime === videoTime) {
+      setIsPlaying(false);
     }
     const updateProgress = () => {
       setCurrentTime(video.currentTime);
@@ -63,7 +92,7 @@ const usePlayer = () => {
     return () => {
       video.removeEventListener('timeupdate', updateProgress);
     };
-  }, [videoTime]);
+  }, [videoTime, currentTime]);
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
@@ -119,6 +148,7 @@ const usePlayer = () => {
       currentTime,
       videoTime,
     },
+    handleProgressChange,
     metadataLoaded,
   };
 };

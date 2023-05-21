@@ -30,7 +30,7 @@ const Menu: FC<MenuProps> = ({ items = [], title, mobileIcon }: MenuProps) => {
           </li>
         ))}
       </ul>
-      <Line />
+      {lg && <Line />}
     </nav>
   );
 };

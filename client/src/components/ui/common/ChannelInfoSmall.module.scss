@@ -3,6 +3,10 @@
 
   .rightCol {
     @apply ml-3;
+
+    .name {
+      @apply flex;
+    }
   }
 
   .subscribersCount {

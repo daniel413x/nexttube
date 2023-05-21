@@ -15,7 +15,22 @@
     align-items: initial;
 
     .rightCol {
-      width: 70%;
+      @apply relative ms-0 sm:ms-3;
+      width: 100%;
+
+      .subscribersCount {
+        @apply mt-1 pe-4 sm:mt-0;
+      }
+
+      .name {
+        @apply absolute left-12 -top-10 sm:static;
+
+        left: 4rem;
+      }
+
+      @media (min-width: theme('screens.sm')) {
+        width: 70%;
+      }
     }
   }
 }

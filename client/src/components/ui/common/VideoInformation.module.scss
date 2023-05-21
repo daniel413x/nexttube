@@ -4,8 +4,16 @@
   .thumbnailCol {
     .imgWrapper {
       @apply relative bg-brand overflow-hidden mt-2;
-      width: 344px;
+      width: 100%;
       height: 190px;
+
+      &.selected {
+        @apply bg-gray-900;
+      }
+
+      img {
+        @apply absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2;
+      }
     }
 
     .thumbnailInput {

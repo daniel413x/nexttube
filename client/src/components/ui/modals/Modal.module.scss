@@ -18,13 +18,13 @@
 
       .window {
         @apply flex flex-col mx-auto shadow-block p-6 relative bg-gray-900 rounded-2xl text-white w-full;
-        height: 600px;
         overflow-y: hidden;
-
-        @media (max-width: theme('screens.lg')) {
-          overflow-y: scroll;
+        height: max-content;
+        max-height: 80vh;
+        overflow-y: scroll;
 
           &::-webkit-scrollbar {
+            border-radius: 10px;
             width: 6px;
             height: 8px;
             background-color: black;
@@ -32,8 +32,8 @@
 
           &::-webkit-scrollbar-thumb {
             @apply bg-gray-600;
+            border-radius: 10px;
           }
-        }
 
         @media (min-width: theme('screens.lg')) {
           width: max-content;

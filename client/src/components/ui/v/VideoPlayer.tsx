@@ -1,11 +1,11 @@
 import cn from 'classnames';
 import { useRouter } from 'next/router';
-import { FC, useEffect } from 'react';
-import { BsFullscreen } from 'react-icons/bs';
-import { IoMdPause, IoMdPlay } from 'react-icons/io';
+import { FC, useEffect, useState } from 'react';
 import useActions from '@hooks/useActions';
+import useBreakpoints from '@hooks/useBreakpoints';
 import usePlayer from '@hooks/usePlayer';
 import useTrackDimensions from '@hooks/useTrackDimensions';
+import VideoControls from './VideoControls';
 import styles from './VideoPlayer.module.scss';
 
 interface VideoPlayerProps {
@@ -14,61 +14,67 @@ interface VideoPlayerProps {
 
 const VideoPlayer: FC<VideoPlayerProps> = ({ videoPath }) => {
   const router = useRouter();
+  const mobile = !useBreakpoints().sm;
   const { t } = router.query;
-  const { videoRef, toggleVideo, status, fullScreen, metadataLoaded } =
-    usePlayer();
+  const {
+    videoRef,
+    toggleVideo,
+    status,
+    fullScreen,
+    metadataLoaded,
+    handleProgressChange,
+  } = usePlayer();
+  const [showControls, setShowControls] = useState<boolean>(true);
   const { setVideoHeight } = useActions();
   const { height: videoHeight } = useTrackDimensions(videoRef);
+  const hideControlsTimeout = () =>
+    setTimeout(() => setShowControls(false), 300);
   useEffect(() => {
     if (metadataLoaded && videoHeight) {
       setVideoHeight(videoHeight);
     }
   }, [metadataLoaded, videoHeight, setVideoHeight]);
+  const handleOnClick = () => {
+    if (mobile) {
+      if (status.isPlaying) {
+        if (showControls) {
+          return setShowControls(false);
+        }
+        return setShowControls(true);
+      }
+    }
+    return toggleVideo();
+  };
+  useEffect(() => {
+    if (mobile && status.isPlaying && status.currentTime === 0) {
+      setShowControls(false);
+    }
+  }, [mobile, status.isPlaying, status.currentTime, fullScreen]);
   return (
-    <div className={styles.wrapper}>
+    <div
+      onMouseEnter={() => setShowControls(true)}
+      onMouseLeave={() => hideControlsTimeout()}
+      className={styles.wrapper}
+    >
       <video
         id="video"
         ref={videoRef}
-        className={styles.player}
+        className={cn(styles.player, {
+          [styles.mobile]: mobile,
+        })}
         src={`${videoPath}#${t ? `t=${t}` : ''}`}
         preload="metadata"
-        onClick={toggleVideo}
+        onClick={handleOnClick}
       >
         <track kind="captions" default />
       </video>
-      <div
-        className={cn(styles.controls, {
-          [styles.hide]: status.isPlaying,
-        })}
-      >
-        <button type="button" onClick={toggleVideo}>
-          {status.isPlaying ? <IoMdPause /> : <IoMdPlay />}
-        </button>
-        <div className={styles.progressBarWrapper}>
-          <div
-            className={styles.progressBar}
-            style={{
-              width: `${status.progress}%`,
-            }}
-          />
-        </div>
-        <div className={styles.timeControls}>
-          <p>
-            {`${Math.floor(status.currentTime / 60)}:${`0${Math.floor(
-              status.currentTime % 60
-            )}`.slice(-2)}`}
-          </p>
-          <p>/</p>
-          <p>
-            {`${Math.floor(status.videoTime / 60)}:${`0${Math.floor(
-              status.videoTime % 60
-            )}`.slice(-2)}`}
-          </p>
-        </div>
-        <button type="button" onClick={fullScreen}>
-          <BsFullscreen className="text-tiny" />
-        </button>
-      </div>
+      <VideoControls
+        status={status}
+        toggleVideo={toggleVideo}
+        fullScreen={fullScreen}
+        show={showControls}
+        handleProgressChange={handleProgressChange}
+      />
     </div>
   );
 };

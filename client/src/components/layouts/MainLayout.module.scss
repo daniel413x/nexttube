@@ -2,9 +2,9 @@
 
 .mainLayout {
   @apply flex;
-
+  
   .content {
-    @apply flex flex-col pl-3.5 pr-8 sm:pl-6;
+    @apply flex flex-col pl-3.5 pr-8 sm:pl-6 z-10;
     width: 100%;
     min-height: v.$page-height;
   }

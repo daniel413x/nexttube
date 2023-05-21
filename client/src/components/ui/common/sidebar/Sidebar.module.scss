@@ -1,12 +1,12 @@
 
 
 .sidebar {
-  @apply relative flex flex-col justify-between py-10 sticky top-0 sidebar-lg:px-7;
+  @apply relative w-14 flex flex-col justify-between pt-12 pb-10 sticky top-0 sidebar-lg:px-7 lg:w-full lg:pt-10;
   max-width: 240px;
   height: 100vh;
   
   .logo {
-    @apply flex w-14 text-2xl font-semibold sm:w-full;
+    @apply relative lg:static left-2 flex w-14 text-2xl font-semibold lg:w-full;
     color: #fefefe;
   }
 
@@ -19,7 +19,7 @@
   }
 
   .lower {
-    @apply flex-col gap-5 sticky bottom-4;
+    @apply flex-col gap-5 lg:sticky bottom-4;
     z-index: 3;
 
     .socialMedia {

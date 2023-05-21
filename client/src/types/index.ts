@@ -126,6 +126,14 @@ export interface AuthSlice extends IAuthData {
   loading: boolean;
 }
 
+export interface VideoStatus {
+  isPlaying: boolean;
+  progress: number;
+  isShowButton: boolean;
+  currentTime: number;
+  videoTime: number;
+}
+
 export type UserSlice = IUser;
 
 export type UtilSlice = {

@@ -1,6 +1,10 @@
 .commentForm {
-  @apply absolute bottom-0 w-full right-0 px-4;
+  @apply absolute bottom-0 w-full left-0 px-4 max-w-md 2xl:max-w-none;
   z-index: 2;
+
+  input {
+    @apply pe-12;
+  }
   
   .submitButton {
     @apply text-xl text-purple absolute right-4 -top-2;

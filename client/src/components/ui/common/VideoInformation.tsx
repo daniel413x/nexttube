@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import Image from 'next/image';
 import { FC, ReactElement } from 'react';
 import { BsFiletypeMp4 } from 'react-icons/bs';
@@ -30,7 +31,11 @@ const VideoInformation: FC<VideoInformationProps> = ({
     <div className={styles.videoInformation}>
       <div className={styles.thumbnailCol}>
         <span className={styles.label}>Thumbnail (16:9)</span>
-        <div className={styles.imgWrapper}>
+        <div
+          className={cn(styles.imgWrapper, {
+            [styles.selected]: thumbnailPath,
+          })}
+        >
           {!thumbnailPath ? (
             <span className={styles.statusMessage}>
               {!isUploaded ? 'Loading video...' : 'You must upload a thumbnail'}

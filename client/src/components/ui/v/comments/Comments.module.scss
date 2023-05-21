@@ -1,7 +1,7 @@
 @use '@styles/variables.scss' as v;
 
 .comments {
-  @apply relative rounded-xl p-5 relative bg-fg-item;
+  @apply relative rounded-xl p-5 relative bg-fg-item pb-20;
   flex-basis: 33.33%;
 
   h2 {
@@ -18,13 +18,13 @@
   }
   
   .commentsUl {
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
   }
 
   .commentsUl::-webkit-scrollbar {
+    @apply bg-black-25;
     width: 6px;
     height: 8px;
-    background-color: black;
   }
 
   .commentsUl::-webkit-scrollbar-thumb {
@@ -37,8 +37,15 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
     height: 175px;
+    width: 93%;
     background-image: linear-gradient(to top, v.$fg-item, rgba(0, 0, 0, 0));
+    opacity: 0.8;
+  }
+
+  &.scrolled {
+    &::after {
+      opacity: 0;
+    }
   }
 }

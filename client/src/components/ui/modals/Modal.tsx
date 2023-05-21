@@ -21,6 +21,7 @@ const Modal = forwardRef(
     passedInRef: any
   ) => {
     const defaultRef = useRef<HTMLDivElement>(null);
+    const ref = passedInRef || defaultRef;
     return (
       <Transition show={show} as={Fragment}>
         <Dialog onClose={close} className={styles.modal}>
@@ -47,7 +48,7 @@ const Modal = forwardRef(
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  ref={passedInRef || defaultRef}
+                  ref={ref}
                   className={cn(styles.window, className)}
                 >
                   {!noCloseButton && (
