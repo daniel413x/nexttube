@@ -39,6 +39,7 @@ const UserAvatar: FC<UserAvatarProps> = ({
         ref={ref}
         href={`/c/${user[CHANNEL_ACCESSOR]}`}
         title={username}
+        tabIndex={-1}
       />
       <Image
         className={styles.avatar}
