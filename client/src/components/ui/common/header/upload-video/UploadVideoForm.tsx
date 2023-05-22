@@ -104,15 +104,17 @@ const UploadVideoForm: FC<UploadVideoFormProps> = ({
         <Controller
           control={form.control}
           name="videoPath"
-          render={() => (
-            <UploadField
-              title="&#128071; Upload your video"
-              folder="videos"
-              onChange={media.handleUploadVideo}
-              setValue={status.setProgressPercent}
-              setIsChosen={status.setIsChosen}
-            />
-          )}
+          render={() =>
+            (
+              <UploadField
+                title="&#128071; Upload your video"
+                folder="videos"
+                onChange={media.handleUploadVideo}
+                setValue={status.setProgressPercent}
+                setIsChosen={status.setIsChosen}
+              />
+            ) as any
+          }
         />
       )}
     </form>

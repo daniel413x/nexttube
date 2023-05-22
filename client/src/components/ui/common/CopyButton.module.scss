@@ -1,6 +1,9 @@
 .copyButton {
-  all: unset;
   @apply relative flex gap-1;
+
+  &.focused {
+    @apply focus-style;
+  }
 
   .popup {
     @apply flex items-center gap-1.5 font-black;

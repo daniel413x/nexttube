@@ -104,6 +104,7 @@ module.exports = {
         '.focus-style': {
           boxShadow: '0 0 0 0.25rem theme(\'colors.focus\')',
           outline: 'none',
+          transition: 'box-shadow 0.2s ease-in-out',
         },
         '.a-overlay': {
           position: 'absolute',

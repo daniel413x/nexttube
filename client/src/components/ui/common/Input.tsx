@@ -19,7 +19,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const styles = cobbleStyles(defaultStyles, parentStyles);
     return (
       <div className={cn(styles.input, className)}>
-        {label && <span className={styles.label}>{label}</span>}
+        {label && (
+          <label htmlFor={props.id} className={styles.label}>
+            {label}
+          </label>
+        )}
         <input ref={passedInRef} type={type} {...props} />
         {error && <div className={styles.error}>{error.message}</div>}
       </div>

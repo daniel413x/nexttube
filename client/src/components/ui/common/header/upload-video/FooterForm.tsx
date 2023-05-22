@@ -34,7 +34,6 @@ const FooterForm: FC<FooterFormProps> = ({
     </div>
     <Button
       className={styles.submitButton}
-      type={!isSuccess ? 'submit' : 'button'}
       onClick={() => {
         if (isSuccess) {
           reset();

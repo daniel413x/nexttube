@@ -2,6 +2,7 @@ import cn from 'classnames';
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { Children } from '@types';
+import useFocused from '@hooks/useFocused';
 import Button from './Button';
 import styles from './CopyButton.module.scss';
 import IconSpan from './IconSpan';
@@ -21,6 +22,7 @@ const CopyButton = ({
   children,
 }: CopyButtonProps) => {
   const [clicked, setClicked] = useState<boolean>(false);
+  const { ref, focused } = useFocused();
   const copy = () => {
     setClicked(true);
     setTimeout(() => setClicked(false), 0);
@@ -28,8 +30,10 @@ const CopyButton = ({
   };
   return (
     <Button
+      ref={ref}
       className={cn(styles.copyButton, className, {
         [styles.clicked]: clicked,
+        [styles.focused]: focused,
       })}
       color="blank"
       onClick={() => copy()}

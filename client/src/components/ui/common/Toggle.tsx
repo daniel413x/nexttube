@@ -1,7 +1,6 @@
 import { Switch } from '@headlessui/react';
 import cn from 'classnames';
 import { FC } from 'react';
-import Button from './Button';
 import styles from './Toggle.module.scss';
 
 interface ToggleProps {
@@ -11,7 +10,7 @@ interface ToggleProps {
 }
 
 const Toggle: FC<ToggleProps> = ({ isEnabled, clickHandler, label }) => (
-  <div className={styles.toggle}>
+  <Switch.Group as="div" className={styles.toggle}>
     <Switch
       checked={isEnabled}
       onChange={clickHandler}
@@ -27,10 +26,10 @@ const Toggle: FC<ToggleProps> = ({ isEnabled, clickHandler, label }) => (
         })}
       />
     </Switch>
-    <Button onClick={clickHandler} className={styles.label}>
+    <Switch.Label as="span" className={styles.label}>
       <span>{label}</span>
-    </Button>
-  </div>
+    </Switch.Label>
+  </Switch.Group>
 );
 
 export default Toggle;
