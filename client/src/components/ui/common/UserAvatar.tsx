@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { IUser, SCSSModule } from '@types';
+import useFocused from '@hooks/useFocused';
 import { cobbleStyles } from '@utils';
 import defaultAvatar from '@public/images/default-avatar.png';
 import IconSpan from './IconSpan';
@@ -25,23 +26,29 @@ const UserAvatar: FC<UserAvatarProps> = ({
 }) => {
   const styles = cobbleStyles(defaultStyles, parentStyles);
   const { username, avatarPath } = user;
+  const { ref, focused } = useFocused();
   return (
-    <Link href={`/c/${user[CHANNEL_ACCESSOR]}`} title={username}>
-      <div
-        className={cn(styles.userAvatar, className, {
-          [styles.white]: isWhite,
-        })}
-      >
-        <Image
-          className={styles.avatar}
-          width={45}
-          height={45}
-          alt={username}
-          src={avatarPath || defaultAvatar}
-        />
-        <IconSpan Icon={FaCheckCircle} className={styles.verifiedIcon} />
-      </div>
-    </Link>
+    <div
+      className={cn(styles.userAvatar, className, {
+        [styles.white]: isWhite,
+        [styles.focused]: focused,
+      })}
+    >
+      <Link
+        className={styles.aOverlay}
+        ref={ref}
+        href={`/c/${user[CHANNEL_ACCESSOR]}`}
+        title={username}
+      />
+      <Image
+        className={styles.avatar}
+        width={45}
+        height={45}
+        alt={username}
+        src={avatarPath || defaultAvatar}
+      />
+      <IconSpan Icon={FaCheckCircle} className={styles.verifiedIcon} />
+    </div>
   );
 };
 

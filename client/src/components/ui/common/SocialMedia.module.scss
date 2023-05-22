@@ -2,7 +2,7 @@
   @apply flex text-tiny;
 
   .icon {
-    @apply flex p-2.5 transition-colors w-max m-auto;
+    @apply flex p-2.5 transition-shadow w-max m-auto;
  
     &:hover {
       @apply bg-primary scale-110;

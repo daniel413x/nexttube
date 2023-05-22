@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 import { IVideo } from '@types';
+import useFocused from '@hooks/useFocused';
 import UserAvatar from '../UserAvatar';
 import VideoDuration from './VideoDuration';
 import styles from './VideoItem.module.scss';
@@ -13,9 +14,20 @@ interface VideoItemLargeProps {
 }
 
 const VideoItemLarge: FC<VideoItemLargeProps> = ({ video }) => {
+  const { ref, focused } = useFocused();
   const { name, thumbnailPath, duration, id, viewsCount, createdAt } = video;
   return (
-    <div className={cn(styles.videoItem, styles.large)}>
+    <div
+      className={cn(styles.videoItem, styles.large, {
+        [styles.focused]: focused,
+      })}
+    >
+      <Link
+        className={styles.aOverlay}
+        ref={ref}
+        title={name}
+        href={`/v/${id}`}
+      />
       <div className={styles.thumbnail}>
         {thumbnailPath && (
           <Image
@@ -28,9 +40,7 @@ const VideoItemLarge: FC<VideoItemLargeProps> = ({ video }) => {
         )}
         <VideoDuration isBottom duration={duration} />
         <div className={styles.information}>
-          <Link href={`/v/${id}`} className={styles.name}>
-            {name}
-          </Link>
+          <span className={styles.name}>{name}</span>
           {video.user && <UserAvatar user={video.user} isWhite />}
           <div className={styles.author}>
             {video.user?.username}

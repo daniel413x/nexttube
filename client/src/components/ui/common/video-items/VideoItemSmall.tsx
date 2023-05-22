@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { IVideo } from '@types';
+import useFocused from '@hooks/useFocused';
 import placeholderThumbnail from '@public/images/placeholder-thumbnail.png';
 import IconSpan from '../IconSpan';
 import UserAvatar from '../UserAvatar';
@@ -30,13 +31,22 @@ const VideoItemSmall: FC<VideoItemProps> = ({
 }) => {
   const { push } = useRouter();
   const { id, thumbnailPath, name, duration, viewsCount, createdAt } = video;
+  const { ref, focused } = useFocused();
   return (
     <div
       className={cn(styles.videoItem, {
         [styles.small]: isSmall,
         [styles.placeholder]: placeholder,
+        [styles.focused]: focused,
       })}
     >
+      <Link
+        className={styles.aOverlay}
+        tabIndex={placeholder ? -1 : undefined}
+        ref={ref}
+        title={name}
+        href={`/v/${id}`}
+      />
       <div>
         {!!removeHandler && (
           <button
@@ -58,16 +68,14 @@ const VideoItemSmall: FC<VideoItemProps> = ({
         )}
         <div className={styles.thumbnailWrapper}>
           {thumbnailPath && (
-            <Link title={name} href={`/v/${id}`}>
-              <Image
-                src={thumbnailPath}
-                alt={name}
-                width={640}
-                height={360}
-                layout="responsive"
-                priority
-              />
-            </Link>
+            <Image
+              src={thumbnailPath}
+              alt={name}
+              width={640}
+              height={360}
+              layout="responsive"
+              priority
+            />
           )}
           {placeholder && (
             <Image
@@ -84,21 +92,19 @@ const VideoItemSmall: FC<VideoItemProps> = ({
         {!placeholder && video?.user && (
           <UserAvatar className={styles.userAvatar} user={video?.user} />
         )}
-        <Link title={name} href={`/v/${id}`}>
-          <div className={styles.information}>
-            {!isSmall && (
-              <div className={styles.author}>
-                {!placeholder && video.user?.username}
-              </div>
-            )}
-            <div className={styles.name}>{name}</div>
-            <VideoStatistics
-              viewsCount={viewsCount}
-              createdAt={!isSmall ? createdAt : undefined}
-              placeholder={placeholder}
-            />
-          </div>
-        </Link>
+        <div className={styles.information}>
+          {!isSmall && (
+            <div className={styles.author}>
+              {!placeholder && video.user?.username}
+            </div>
+          )}
+          <div className={styles.name}>{name}</div>
+          <VideoStatistics
+            viewsCount={viewsCount}
+            createdAt={!isSmall ? createdAt : undefined}
+            placeholder={placeholder}
+          />
+        </div>
       </div>
     </div>
   );

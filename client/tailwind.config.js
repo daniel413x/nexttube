@@ -25,6 +25,7 @@ module.exports = {
       colors: {
         primary: '#FF7652',
         purple: '#6C5ECF',
+        focus: '#fff',
         'light-blue': '#32A8E2',
         'success-green': '#4E712D',
         'warning': '#eaa84c',
@@ -99,7 +100,20 @@ module.exports = {
           boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
           animation: 'scaleIn 0.35s ease-in-out',
           backgroundColor: '#272532'
-        }
+        },
+        '.focus-style': {
+          boxShadow: '0 0 0 0.25rem theme(\'colors.focus\')',
+          outline: 'none',
+        },
+        '.a-overlay': {
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+          zIndex: '10',
+          boxShadow: 'none',
+        },
       })
     })
   ]

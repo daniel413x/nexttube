@@ -90,7 +90,7 @@ const Searchbar: FC = () => {
             {results?.length ? (
               results.map((video) => (
                 <li className={styles.result} key={video.name}>
-                  <Button onClick={handleResultClick} overlay>
+                  <Button onClick={handleResultClick} overlay tabIndex={-1}>
                     <VideoItemSmall isSmall video={video} key={video.id} />
                   </Button>
                 </li>

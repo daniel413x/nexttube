@@ -1,8 +1,16 @@
 .userAvatar {
-  @apply rounded-full flex items-center justify-center relative;
+  @apply rounded-full flex items-center justify-center relative z-10;
   border: 2px solid rgba(255, 255, 255, 0.4);
   width: 57px;
   height: 57px;
+
+  .aOverlay {
+    @apply a-overlay;
+  }
+
+  &.focused {
+    @apply focus-style;
+  }
 
   .avatar {
     @apply rounded-full;
