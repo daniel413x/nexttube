@@ -11,7 +11,9 @@ export class LikeEntity extends Base {
   @Column({ name: 'to_video_id' })
   videoId: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.likes)
+  @ManyToOne(() => UserEntity, (user) => user.likes, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'from_user_id' })
   user: UserEntity;
 

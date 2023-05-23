@@ -111,26 +111,6 @@ export class UserService {
   }
 
   async delete(id: string) {
-    await this.subscriptionRepository
-      .createQueryBuilder()
-      .delete()
-      .from(SubscriptionEntity)
-      .where('fromUserId = :id', { id })
-      .orWhere('toChannelId = :id', { id })
-      .execute();
-    await this.commentRepository.delete({ userId: id });
-    await this.likeRepository.delete({ userId: id });
-    const videos = await this.videoRepository.find({ where: { userId: id } });
-    if (videos.length) {
-      await Promise.all(
-        videos.map(async ({ id: videoId }) => {
-          await this.commentRepository.delete({ videoId });
-          await this.likeRepository.delete({ videoId });
-          await this.viewRepository.delete({ videoId });
-          await this.videoRepository.delete({ id: videoId });
-        }),
-      );
-    }
     return this.userRepository.delete({ id });
   }
 }

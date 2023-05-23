@@ -43,7 +43,9 @@ export class VideoEntity extends Base {
   @Column({ name: 'user_id' })
   userId: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.videos)
+  @ManyToOne(() => UserEntity, (user) => user.videos, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'user_id' })
   user: UserEntity;
 
