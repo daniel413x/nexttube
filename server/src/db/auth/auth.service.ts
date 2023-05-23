@@ -31,7 +31,11 @@ export class AuthService {
   }
 
   async register(dto: RegisterDto) {
-    const { password, username } = dto;
+    const { email, password, username } = dto;
+    const emailExists = await this.userRepository.findOneBy({
+      email,
+    });
+    if (emailExists) throw new BadRequestException('Email already exists');
     const usernameExists = await this.userRepository.findOneBy({
       username,
     });
@@ -39,6 +43,7 @@ export class AuthService {
       throw new BadRequestException('Username already exists');
     const salt = await genSalt(10);
     const newUser = await this.userRepository.create({
+      email,
       username,
       password: await hash(password, salt),
     });

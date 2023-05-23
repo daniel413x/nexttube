@@ -10,9 +10,9 @@ export const noLoading = createAction('noLoading');
 
 export const register = createAsyncThunk<IAuthData, IAuthFields>(
   `${AUTH}/${REGISTER}`,
-  async ({ username, password }, thunkAPI) => {
+  async ({ username, password, email }, thunkAPI) => {
     try {
-      const res = await AuthService.registration(username, password);
+      const res = await AuthService.registration(email, username, password);
       toastSuccess('Your account was registered');
       return res;
     } catch (e) {

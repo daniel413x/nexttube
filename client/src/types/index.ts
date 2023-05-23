@@ -100,6 +100,7 @@ export interface IAuthData {
 }
 
 export interface IAuthFields {
+  email: string;
   username: string;
   password: string;
 }

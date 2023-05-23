@@ -11,7 +11,7 @@
   }
 
   &.placeholder {
-    @apply pointer-events-none;
+    @apply pointer-events-none opacity-70;
   }
 
   &.small {

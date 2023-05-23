@@ -1,4 +1,4 @@
-import { VALID_PASSWORD, VALID_USERNAME } from '@data/consts';
+import { VALID_EMAIL, VALID_PASSWORD, VALID_USERNAME } from '@data/consts';
 import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -52,6 +52,19 @@ const AuthForm: FC = () => {
       </button>
       {show && (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          {!forLogin && (
+            <Input
+              {...registerProps('email', {
+                required: 'Email required',
+                pattern: {
+                  value: VALID_EMAIL,
+                  message: 'Invalid email format',
+                },
+              })}
+              placeholder="Email address"
+              error={errors.email}
+            />
+          )}
           <Input
             {...registerProps('username', {
               required: 'Username required',
