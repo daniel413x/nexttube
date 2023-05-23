@@ -40,7 +40,7 @@ const App = ({ Component, pageProps }: AppAuthed) => (
           progressBar
           closeOnToastrClick
           position="bottom-right"
-          timeOut={3500}
+          timeOut={4000}
           transitionIn="fadeIn"
           transitionOut="fadeOut"
         />

@@ -26,7 +26,7 @@ const UsernameUpdateForm: FC = () => {
     updateUser({ ...createUserDto(user), ...data })
       .unwrap()
       .then(() => {
-        toastSuccess('Information updated!', 'Success');
+        toastSuccess('Information updated');
       });
   };
   useEffect(() => {

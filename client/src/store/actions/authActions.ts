@@ -13,7 +13,7 @@ export const register = createAsyncThunk<IAuthData, IAuthFields>(
   async ({ username, password }, thunkAPI) => {
     try {
       const res = await AuthService.registration(username, password);
-      toastSuccess('Success', 'Registration');
+      toastSuccess('Your account was registered');
       return res;
     } catch (e) {
       toastError(e);
@@ -27,7 +27,7 @@ export const login = createAsyncThunk<IAuthData, IAuthFields>(
   async ({ username, password }, thunkAPI) => {
     try {
       const res = await AuthService.login(username, password);
-      toastSuccess('Success', 'Login');
+      toastSuccess('You are logged in');
       return res;
     } catch (e) {
       toastError(e);
@@ -43,6 +43,7 @@ export const logout = createAsyncThunk(
   async (_, thunkAPI) => {
     thunkAPI.dispatch(removeToken());
     thunkAPI.dispatch(setUser(initialUser));
+    toastSuccess('You are logged out');
     return {};
   }
 );

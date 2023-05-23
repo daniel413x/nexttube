@@ -45,7 +45,7 @@ const VideoEdit: FC = () => {
     updateVideo({ ...submitData, id: videoId })
       .unwrap()
       .then(() => {
-        toastSuccess('Video updated!', 'Success');
+        toastSuccess('Video updated');
       });
   };
   return (

@@ -68,23 +68,44 @@ ul {
 
 .redux-toastr {
   .toastr {
-    @apply shadow;
+    @apply shadow scale-90 min-h-0;
     background-color: #272532;
+
+    .rrt-middle-container {
+      @apply ms-4 w-full;
+
+      .rrt-title {
+        @apply mb-0;
+      }
+    }
     
-    &.rrt-success {
-      background-color: #56db8b;
+    .rrt-left-container {
+      @apply hidden;
+    }
+    
+    @each $class in success, warning, info {
+      &.rrt-#{$class} {
+        background-color: theme('colors.gray.600');
+        
+        .rrt-progressbar {
+          @apply bg-white;
+        }
+      }
     }
     
     &.rrt-warning {
-      background-color: #eaa84c;
-    }
-    
-    &.rrt-info {
-      background-color: #4b85e7;
+      $warning: #524f36;
+
+      color: $warning;
+      background-color: #D8CE8B;
+      
+      .rrt-progressbar {
+        background-color: $warning;
+      }
     }
     
     &.rrt-error {
-      background-color: #e94d4d;
+      background-color: #fa5e5e;
     }
   }
 }

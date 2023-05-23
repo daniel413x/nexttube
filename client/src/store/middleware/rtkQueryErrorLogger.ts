@@ -8,10 +8,10 @@ const rtkQueryErrorLogger: Middleware<{}, RootStateType> =
     if (isRejectedWithValue(action)) {
       if ((action.payload as any).data?.message === 'Invalid token') {
         api.dispatch(logout() as any);
-        toastWarn('Token expired', 'Re-log in', 7000);
+        toastWarn('Re-log in', 'Token expired', 6000);
         return next(action);
       }
-      toastError(action.error, 'RTK error');
+      toastError(action.error);
     }
     return next(action);
   };

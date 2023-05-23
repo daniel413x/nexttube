@@ -12,7 +12,6 @@ export class LoggerMiddleware implements NestMiddleware {
         `${method} ${originalUrl} - ${res.statusCode} - ${duration}ms`,
       );
     });
-
     next();
   }
 }

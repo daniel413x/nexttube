@@ -19,7 +19,7 @@ const DeleteVideoModal: FC<DeleteVideoModalProps> = ({
   useEffect(() => {
     if (isSuccess) {
       close();
-      toastSuccess('Success', 'Video deleted');
+      toastSuccess('Video deleted');
     }
   }, [isSuccess, close]);
   const bool = !!show;

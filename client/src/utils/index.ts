@@ -23,7 +23,7 @@ export const toastSuccess = (
 
 export const toastWarn = (
   message: any,
-  title = 'Error request',
+  title = 'Warning',
   timeout?: number
 ) => {
   toastr.warning(
@@ -35,13 +35,9 @@ export const toastWarn = (
   );
 };
 
-export const toastError = (
-  error: any,
-  title = 'Error request',
-  timeout?: number
-) => {
+export const toastError = (error: any, title = 'Error', timeout?: number) => {
   toastr.error(title, typeof error === 'string' ? error : errorCatch(error), {
-    timeOut: timeout,
+    timeOut: timeout || 5000,
   });
 };
 
@@ -71,7 +67,7 @@ export const formatNumber = (number: number): string | number => {
   return number;
 };
 
-// to easily write css rules for a child component from a parent component's scss module file
+// for writing css rules for a child component from a parent component's scss module file. caveat: selector chain must exist in child component scss file, e.g.: ChannelInfoSmall.module.scss .channelInfoSmall { ... .name { ... } ... } then this becomes possible: CommentItem.module.scss .commentItem { .channelInfoSmall { ... .name { ... } ... } }
 export const cobbleStyles = (
   defaultStyles: Record<string, string>,
   parentStyles: Record<string, string> | undefined
