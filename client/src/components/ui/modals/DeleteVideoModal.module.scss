@@ -1,0 +1,11 @@
+.deleteVideoModal {
+  @apply flex flex-col items-center text-tiny;
+
+  .prompt {
+    @apply block p-8 text-center;
+  }
+
+  .confirmButton {
+    @apply bg-purple text-tiny w-max;
+  }
+}

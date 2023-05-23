@@ -18,7 +18,9 @@ export class CommentEntity extends Base {
   @JoinColumn({ name: 'user_id' })
   user: UserEntity;
 
-  @ManyToOne(() => VideoEntity, (video) => video.comments)
+  @ManyToOne(() => VideoEntity, (video) => video.comments, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'video_id' })
   video: VideoEntity;
 }

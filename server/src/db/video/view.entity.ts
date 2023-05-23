@@ -10,6 +10,8 @@ export class ViewEntity extends Base {
   @Column()
   videoId: string;
 
-  @ManyToOne(() => VideoEntity, (video) => video.views)
+  @ManyToOne(() => VideoEntity, (video) => video.views, {
+    onDelete: 'CASCADE',
+  })
   video: VideoEntity;
 }

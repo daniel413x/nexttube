@@ -5,7 +5,6 @@ import IconSpan from '@components/ui/common/IconSpan';
 import UploadModal from '@components/ui/modals/UploadModal';
 import videoApi from '@store/api/video';
 import iconsStyles from '../IconsRight.module.scss';
-import styles from './UploadVideoButton.module.scss';
 
 const UploadVideoButton: FC = () => {
   const [show, setShow] = useState<boolean>(false);
@@ -15,7 +14,7 @@ const UploadVideoButton: FC = () => {
     <>
       <UploadModal videoId={videoId} show={show} close={() => setShow(false)} />
       <button
-        className={cn(styles.uploadVideo, iconsStyles)}
+        className={cn(iconsStyles)}
         disabled={isLoading}
         type="button"
         title="Upload video"
