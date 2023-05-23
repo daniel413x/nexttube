@@ -1,18 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import useActiveElement from './useActiveElement';
 
-const useFocused = () => {
-  const ref = useRef(null);
+const useFocused = (checkInside = false) => {
+  const ref = useRef<any>(null);
   const [focused, setFocused] = useState<boolean>(false);
   const activeElement = useActiveElement();
   useEffect(() => {
-    if (activeElement === ref.current) {
-      setFocused(true);
-    }
-    if (focused && activeElement !== ref.current) {
-      setFocused(false);
-    }
-  }, [activeElement, focused]);
+    const isFocused = checkInside
+      ? ref.current?.contains(activeElement)
+      : activeElement === ref.current;
+    setFocused(!!isFocused);
+  }, [activeElement, checkInside]);
+
   return {
     ref,
     focused,
