@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { ChangeEvent, FC, useEffect } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { BsFullscreen } from 'react-icons/bs';
 import { IoMdPause, IoMdPlay } from 'react-icons/io';
 import { VideoStatus } from '@types';
@@ -22,9 +22,6 @@ const VideoControls: FC<VideoControlsProps> = ({
   show,
 }) => {
   const { ref, focused } = useFocused(true);
-  useEffect(() => {
-    console.log(focused);
-  }, [focused]);
   return (
     <div
       className={cn(styles.controls, {

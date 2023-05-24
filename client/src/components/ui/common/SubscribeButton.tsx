@@ -37,9 +37,9 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
   const handleSubscribe = async () => {
     await subscribe(idForSubscription).unwrap();
     if (isSubscribed) {
-      toastSuccess('You were unsubscribed');
+      toastSuccess('You were unsubscribed', { progressBar: false });
     } else {
-      toastSuccess('You are subscribed');
+      toastSuccess('You are subscribed', { progressBar: false });
     }
   };
   return (

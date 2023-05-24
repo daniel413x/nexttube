@@ -1,4 +1,4 @@
-import { toastr } from 'react-redux-toastr';
+import { BasicToastrOptions, toastr } from 'react-redux-toastr';
 import { ISerializedError, IUser } from '@types';
 
 export const errorCatch = (error: any): string => {
@@ -13,31 +13,28 @@ export const errorCatch = (error: any): string => {
 
 export const toastSuccess = (
   message: string,
-  title = 'Success',
-  timeout?: number
+  options?: BasicToastrOptions,
+  title = 'Success'
 ) => {
-  toastr.success(title, message, {
-    timeOut: timeout,
-  });
+  toastr.success(title, message, options);
 };
 
 export const toastWarn = (
-  message: any,
-  title = 'Warning',
-  timeout?: number
+  message: string,
+  options?: BasicToastrOptions,
+  title = 'Warning'
 ) => {
-  toastr.warning(
-    title,
-    typeof message === 'string' ? message : errorCatch(message),
-    {
-      timeOut: timeout,
-    }
-  );
+  toastr.warning(title, message, options);
 };
 
-export const toastError = (error: any, title = 'Error', timeout?: number) => {
+export const toastError = (
+  error: any,
+  options?: BasicToastrOptions,
+  title = 'Error'
+) => {
   toastr.error(title, typeof error === 'string' ? error : errorCatch(error), {
-    timeOut: timeout || 5000,
+    ...options,
+    timeOut: options?.timeOut || 6000,
   });
 };
 

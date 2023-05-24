@@ -20,7 +20,6 @@ import { VideoDto } from './video.dto';
 import { VideoEntity } from './video.entity';
 import { INCOMPLETE, PUBLIC } from 'src/consts';
 import { subDays, subHours, subMonths, subWeeks, subYears } from 'date-fns';
-import DataSource from 'src/config/datasource.config';
 
 @Injectable()
 export class VideoService {

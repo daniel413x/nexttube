@@ -6,7 +6,6 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash } from 'bcryptjs';
 import { dataSource } from 'src/config/datasource.config';
-import { INCOMPLETE } from 'src/consts';
 import { Repository } from 'typeorm';
 import { CommentEntity } from '../comment/comment.entity';
 import { VideoEntity } from '../video/video.entity';

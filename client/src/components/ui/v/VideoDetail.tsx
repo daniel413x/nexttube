@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import dayjs from 'dayjs';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { HiCalendar } from 'react-icons/hi';
 import { IoMdEye } from 'react-icons/io';
@@ -8,7 +8,7 @@ import { RiHeart2Fill } from 'react-icons/ri';
 import { IUser, IVideo } from '@types';
 import useUser from '@hooks/useUser';
 import videoApi from '@store/api/video';
-import { formatNumber } from '@utils';
+import { formatNumber, toastSuccess } from '@utils';
 import Button from '../common/Button';
 import ChannelInfoSmall from '../common/ChannelInfoSmall';
 import IconSpan from '../common/IconSpan';
@@ -22,7 +22,6 @@ interface VideoDetailProps {
 
 const VideoDetail: FC<VideoDetailProps> = ({ video, channel }) => {
   const user = useUser();
-  const [liked, setLiked] = useState<boolean>(false);
   const [updateLike, { isLoading: isLikeLoading }] =
     videoApi.useUpdateLikesMutation();
   const { data: hasLiked } = videoApi.useCheckUserLikeQuery(
@@ -31,11 +30,14 @@ const VideoDetail: FC<VideoDetailProps> = ({ video, channel }) => {
       skip: !user?.id || !video.id,
     }
   );
-  useEffect(() => {
-    if (hasLiked !== undefined) {
-      setLiked(hasLiked);
+  const handleLike = async () => {
+    await updateLike(video.id).unwrap();
+    if (hasLiked) {
+      toastSuccess('You unliked this video', { progressBar: false });
+    } else {
+      toastSuccess('You liked this video', { progressBar: false });
     }
-  }, [hasLiked]);
+  };
   const {
     name,
     description,
@@ -58,13 +60,15 @@ const VideoDetail: FC<VideoDetailProps> = ({ video, channel }) => {
           )}
           <Button
             className={cn(styles.likeButton, {
-              [styles.liked]: liked,
+              [styles.liked]: hasLiked,
             })}
             disabled={isLikeLoading}
-            onClick={() => updateLike(video.id)}
+            onClick={handleLike}
             type="button"
           >
-            {liked && <IconSpan Icon={FaCheck} className={styles.checkIcon} />}
+            {hasLiked && (
+              <IconSpan Icon={FaCheck} className={styles.checkIcon} />
+            )}
             <RiHeart2Fill />
           </Button>
         </div>
