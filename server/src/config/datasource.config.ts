@@ -11,4 +11,10 @@ export const dataSourceOptions = {
   seeders: [join(__dirname, '../db/**/*.seed.js')],
 };
 
+export const dataSource = async () => {
+  const dataSourceConn = new DataSource(dataSourceOptions);
+  await dataSourceConn.initialize();
+  return dataSourceConn;
+};
+
 export default new DataSource(dataSourceOptions);

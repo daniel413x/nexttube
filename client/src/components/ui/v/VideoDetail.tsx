@@ -75,7 +75,7 @@ const VideoDetail: FC<VideoDetailProps> = ({ video, channel }) => {
           </div>
           <div>
             <RiHeart2Fill />
-            <span>{formatNumber(likes)} likes</span>
+            <span>{formatNumber(likes) || 0} likes</span>
           </div>
           <div>
             <HiCalendar />

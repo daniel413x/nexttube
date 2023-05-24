@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash } from 'bcryptjs';
+import { dataSource } from 'src/config/datasource.config';
 import { INCOMPLETE } from 'src/consts';
 import { Repository } from 'typeorm';
 import { CommentEntity } from '../comment/comment.entity';
@@ -92,22 +93,25 @@ export class UserService {
   }
 
   async subscribe(id: string, channelId: string) {
-    const data = {
-      toChannel: {
-        id: channelId,
-      },
-      fromUser: {
-        id,
-      },
-    };
-    const isSubscribed = await this.subscriptionRepository.findOneBy(data);
-    if (!isSubscribed) {
-      const newSubscription = await this.subscriptionRepository.create(data);
-      await this.subscriptionRepository.save(newSubscription);
-      return true;
-    }
-    await this.subscriptionRepository.delete(data);
-    return false;
+    const manager = await dataSource();
+    return await manager.transaction(async (transaction) => {
+      const data = {
+        toChannel: {
+          id: channelId,
+        },
+        fromUser: {
+          id,
+        },
+      };
+      const isSubscribed = await this.subscriptionRepository.findOneBy(data);
+      if (!isSubscribed) {
+        const newSubscription = await this.subscriptionRepository.create(data);
+        await transaction.save(newSubscription);
+        return true;
+      }
+      await this.subscriptionRepository.delete(data);
+      return false;
+    });
   }
 
   async delete(id: string) {

@@ -13,12 +13,14 @@ import {
   Not,
   Repository,
 } from 'typeorm';
+import { dataSource } from 'src/config/datasource.config';
 import { LikeEntity } from '../user/like.entity';
 import { ViewEntity } from './view.entity';
 import { VideoDto } from './video.dto';
 import { VideoEntity } from './video.entity';
 import { INCOMPLETE, PUBLIC } from 'src/consts';
 import { subDays, subHours, subMonths, subWeeks, subYears } from 'date-fns';
+import DataSource from 'src/config/datasource.config';
 
 @Injectable()
 export class VideoService {
@@ -221,25 +223,32 @@ export class VideoService {
   }
 
   async updateLikes(videoId: string, userId: string) {
-    const video = await this.byId(videoId);
-    const like = await this.likeRepository.findOne({
-      where: {
-        userId,
-        videoId,
-      },
-    });
-    if (like) {
-      video.likesCount = video.likesCount - 1;
-      await this.likeRepository.delete({ id: like.id });
-    } else {
-      video.likesCount = video.likesCount + 1;
-      const like = this.likeRepository.create({
-        userId,
-        videoId,
+    const manager = await dataSource();
+    return await manager.transaction(async (transaction) => {
+      const video = await transaction.findOne(VideoEntity, {
+        where: {
+          id: videoId,
+        },
       });
-      await this.likeRepository.save(like);
-    }
-    return this.videoRepository.save(video);
+      const like = await transaction.findOne(LikeEntity, {
+        where: {
+          userId,
+          videoId,
+        },
+      });
+      if (like) {
+        video.likesCount = video.likesCount - 1;
+        await transaction.remove(LikeEntity, like);
+      } else {
+        video.likesCount = video.likesCount + 1;
+        const like = transaction.create(LikeEntity, {
+          userId,
+          videoId,
+        });
+        await transaction.save(LikeEntity, like);
+      }
+      return transaction.save(VideoEntity, video);
+    });
   }
 
   async checkLikes(videoId: string, userId: string) {

@@ -4,7 +4,7 @@ import { FaBell, FaCheck } from 'react-icons/fa';
 import { SCSSModule } from '@types';
 import useUser from '@hooks/useUser';
 import userApi from '@store/api/user';
-import { cobbleStyles } from '@utils';
+import { cobbleStyles, toastSuccess } from '@utils';
 import Button from './Button';
 import IconSpan from './IconSpan';
 import defaultStyles from './SubscribeButton.module.scss';
@@ -26,21 +26,29 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
 }) => {
   const styles = cobbleStyles(defaultStyles, parentStyles);
   const user = useUser();
-  const [subscribe, { isLoading, data }] =
-    userApi.useSubscribeToChannelMutation();
   if (user?.id === idForSubscription) {
     return null;
   }
+  const [subscribe, { isLoading, data }] =
+    userApi.useSubscribeToChannelMutation();
   const isSubscribed =
     user?.subscriptions.some((sub) => sub.toChannel.id === idForSubscription) ||
     !!data;
+  const handleSubscribe = async () => {
+    await subscribe(idForSubscription).unwrap();
+    if (isSubscribed) {
+      toastSuccess('You were unsubscribed');
+    } else {
+      toastSuccess('You are subscribed');
+    }
+  };
   return (
     <Button
       type="button"
       className={cn(className, styles.subscribeButton, {
         [subscribedClassName || styles.subscribed]: isSubscribed,
       })}
-      onClick={() => subscribe(idForSubscription).unwrap()}
+      onClick={handleSubscribe}
       disabled={isLoading}
     >
       <IconSpan
