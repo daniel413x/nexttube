@@ -1,0 +1,38 @@
+.loaderIcon {
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: 80px;
+  margin:auto;
+  transform: scale(0.5);
+
+  div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 10px;
+    background: #fff;
+    animation: ldsLoader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        left: 0px + (16px * ($i - 1));
+        animation-delay: -0.12s * (3 - $i);
+      }
+    }
+  }
+}
+
+@keyframes ldsLoader {
+  0% {
+    background: theme('colors.primary');
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    background: theme('colors.purple');
+    top: 24px;
+    height: 32px;
+    width: 1px;
+  }
+}

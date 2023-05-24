@@ -1,0 +1,16 @@
+.loaderScreen {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  margin:auto;
+  height: max-content;
+  width: max-content;
+}

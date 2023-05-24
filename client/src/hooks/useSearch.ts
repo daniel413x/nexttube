@@ -46,7 +46,7 @@ const useSearch = <T>({
     // used if no input prop
     setSearchTerm(e.target.value);
   };
-  const { data, isSuccess, isLoading } = api(
+  const { data, isSuccess, isLoading, isFetching } = api(
     {
       searchTerm: debouncedSearch || searchTermParam,
       page,
@@ -96,6 +96,7 @@ const useSearch = <T>({
     dbCount,
     page,
     isLoading,
+    isFetching,
   };
 };
 

@@ -1,5 +1,5 @@
 import { FC, ReactElement, useEffect } from 'react';
-import Loader from '@components/ui/common/Loader';
+import LoaderScreen from '@components/ui/common/LoaderScreen';
 import useActions from '@hooks/useActions';
 import useAuth from '@hooks/useAuth';
 import useUtil from '@hooks/useUtil';
@@ -22,7 +22,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
-  return isLoading ? <Loader /> : children;
+  return isLoading ? <LoaderScreen /> : children;
 };
 
 export default AuthProvider;

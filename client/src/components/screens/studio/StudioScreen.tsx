@@ -3,6 +3,7 @@ import MainLayout from '@components/layouts/MainLayout';
 import Catalog from '@components/ui/common/Catalog';
 import DeleteVideoModal from '@components/ui/modals/DeleteVideoModal';
 import useUser from '@hooks/useUser';
+import styles from './StudioScreen.module.scss';
 
 const StudioScreen: FC = () => {
   const [deletedId, setDeletedId] = useState<string>('');
@@ -15,7 +16,11 @@ const StudioScreen: FC = () => {
       {renderCatalog && (
         <Catalog videos={videos} removeHandler={setDeletedId} isUpdateLink />
       )}
-      {!renderCatalog && <p>You have not uploaded have any videos.</p>}
+      {!renderCatalog && (
+        <p className={styles.noVideos}>
+          You have not uploaded have any videos.
+        </p>
+      )}
     </MainLayout>
   );
 };

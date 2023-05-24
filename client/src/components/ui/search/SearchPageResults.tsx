@@ -13,6 +13,7 @@ import useVideo from '@hooks/useVideo';
 import videoApi from '@store/api/video';
 import Button from '../common/Button';
 import IconSpan from '../common/IconSpan';
+import LoaderIcon from '../common/LoaderIcon';
 import FilterMenu from './FilterMenu';
 import Result from './Result';
 import styles from './SearchPageResults.module.scss';
@@ -26,14 +27,21 @@ const SearchPageResults: FC = () => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [noResultsTerm, setNoResultsTerm] = useState<string>('');
   const { searchInput } = useVideo();
-  const { results, dbCount, changePage, page, pageLimitReached, isLoading } =
-    useSearch<IVideo>({
-      itemsPerPage: 8,
-      api: videoApi.useGetVideosBySearchTermQuery,
-      input: searchInput,
-      concat: true,
-      filters: filters as VideoSearchQueryFilters,
-    });
+  const {
+    results,
+    dbCount,
+    changePage,
+    page,
+    pageLimitReached,
+    isLoading,
+    isFetching,
+  } = useSearch<IVideo>({
+    itemsPerPage: 8,
+    api: videoApi.useGetVideosBySearchTermQuery,
+    input: searchInput,
+    concat: true,
+    filters: filters as VideoSearchQueryFilters,
+  });
   useEffect(() => {
     if (results.length === 0) {
       setNoResultsTerm(searchInput);
@@ -110,13 +118,17 @@ const SearchPageResults: FC = () => {
             ? results.map((video) => <Result video={video} md={md} />)
             : null}
         </ul>
-        <Button
-          className={styles.moreButton}
-          onClick={() => changePage(page + 1)}
-          disabled={pageLimitReached || results.length === 0}
-        >
-          More
-        </Button>
+        {isFetching && results.length ? (
+          <LoaderIcon />
+        ) : (
+          <Button
+            className={styles.moreButton}
+            onClick={() => changePage(page + 1)}
+            disabled={pageLimitReached || results.length === 0}
+          >
+            More
+          </Button>
+        )}
       </div>
     </div>
   );
