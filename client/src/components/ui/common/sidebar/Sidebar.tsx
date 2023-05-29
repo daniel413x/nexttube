@@ -8,7 +8,7 @@ import { RiNotificationLine } from 'react-icons/ri';
 import useBreakpoints from '@hooks/useBreakpoints';
 import useUser from '@hooks/useUser';
 import defaultAvatar from '@public/images/default-avatar.png';
-import logo from '@public/logos/nexttube-logo-lg.png';
+import logo from '@public/logos/nexttube-logo.png';
 import SocialMedia from '../SocialMedia';
 import Menu from './Menu';
 import styles from './Sidebar.module.scss';
@@ -24,8 +24,8 @@ const Sidebar: FC = () => {
       <div className={styles.upper}>
         <Link className={styles.logo} href="/">
           <Image
-            width={155}
-            height={29}
+            width={311}
+            height={58}
             src={logo}
             alt="NextTube logo"
             layout={lg ? '' : 'responsive'}

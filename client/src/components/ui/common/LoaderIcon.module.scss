@@ -1,18 +1,11 @@
 .loaderIcon {
-  display: inline-block;
-  position: relative;
+  @apply inline-block relative mx-auto scale-50;
   width: 120px;
   height: 80px;
-  margin:auto;
-  transform: scale(0.5);
 
   div {
-    display: inline-block;
-    position: absolute;
-    left: 8px;
-    width: 10px;
-    background: #fff;
-    animation: ldsLoader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    @apply inline-block absolute left-2 w-2.5 bg-white;
+    animation: ldsLoader 1.2s cubic-bezier(0, 0.5, 0.6, 1) infinite;
 
     @for $i from 1 through 10 {
       &:nth-child(#{$i}) {
