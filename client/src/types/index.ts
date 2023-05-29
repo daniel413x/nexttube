@@ -188,7 +188,6 @@ export type VideoSearchQueryFilters = {
   createdAt?: 'ASC' | 'DESC';
   views?: 'ASC' | 'DESC';
   likes?: 'ASC' | 'DESC';
-  duration?: 'ASC' | 'DESC';
 };
 
 export type VideoSearchQuery = {

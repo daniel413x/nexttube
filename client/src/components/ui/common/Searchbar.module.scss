@@ -29,6 +29,7 @@
 
   .resultsWrapper {
     @apply shadow-block rounded-lg animate-scaleIn absolute w-full z-20 p-5 mt-3 bg-gray-900;
+    min-height: 64px;
 
     .results {
       @apply grid justify-items-center grid-cols-100 xl:grid-cols-50 2xl:grid-cols-33;
@@ -36,6 +37,26 @@
 
     .result {
       @apply m-auto p-1;
+    }
+
+    .videosNotFound {
+      @apply flex gap-1.5 items-center text-gray-400;
+
+      @keyframes show {
+        0% {
+          opacity: 0;
+        }
+        20% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 100%;
+        }
+      }
+
+      span {
+        animation: show 0.6s linear 1;
+      }
     }
     
     .moreResultsLink {

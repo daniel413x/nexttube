@@ -22,6 +22,7 @@ const App = ({ Component, pageProps }: AppAuthed) => (
       startPosition={0.3}
       stopDelayMs={200}
       height={3}
+      showOnShallow={false}
     />
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>

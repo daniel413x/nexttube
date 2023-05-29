@@ -1,11 +1,7 @@
 import { initialVideo } from '@data/state';
 import { createSlice } from '@reduxjs/toolkit';
 import { VideoSlice } from '@types';
-import {
-  setDbCount,
-  setSearchInput,
-  setSearchResults,
-} from '@store/actions/videoActions';
+import { setDbCount, setSearchInput } from '@store/actions/videoActions';
 
 const initialState: VideoSlice = initialVideo;
 
@@ -14,9 +10,6 @@ export const videoSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(setSearchResults, (state, action) => {
-      state.searchResults = action.payload;
-    });
     builder.addCase(setSearchInput, (state, action) => {
       state.searchInput = action.payload;
     });

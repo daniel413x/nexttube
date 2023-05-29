@@ -1,7 +1,8 @@
 import { SEARCH_ROUTE } from '@data/consts';
 import cn from 'classnames';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { BsSliders } from 'react-icons/bs';
 import { CiCircleRemove } from 'react-icons/ci';
 import SectionHeader from '@components/ui/common/SectionHeader';
@@ -21,9 +22,12 @@ import styles from './SearchPageResults.module.scss';
 const SearchPageResults: FC = () => {
   const { md } = useBreakpoints();
   const router = useRouter();
-  const filters = { ...router.query };
-  const showResetButton = Object.keys(filters).length > 1;
-  delete filters.searchTerm;
+  const { asPath, pathname } = router;
+  const filters = useMemo(() => {
+    const { searchTerm: x, ...rest } = router.query;
+    return rest;
+  }, [router.query]);
+  const showResetButton = Object.keys(filters).length > 0;
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [noResultsTerm, setNoResultsTerm] = useState<string>('');
   const { searchInput } = useVideo();
@@ -33,12 +37,11 @@ const SearchPageResults: FC = () => {
     changePage,
     page,
     pageLimitReached,
-    isLoading,
     isFetching,
+    didAttemptFetch,
   } = useSearch<IVideo>({
     itemsPerPage: 8,
     api: videoApi.useGetVideosBySearchTermQuery,
-    input: searchInput,
     concat: true,
     filters: filters as VideoSearchQueryFilters,
   });
@@ -48,12 +51,30 @@ const SearchPageResults: FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [results]);
-  const [interacted, setInteracted] = useState<boolean>(false);
-  const [initial, setInitial] = useState<boolean>(false);
-  const initialNotification =
-    results.length === 0 && !searchInput && !interacted;
-  const noResultsNotification =
-    !isLoading && interacted && results.length === 0;
+  const [noSearchMessage, setNoSearchMessage] = useState<boolean>(false);
+  const [noResultsNotification, setNoResultsNotification] =
+    useState<boolean>(false);
+  useEffect(() => {
+    if (!isFetching && didAttemptFetch && results.length === 0) {
+      setNoResultsNotification(true);
+    } else {
+      setNoResultsNotification(false);
+    }
+  }, [isFetching, didAttemptFetch, results.length]);
+  useEffect(() => {
+    const noSearch = asPath === pathname;
+    if (noSearch) {
+      setNoSearchMessage(true);
+    } else {
+      setNoSearchMessage(false);
+    }
+  }, [asPath, pathname]);
+  let notificationMessage = 'No search has been performed yet';
+  if (Object.keys(filters).length > 0) {
+    notificationMessage = 'Your query yielded no results';
+  } else if (noResultsTerm) {
+    notificationMessage = `"${noResultsTerm}" yielded no results`;
+  }
   const scrolledToBottom = useScrollDownLimit(
     pageLimitReached || results.length === 0
   );
@@ -63,14 +84,6 @@ const SearchPageResults: FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrolledToBottom]);
-  useEffect(() => {
-    if (initialNotification) {
-      setInitial(true);
-    } else {
-      setInteracted(true);
-      setInitial(false);
-    }
-  }, [initialNotification]);
   return (
     <div className={styles.searchPageResults}>
       <div className={styles.resultsWrapper}>
@@ -86,45 +99,52 @@ const SearchPageResults: FC = () => {
               Advanced
             </Button>
             {showResetButton && (
-              <Button
+              <Link
                 className={cn(styles.filtersButton, styles.removeButton)}
-                onClick={() =>
-                  router.push(
-                    `/${SEARCH_ROUTE}${
-                      searchInput ? `?searchTerm=${searchInput}` : ''
-                    }`
-                  )
-                }
+                href={`/${SEARCH_ROUTE}${
+                  searchInput ? `?searchTerm=${searchInput}` : ''
+                }`}
+                onClick={() => {
+                  changePage(1);
+                }}
+                shallow
               >
                 <IconSpan Icon={CiCircleRemove} />
                 <span className={styles.label}>Reset</span>
-              </Button>
+              </Link>
             )}
           </div>
-          <FilterMenu show={showFilters} searchTerm={searchInput} />
+          <FilterMenu
+            show={showFilters}
+            searchTerm={searchInput}
+            changePage={changePage}
+          />
           <span className={styles.videosFound}>Videos found: {dbCount}</span>
         </div>
-        <ul className={styles.results}>
+        <div className={styles.messageWrapper}>
           <span
             className={cn(styles.message, {
-              [styles.show]: initialNotification || noResultsNotification,
+              // [styles.show]: noSearchMessage || noResultsNotification,
+              [styles.show]: noSearchMessage || noResultsNotification,
             })}
           >
-            {initial
-              ? 'No search has been performed yet'
-              : `"${noResultsTerm}" yielded no results`}
+            {notificationMessage}
           </span>
-          {results.length
-            ? results.map((video) => <Result video={video} md={md} />)
-            : null}
-        </ul>
+          <ul className={styles.results}>
+            {results.length
+              ? results.map((video) => (
+                  <Result key={video.id} video={video} md={md} />
+                ))
+              : null}
+          </ul>
+        </div>
         {isFetching && results.length ? (
           <LoaderIcon />
         ) : (
           <Button
             className={styles.moreButton}
             onClick={() => changePage(page + 1)}
-            disabled={pageLimitReached || results.length === 0}
+            disabled={isFetching || pageLimitReached || results.length === 0}
           >
             More
           </Button>

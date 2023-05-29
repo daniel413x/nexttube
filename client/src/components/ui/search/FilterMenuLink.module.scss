@@ -1,0 +1,12 @@
+.filterMenuLink {
+  @apply flex items-center gap-1 text-gray-500 text-xs py-1.5 w-max;
+
+  .checkIcon {
+    @apply relative text-purple left-4 opacity-0;
+    transition: all 0.2s linear;
+
+    &.show {
+      @apply opacity-100 left-0;
+    }
+  }
+}

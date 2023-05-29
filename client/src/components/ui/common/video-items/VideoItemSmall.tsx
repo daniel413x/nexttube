@@ -3,7 +3,7 @@ import cn from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { IVideo } from '@types';
 import useFocused from '@hooks/useFocused';
@@ -20,6 +20,7 @@ interface VideoItemProps {
   isUpdateLink?: boolean;
   isSmall?: boolean;
   placeholder?: boolean;
+  transition?: boolean;
 }
 
 const VideoItemSmall: FC<VideoItemProps> = ({
@@ -28,16 +29,24 @@ const VideoItemSmall: FC<VideoItemProps> = ({
   removeHandler,
   video,
   placeholder,
+  transition = false,
 }) => {
+  const [hide, setHide] = useState<boolean>(transition);
   const { push } = useRouter();
   const { id, thumbnailPath, name, duration, viewsCount, createdAt } = video;
   const { ref, focused } = useFocused();
+  useEffect(() => {
+    if (transition) {
+      setHide(false);
+    }
+  }, [transition]);
   return (
     <div
       className={cn(styles.videoItem, {
         [styles.small]: isSmall,
         [styles.placeholder]: placeholder,
         [styles.focused]: focused,
+        [styles.hide]: hide,
       })}
     >
       <Link
@@ -115,6 +124,7 @@ VideoItemSmall.defaultProps = {
   isUpdateLink: false,
   placeholder: false,
   isSmall: undefined,
+  transition: false,
 };
 
 export default VideoItemSmall;

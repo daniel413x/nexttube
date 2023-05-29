@@ -14,9 +14,5 @@
 
   .col {
     @apply flex flex-col w-full;
-
-    a {
-      @apply text-gray-500 text-xs py-1.5 w-max;
-    }
   }
 }

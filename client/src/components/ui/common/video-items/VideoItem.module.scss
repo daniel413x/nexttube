@@ -15,6 +15,13 @@
   }
 
   &.small {
+    @apply opacity-100;
+    transition: opacity 0.3s linear;
+
+    &.hide {
+      @apply opacity-0;
+    }
+
     .information {
       .name {
         @apply mt-3;

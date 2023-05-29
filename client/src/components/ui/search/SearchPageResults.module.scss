@@ -6,14 +6,17 @@
     transition: height 0.3s ease-out;
     max-width: 1000px;
 
-    .message {
-      @apply absolute left-1/2 -translate-x-1/2 text-gray-600 font-bold pt-0 opacity-0 text-center;
-      transition: all 0.3s ease-out;
-      padding-top: 6rem;
+    .messageWrapper {
+      @apply relative;
+      .message {
+        @apply absolute left-1/2 -translate-x-1/2 text-gray-600 font-bold pt-0 opacity-0 text-center;
+        transition: all 0.3s ease-out;
+        padding-top: 0;
 
-      &.show {
-        @apply opacity-100;
-        padding-top: 12rem;
+        &.show {
+          @apply opacity-100;
+          padding-top: 6rem;
+        }
       }
     }
 
@@ -36,7 +39,7 @@
         }
 
         .removeButton {
-          @apply bg-black-25 py-2 ps-2.5 pe-3;
+          @apply flex items-center bg-black-25 py-2 ps-2.5 pe-3;
           
           .label {
             @apply text-xs;

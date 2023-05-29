@@ -1,5 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+import getHMMSS from 'src/utils/getHMMSS.util';
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
@@ -9,7 +10,9 @@ export class LoggerMiddleware implements NestMiddleware {
     res.on('finish', () => {
       const duration = Date.now() - start;
       console.log(
-        `${method} ${originalUrl} - ${res.statusCode} - ${duration}ms`,
+        `${getHMMSS()} - ${method} ${originalUrl} - ${
+          res.statusCode
+        } - ${duration}ms`,
       );
     });
     next();

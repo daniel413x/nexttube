@@ -10,23 +10,22 @@ interface ResultProps {
   md: boolean;
 }
 
-const SearchPageResults: FC<ResultProps> = ({ video, md }) => {
+const Result: FC<ResultProps> = ({ video, md }) => {
   const [show, setShow] = useState<boolean>(false);
-  useEffect(() => setShow(true), []);
+  useEffect(() => setShow(true), [video]);
   return (
     <li
       className={cn(styles.result, {
         [styles.show]: show,
       })}
-      key={video.name}
     >
       {md ? (
-        <VideoItemListView video={video} key={video.id} />
+        <VideoItemListView video={video} />
       ) : (
-        <VideoItemSmall video={video} key={video.id} />
+        <VideoItemSmall video={video} />
       )}
     </li>
   );
 };
 
-export default SearchPageResults;
+export default Result;
