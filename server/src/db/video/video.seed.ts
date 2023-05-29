@@ -30,6 +30,12 @@ export default class VideoSeeder extends Seeder {
       '📱 20 Tips and Tricks for Stunning Smartphone Photography',
       'THE FUTURE OF MOBILE TECH: 8 Upcoming Smartphone Trends to Watch Out For',
     ];
+    const randomVideoTitles = [
+      'Trends In Freelance Work In 2023',
+      'Must-Have Tech Accessories',
+      "5 Secrets Social Media Doesn't Want You To Know...",
+      'HOW TO GROW YOUR TikTok AUDIENCE',
+    ];
     const programmingVideos = seederIds.programmingVideoIds.map((uuid, i) => {
       const video = new VideoEntity();
       video.viewsCount = randomMinMaxInt(0, 1500);
@@ -85,7 +91,7 @@ export default class VideoSeeder extends Seeder {
       video.videoPath = `/uploads/default/seeder-smartphone.mp4`;
       video.thumbnailPath = `/uploads/thumbnails/seeder-random-${i + 1}.jpg`;
       video.id = uuid;
-      video.name = `${smartphoneVideoTitles[i]} (Random Video ${i + 1})`;
+      video.name = `${randomVideoTitles[i]} (Random Video ${i + 1})`;
       video.description = `${faker.lorem.paragraph()}`;
       video.userId = randomVideoUserId;
       return video;
