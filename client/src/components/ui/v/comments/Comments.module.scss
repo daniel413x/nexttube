@@ -3,6 +3,7 @@
 .comments {
   @apply relative rounded-xl p-5 relative bg-fg-item pb-20;
   flex-basis: 33.33%;
+  min-height: 300px;
 
   h2 {
     @apply text-white text-tiny;

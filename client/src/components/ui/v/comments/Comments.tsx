@@ -12,9 +12,14 @@ import styles from './Comments.module.scss';
 interface CommentsProps {
   comments: IComment[];
   videoId: string;
+  setShowRegisterModal: () => void;
 }
 
-const Comments: FC<CommentsProps> = ({ comments, videoId }) => {
+const Comments: FC<CommentsProps> = ({
+  comments,
+  videoId,
+  setShowRegisterModal,
+}) => {
   const commentsUlRef = useRef(null);
   const scrolledToLimit = useScrollDownLimit(false, 500, commentsUlRef);
   const { xxl } = useBreakpoints();
@@ -68,7 +73,12 @@ const Comments: FC<CommentsProps> = ({ comments, videoId }) => {
       ) : (
         <p>Be the first to comment!</p>
       )}
-      {user && <CommentForm videoId={videoId} />}
+      {user && (
+        <CommentForm
+          videoId={videoId}
+          setShowRegisterModal={setShowRegisterModal}
+        />
+      )}
     </div>
   );
 };

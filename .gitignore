@@ -4,3 +4,4 @@ lib/
 Postman/
 build/
 dist/
+.vercel

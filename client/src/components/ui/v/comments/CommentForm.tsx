@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { FieldError, SubmitHandler, useForm } from 'react-hook-form';
 import { IoMdSend } from 'react-icons/io';
 import { ICommentDto } from '@types';
+import useUser from '@hooks/useUser';
 import commentApi from '@store/api/comment';
 import IconSpan from '../../common/IconSpan';
 import Input from '../../common/Input';
@@ -9,9 +10,14 @@ import styles from './CommentForm.module.scss';
 
 interface CommentFormProps {
   videoId: string;
+  setShowRegisterModal: () => void;
 }
 
-const CommentForm: FC<CommentFormProps> = ({ videoId }) => {
+const CommentForm: FC<CommentFormProps> = ({
+  videoId,
+  setShowRegisterModal,
+}) => {
+  const user = useUser();
   const {
     register,
     formState: { errors },
@@ -38,7 +44,8 @@ const CommentForm: FC<CommentFormProps> = ({ videoId }) => {
       <button
         className={styles.submitButton}
         disabled={isLoading}
-        type="submit"
+        type={!user.id ? 'button' : 'submit'}
+        onClick={!user.id ? setShowRegisterModal : undefined}
       >
         <IconSpan Icon={IoMdSend} />
       </button>

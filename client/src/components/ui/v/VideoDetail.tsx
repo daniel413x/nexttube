@@ -18,9 +18,14 @@ import styles from './VideoDetail.module.scss';
 interface VideoDetailProps {
   video: IVideo;
   channel: IUser;
+  setShowRegisterModal: (bool: boolean) => void;
 }
 
-const VideoDetail: FC<VideoDetailProps> = ({ video, channel }) => {
+const VideoDetail: FC<VideoDetailProps> = ({
+  video,
+  channel,
+  setShowRegisterModal,
+}) => {
   const user = useUser();
   const [updateLike, { isLoading: isLikeLoading }] =
     videoApi.useUpdateLikesMutation();
@@ -55,15 +60,17 @@ const VideoDetail: FC<VideoDetailProps> = ({ video, channel }) => {
       </div>
       <div className={styles.rightCol}>
         <div className={styles.buttonsWrapper}>
-          {user?.id && (
-            <SubscribeButton idForSubscription={userId} parentStyles={styles} />
-          )}
+          <SubscribeButton
+            setShowRegisterModal={() => setShowRegisterModal(true)}
+            idForSubscription={userId}
+            parentStyles={styles}
+          />
           <Button
             className={cn(styles.likeButton, {
               [styles.liked]: hasLiked,
             })}
             disabled={isLikeLoading}
-            onClick={handleLike}
+            onClick={!user.id ? () => setShowRegisterModal(true) : handleLike}
             type="button"
           >
             {hasLiked && (

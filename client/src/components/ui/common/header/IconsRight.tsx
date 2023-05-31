@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import useUser from '@hooks/useUser';
-import AuthForm from './AuthForm';
+import AuthForm from '../AuthForm';
 import styles from './IconsRight.module.scss';
 import ProfileMenu from './ProfileMenu';
 import UploadVideoButton from './upload-video/UploadVideoButton';
@@ -15,7 +15,7 @@ const IconsRight: FC = () => {
           <UploadVideoButton />
         </>
       ) : (
-        <AuthForm />
+        <AuthForm parentStyles={styles} />
       )}
     </div>
   );

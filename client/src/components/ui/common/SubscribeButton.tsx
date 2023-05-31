@@ -15,6 +15,7 @@ interface SubscribeButtonProps {
   subscribedClassName?: string;
   className?: string;
   parentStyles?: SCSSModule;
+  setShowRegisterModal?: () => void;
 }
 
 const SubscribeButton: FC<SubscribeButtonProps> = ({
@@ -23,14 +24,15 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
   subscribedClassName,
   className,
   parentStyles,
+  setShowRegisterModal,
 }) => {
   const styles = cobbleStyles(defaultStyles, parentStyles);
   const user = useUser();
+  const [subscribe, { isLoading, data }] =
+    userApi.useSubscribeToChannelMutation();
   if (user?.id === idForSubscription) {
     return null;
   }
-  const [subscribe, { isLoading, data }] =
-    userApi.useSubscribeToChannelMutation();
   const isSubscribed =
     user?.subscriptions.some((sub) => sub.toChannel.id === idForSubscription) ||
     !!data;
@@ -48,7 +50,7 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
       className={cn(className, styles.subscribeButton, {
         [subscribedClassName || styles.subscribed]: isSubscribed,
       })}
-      onClick={handleSubscribe}
+      onClick={!user.id ? setShowRegisterModal : handleSubscribe}
       disabled={isLoading}
     >
       <IconSpan
@@ -67,6 +69,7 @@ SubscribeButton.defaultProps = {
   subscribedClassName: '',
   className: '',
   parentStyles: undefined,
+  setShowRegisterModal: undefined,
 };
 
 export default SubscribeButton;

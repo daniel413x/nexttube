@@ -1,0 +1,24 @@
+.registerModal {
+  @apply text-tiny py-10 hidden;
+
+  .wrapper {
+    @apply flex flex-col items-center m-auto;
+
+    width: 400px;
+    max-width: 100%;
+  }
+
+  .closeButton {
+    @apply bg-purple;
+  }
+
+  .prompt {
+    @apply w-4/5 my-4 text-sm;
+  }
+
+  form {
+    @apply mt-2;
+
+    padding: 0 !important;
+  }
+}

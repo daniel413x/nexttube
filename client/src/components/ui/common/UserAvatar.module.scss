@@ -21,6 +21,10 @@
 
     .verifiedIcon {
       @apply text-white absolute;
+
+      &::before {
+        @apply bg-gray-800;
+      }
     }
   }
 
@@ -30,5 +34,10 @@
 
   .verifiedIcon {
     @apply text-blue-500 text-xs absolute bottom-0 right-0;
+
+    &::before {
+      @apply bg-white w-3 h-3 block rounded-full absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+      content: '';
+    }
   }
 }

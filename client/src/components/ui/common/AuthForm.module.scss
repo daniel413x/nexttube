@@ -3,14 +3,27 @@
 
   transition: margin 0.25s ease-out;
 
+  .button {
+    @apply inline-flex;
+  }
+
+  &.staticPosition {
+    transition: none;
+
+    .form {
+      @apply static shadow-none;
+    }
+  }
+
   &.place {
     @apply me-0;
   }
 
   .form {
-    @apply flex flex-col shadow-block animate-scaleIn p-6 pt-12 absolute right-2 w-80 z-20 rounded-lg;
+    @apply flex flex-col shadow-block p-6 pt-12 absolute right-2 w-80 z-20 rounded-lg;
     top: calc(100%);
     background-color: #272532;
+    transition: none;
 
     .loginButton {
       @apply m-auto;

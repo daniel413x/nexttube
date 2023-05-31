@@ -3,17 +3,23 @@ import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaUserCircle } from 'react-icons/fa';
-import { IAuthFields } from '@types';
+import { IAuthFields, SCSSModule } from '@types';
 import useActions from '@hooks/useActions';
 import useAuth from '@hooks/useAuth';
 import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
-import Button from '../Button';
-import IconSpan from '../IconSpan';
-import Input from '../Input';
-import styles from './AuthForm.module.scss';
-import iconsStyles from './IconsRight.module.scss';
+import { cobbleStyles } from '@utils';
+import defaultStyles from './AuthForm.module.scss';
+import Button from './Button';
+import IconSpan from './IconSpan';
+import Input from './Input';
 
-const AuthForm: FC = () => {
+interface AuthFormProps {
+  staticPosition?: boolean;
+  parentStyles?: SCSSModule;
+}
+
+const AuthForm: FC<AuthFormProps> = ({ staticPosition, parentStyles }) => {
+  const styles = cobbleStyles(defaultStyles, parentStyles);
   const [forLogin, setForLogin] = useState<boolean>(true);
   const { ref, setShow, show } = useHideOnOutsideClick(false);
   const { loading } = useAuth();
@@ -25,7 +31,7 @@ const AuthForm: FC = () => {
   } = useForm<IAuthFields>({
     mode: 'onChange',
   });
-  const onSubmit: SubmitHandler<IAuthFields> = (data) => {
+  const onSubmit: SubmitHandler<IAuthFields> = async (data) => {
     if (forLogin) {
       login(data);
     } else {
@@ -40,17 +46,21 @@ const AuthForm: FC = () => {
     <div
       className={cn(styles.authForm, {
         [styles.place]: place,
+        [styles.staticPosition]: staticPosition,
       })}
       ref={ref}
     >
-      <button
-        className={iconsStyles.button}
-        onClick={() => setShow(!show)}
-        type="button"
-      >
-        <IconSpan Icon={FaUserCircle} />
-      </button>
-      {show && (
+      {!staticPosition && (
+        <button
+          className={styles.button}
+          onClick={() => setShow(!show)}
+          type="button"
+        >
+          <IconSpan Icon={FaUserCircle} />
+        </button>
+      )}
+
+      {(show || staticPosition) && (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           {!forLogin && (
             <Input
@@ -107,6 +117,11 @@ const AuthForm: FC = () => {
       )}
     </div>
   );
+};
+
+AuthForm.defaultProps = {
+  staticPosition: false,
+  parentStyles: undefined,
 };
 
 export default AuthForm;
