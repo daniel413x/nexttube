@@ -44,16 +44,22 @@ const videoApi = api.injectEndpoints({
       }),
       invalidatesTags: (result, error, id) => [{ type: 'Video', id }],
     }),
-    updateLikes: builder.mutation<IVideo, string>({
-      query: (id) => ({
+    updateLikes: builder.mutation<IVideo, { videoId: string; userId: string }>({
+      query: ({ videoId }) => ({
         method: 'PUT',
-        url: `/${VIDEO}/update-likes/${id}`,
+        url: `/${VIDEO}/update-likes/${videoId}`,
       }),
-      invalidatesTags: (result, error, id) => [{ type: 'Video', id }],
+      invalidatesTags: (result, error, { videoId, userId }) => [
+        { type: 'Video', videoId },
+        { type: 'Profile', userId },
+      ],
     }),
-    checkUserLike: builder.query<boolean, string>({
-      query: (id) => `video/check-likes/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Video', id }],
+    checkUserLike: builder.query<boolean, { videoId: string; userId: string }>({
+      query: ({ videoId, userId }) => `video/check-likes/${videoId}/${userId}`,
+      providesTags: (result, error, { videoId, userId }) => [
+        { type: 'Video', videoId },
+        { type: 'Profile', userId },
+      ],
     }),
     deleteVideo: builder.mutation<void, string>({
       query: (id) => ({

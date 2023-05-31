@@ -18,7 +18,7 @@ import styles from './VideoDetail.module.scss';
 interface VideoDetailProps {
   video: IVideo;
   channel: IUser;
-  setShowRegisterModal: (bool: boolean) => void;
+  setShowRegisterModal: () => void;
 }
 
 const VideoDetail: FC<VideoDetailProps> = ({
@@ -30,13 +30,16 @@ const VideoDetail: FC<VideoDetailProps> = ({
   const [updateLike, { isLoading: isLikeLoading }] =
     videoApi.useUpdateLikesMutation();
   const { data: hasLiked } = videoApi.useCheckUserLikeQuery(
-    video.id as string,
+    {
+      videoId: video.id as string,
+      userId: user.id as string,
+    },
     {
       skip: !user?.id || !video.id,
     }
   );
   const handleLike = async () => {
-    await updateLike(video.id).unwrap();
+    await updateLike({ videoId: video.id, userId: user.id }).unwrap();
     if (hasLiked) {
       toastSuccess('You unliked this video', { progressBar: false });
     } else {
@@ -51,6 +54,7 @@ const VideoDetail: FC<VideoDetailProps> = ({
     likes,
     createdAt,
   } = video;
+  const showLike = hasLiked && user.id;
   return (
     <div className={styles.videoDetail}>
       <div className={styles.leftCol}>
@@ -61,19 +65,19 @@ const VideoDetail: FC<VideoDetailProps> = ({
       <div className={styles.rightCol}>
         <div className={styles.buttonsWrapper}>
           <SubscribeButton
-            setShowRegisterModal={() => setShowRegisterModal(true)}
             idForSubscription={userId}
             parentStyles={styles}
+            setShowRegisterModal={setShowRegisterModal}
           />
           <Button
             className={cn(styles.likeButton, {
-              [styles.liked]: hasLiked,
+              [styles.liked]: showLike,
             })}
             disabled={isLikeLoading}
-            onClick={!user.id ? () => setShowRegisterModal(true) : handleLike}
+            onClick={!user.id ? setShowRegisterModal : handleLike}
             type="button"
           >
-            {hasLiked && (
+            {showLike && (
               <IconSpan Icon={FaCheck} className={styles.checkIcon} />
             )}
             <RiHeart2Fill />

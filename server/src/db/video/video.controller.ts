@@ -101,11 +101,10 @@ export class VideoController {
   }
 
   @HttpCode(200)
-  @Get('check-likes/:videoId')
-  @Auth()
+  @Get('check-likes/:videoId/:userId')
   async checkLikes(
     @Param('videoId') videoId: string,
-    @CurrentUser('id') userId: string,
+    @Param('userId') userId: string,
   ) {
     return this.videoService.checkLikes(videoId, userId);
   }
