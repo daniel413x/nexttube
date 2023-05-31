@@ -1,7 +1,7 @@
 const { MigrationInterface, QueryRunner } = require("typeorm");
 
-module.exports = class NewMigration1685389382076 {
-    name = 'NewMigration1685389382076'
+module.exports = class NewMigration1685514696906 {
+    name = 'NewMigration1685514696906'
 
     async up(queryRunner) {
         await queryRunner.query(`CREATE TABLE "Like" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "from_user_id" uuid NOT NULL, "to_video_id" uuid NOT NULL, CONSTRAINT "PK_20ede1755cb694ecf15674c8ba1" PRIMARY KEY ("id"))`);

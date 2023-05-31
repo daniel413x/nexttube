@@ -32,6 +32,7 @@ export function getEnvConfig() {
           database: configService.get<string>('PROD_DB_NAME'),
           username: configService.get<string>('PROD_DB_USERNAME'),
           password: configService.get<string>('PROD_DB_PASSWORD'),
+          ssl: true,
         };
   return {
     ...baseConfig,
