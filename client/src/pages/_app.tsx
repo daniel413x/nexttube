@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
 import { PersistGate } from 'redux-persist/integration/react';
 import AuthProvider from '@components/providers/AuthProvider';
+import PingProvider from '@components/providers/PingProvider';
 import { AppAuthed } from '@types';
 import { persistor, store } from '@store/configureStore';
 import '@styles/globals.scss';
@@ -26,15 +27,17 @@ const App = ({ Component, pageProps }: AppAuthed) => (
     />
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        <AuthProvider>
-          {Component.auth ? (
-            <AuthWrapper auth={Component.auth}>
+        <PingProvider>
+          <AuthProvider>
+            {Component.auth ? (
+              <AuthWrapper auth={Component.auth}>
+                <Component {...pageProps} />
+              </AuthWrapper>
+            ) : (
               <Component {...pageProps} />
-            </AuthWrapper>
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </AuthProvider>
+            )}
+          </AuthProvider>
+        </PingProvider>
         <ReduxToastr
           newestOnTop={false}
           preventDuplicates

@@ -8,6 +8,7 @@ export const VALID_USERNAME = /^[a-zA-Z0-9]{3,25}$/;
 export const VALID_PASSWORD = /^[a-zA-Z0-9]{6,35}$/;
 export const AUTH = 'auth';
 export const REGISTER = 'register';
+export const UTIL = 'util';
 export const LOGIN = 'login';
 export const LOGOUT = 'logout';
 export const USER = 'user';

@@ -10,6 +10,7 @@ import { CommentModule } from './db/comment/comment.module';
 import { AuthModule } from './db/auth/auth.module';
 import { LoggerMiddleware } from './middlware/logger.middleware';
 import { MediaModule } from './db/media/media.module';
+import { UtilModule } from './db/util/util.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { MediaModule } from './db/media/media.module';
     CommentModule,
     AuthModule,
     MediaModule,
+    UtilModule,
   ],
   controllers: [AppController],
   providers: [AppService],
