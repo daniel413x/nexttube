@@ -54,7 +54,7 @@ const PersonalizeUpdateForm: FC = () => {
           )}
         />
       </div>
-      <Button type="submit" disabled={isLoading}>
+      <Button type="submit" loading={isLoading}>
         Save
       </Button>
     </form>

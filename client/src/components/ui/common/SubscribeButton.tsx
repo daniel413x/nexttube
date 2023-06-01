@@ -51,7 +51,7 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
         [subscribedClassName || styles.subscribed]: isSubscribed,
       })}
       onClick={!user.id ? setShowRegisterModal : handleSubscribe}
-      disabled={isLoading}
+      loading={isLoading}
     >
       <IconSpan
         className={iconClassName}

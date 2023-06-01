@@ -28,7 +28,7 @@
 }
 
 .background {
-  @apply z-10 absolute top-0 left-0 w-full h-full bg-black-25;
+  @apply z-10 absolute top-0 left-0 w-full h-full bg-black-50;
   animation: backgroundAnimation 1s ease-in-out 1;
 }
 

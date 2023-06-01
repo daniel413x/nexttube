@@ -5,6 +5,7 @@ import useActions from '@hooks/useActions';
 import useBreakpoints from '@hooks/useBreakpoints';
 import usePlayer from '@hooks/usePlayer';
 import useTrackDimensions from '@hooks/useTrackDimensions';
+import LoaderIcon from '../common/LoaderBarIcon';
 import VideoControls from './VideoControls';
 import styles from './VideoPlayer.module.scss';
 
@@ -56,6 +57,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ videoPath }) => {
       onMouseLeave={() => hideControlsTimeout()}
       className={styles.wrapper}
     >
+      {!metadataLoaded && <LoaderIcon />}
       <video
         id="video"
         ref={videoRef}

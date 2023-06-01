@@ -101,7 +101,7 @@ const AuthForm: FC<AuthFormProps> = ({ staticPosition, parentStyles }) => {
           <Button
             className={styles.loginButton}
             type="submit"
-            disabled={loading}
+            loading={loading}
           >
             {forLogin ? 'Login' : 'Register'}
           </Button>

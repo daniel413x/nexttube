@@ -48,6 +48,10 @@
       }
     }
 
+    .loader {
+      @apply relative h-10 mb-12;
+    }
+
     .moreButton {
       margin-top: auto;
     }

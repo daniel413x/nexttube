@@ -49,7 +49,7 @@ const PasswordUpdateForm: FC = () => {
         defaultValue=""
         type="password"
       />
-      <Button type="submit" disabled={isLoading}>
+      <Button type="submit" loading={isLoading}>
         Save
       </Button>
     </form>

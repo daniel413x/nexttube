@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { FC } from 'react';
 import logo from '@public/logos/nexttube-logo.png';
-import LoaderIcon from './LoaderIcon';
+import LoaderIcon from './LoaderBarIcon';
 import styles from './LoaderScreen.module.scss';
 
 const LoaderScreen: FC = () => (

@@ -46,7 +46,7 @@ const SettingsUpdateForm: FC = () => {
           ) as any
         }
       />
-      <Button type="submit" disabled={isLoading}>
+      <Button type="submit" loading={isLoading}>
         Save
       </Button>
     </form>

@@ -73,14 +73,14 @@ const VideoDetail: FC<VideoDetailProps> = ({
             className={cn(styles.likeButton, {
               [styles.liked]: showLike,
             })}
-            disabled={isLikeLoading}
             onClick={!user.id ? setShowRegisterModal : handleLike}
             type="button"
+            loading={isLikeLoading}
           >
             {showLike && (
               <IconSpan Icon={FaCheck} className={styles.checkIcon} />
             )}
-            <RiHeart2Fill />
+            <IconSpan Icon={RiHeart2Fill} />
           </Button>
         </div>
         <div className={styles.numberInfo}>

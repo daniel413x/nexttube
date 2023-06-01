@@ -14,7 +14,7 @@ import useVideo from '@hooks/useVideo';
 import videoApi from '@store/api/video';
 import Button from '../common/Button';
 import IconSpan from '../common/IconSpan';
-import LoaderIcon from '../common/LoaderIcon';
+import LoaderBarIcon from '../common/LoaderBarIcon';
 import FilterMenu from './FilterMenu';
 import Result from './Result';
 import styles from './SearchPageResults.module.scss';
@@ -139,7 +139,9 @@ const SearchPageResults: FC = () => {
           </ul>
         </div>
         {isFetching && results.length ? (
-          <LoaderIcon />
+          <div className={styles.loader}>
+            <LoaderBarIcon />
+          </div>
         ) : (
           <Button
             className={styles.moreButton}

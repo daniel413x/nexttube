@@ -70,6 +70,7 @@ const DeleteForm: FC = () => {
           <Button
             className={styles.submitButton}
             disabled={unblocker !== input || isLoading}
+            loading={isLoading}
             onClick={() => onSubmit()}
           >
             Confirm

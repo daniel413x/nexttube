@@ -50,7 +50,7 @@ const UsernameUpdateForm: FC = () => {
         <span>Changing your username will affect your channel name:</span>
         <span>{`/c/${newUsername || user.username}`}</span>
       </div>
-      <Button type="submit" disabled={isLoading}>
+      <Button type="submit" loading={isLoading}>
         Save
       </Button>
     </form>

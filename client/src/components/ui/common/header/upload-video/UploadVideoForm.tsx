@@ -8,8 +8,8 @@ import Textarea from '../../Textarea';
 import Toggle from '../../Toggle';
 import UploadField from '../../UploadField';
 import VideoInformation from '../../VideoInformation';
-import SuccessMessage from '../SuccessMessage';
 import FooterForm from './FooterForm';
+import SuccessMessage from './SuccessMessage';
 import styles from './UploadVideoForm.module.scss';
 
 interface UploadVideoFormProps {
@@ -95,6 +95,7 @@ const UploadVideoForm: FC<UploadVideoFormProps> = ({
             isUploaded={status.isUploaded}
             percent={status.percent}
             isSuccess={status.isSuccess}
+            isLoading={status.isLoading}
             // eslint-disable-next-line no-underscore-dangle
             reset={form.control._reset}
             handleCloseModal={() => handleCloseModal()}

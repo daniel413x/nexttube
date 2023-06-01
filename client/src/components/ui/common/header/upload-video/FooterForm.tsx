@@ -7,6 +7,7 @@ import styles from './FooterForm.module.scss';
 
 interface FooterFormProps {
   percent: number;
+  isLoading: boolean;
   isUploaded: boolean;
   isSuccess: boolean;
   reset: () => void;
@@ -16,6 +17,7 @@ interface FooterFormProps {
 const FooterForm: FC<FooterFormProps> = ({
   percent,
   isUploaded,
+  isLoading,
   isSuccess,
   reset,
   handleCloseModal,
@@ -33,7 +35,10 @@ const FooterForm: FC<FooterFormProps> = ({
       </span>
     </div>
     <Button
+      color="purple"
+      type="submit"
       className={styles.submitButton}
+      loading={isLoading}
       onClick={() => {
         if (isSuccess) {
           reset();

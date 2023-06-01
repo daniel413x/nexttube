@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { FieldError, SubmitHandler, useForm } from 'react-hook-form';
 import { IoMdSend } from 'react-icons/io';
+import Button from '@components/ui/common/Button';
 import { ICommentDto } from '@types';
 import useUser from '@hooks/useUser';
 import commentApi from '@store/api/comment';
@@ -41,14 +42,15 @@ const CommentForm: FC<CommentFormProps> = ({
           required: 'Comment body required',
         })}
       />
-      <button
+      <Button
+        color="blank"
         className={styles.submitButton}
         disabled={isLoading}
         type={!user.id ? 'button' : 'submit'}
         onClick={!user.id ? setShowRegisterModal : undefined}
       >
         <IconSpan Icon={IoMdSend} />
-      </button>
+      </Button>
     </form>
   );
 };

@@ -14,7 +14,8 @@ const DeleteVideoModal: FC<DeleteVideoModalProps> = ({
   show,
   close,
 }: DeleteVideoModalProps) => {
-  const [removeVideo, { isSuccess }] = videoApi.useDeleteVideoMutation();
+  const [removeVideo, { isSuccess, isLoading }] =
+    videoApi.useDeleteVideoMutation();
   const submit = () => removeVideo(show);
   useEffect(() => {
     if (isSuccess) {
@@ -31,7 +32,11 @@ const DeleteVideoModal: FC<DeleteVideoModalProps> = ({
           <br />
           Delete this video?
         </span>
-        <Button className={styles.confirmButton} onClick={submit}>
+        <Button
+          className={styles.confirmButton}
+          onClick={submit}
+          loading={isLoading}
+        >
           Confirm
         </Button>
       </div>

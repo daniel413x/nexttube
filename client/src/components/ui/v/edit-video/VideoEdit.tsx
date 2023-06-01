@@ -127,9 +127,9 @@ const VideoEdit: FC = () => {
           className={styles.submitButton}
           color="lightBlue"
           type="submit"
-          disabled={isUpdateLoading}
+          loading={isUpdateLoading}
         >
-          {isUpdateLoading ? 'Please wait...' : 'Save'}
+          Save
         </Button>
       </form>
     </div>

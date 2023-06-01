@@ -28,6 +28,7 @@ interface UseUploadVideoFormReturn {
     setIsChosen: Dispatch<SetStateAction<boolean>>;
     percent: number;
     isUploaded: boolean;
+    isLoading: boolean;
     setProgressPercent: (number: number) => void;
   };
 }
@@ -45,7 +46,8 @@ const useUploadVideoForm = ({
   } = useForm<IVideoDto>({
     mode: 'onChange',
   });
-  const [updateVideo, { isSuccess }] = videoApi.useUpdateVideoMutation();
+  const [updateVideo, { isSuccess, isLoading }] =
+    videoApi.useUpdateVideoMutation();
   const onSubmit: SubmitHandler<IVideoDto> = (data) => {
     updateVideo({ ...data, id: videoId }).unwrap();
   };
@@ -85,6 +87,7 @@ const useUploadVideoForm = ({
       setIsChosen,
       percent,
       isUploaded,
+      isLoading,
       setProgressPercent,
     },
   };

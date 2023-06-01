@@ -24,7 +24,7 @@
       @apply p-2.5;
 
       svg {
-        @apply mr-1.5 text-base;
+        @apply text-base;
       }
 
       &.subscribeButton {
@@ -41,6 +41,7 @@
         background-color: #353340;
         
         .checkIcon {
+          @apply me-0.5;
           transform: scale(0.85);
         }
       }
